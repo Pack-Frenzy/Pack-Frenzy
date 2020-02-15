@@ -11,4 +11,7 @@ public class ScoreboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scoreboard);
     }
+
+    // TODO:
+    // "Home" BUTTON  -> MainActivity
 }

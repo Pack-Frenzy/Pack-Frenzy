@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class RoundOverActivity extends AppCompatActivity {
+public class InBetweenTurnsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -13,6 +13,5 @@ public class RoundOverActivity extends AppCompatActivity {
     }
 
     // TODO:
-    // "Start Packing" BUTTON  -> PlayerActivity
-    // "High Scores"   BUTTON  -> ScoreboardActivity
+    // Countdown from 10 -> TurnActivity
 }

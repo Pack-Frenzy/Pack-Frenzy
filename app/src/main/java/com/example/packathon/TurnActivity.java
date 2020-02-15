@@ -11,4 +11,8 @@ public class TurnActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_turn);
     }
+
+    // TODO:
+    // If round is over, go to RoundActivity
+    // Else InBetweenTurnsActivity
 }
