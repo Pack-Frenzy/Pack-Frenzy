@@ -11,4 +11,7 @@ public class RoundActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_round);
     }
+
+    // TODO:
+    // Countdown from 10 -> TurnActivity
 }

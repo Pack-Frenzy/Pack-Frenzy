@@ -11,4 +11,7 @@ public class GameOverActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_over);
     }
+
+    // TODO:
+    // "Home" BUTTON  -> MainActivity
 }

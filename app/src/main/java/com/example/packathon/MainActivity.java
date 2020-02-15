@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    // Start Packing button -> PlayerActivity
-    // High Scores button -> Scoreboard Activity
+    // TODO:
+    // "Start Packing" BUTTON  -> PlayerActivity
+    // "High Scores"   BUTTON  -> ScoreboardActivity
 }

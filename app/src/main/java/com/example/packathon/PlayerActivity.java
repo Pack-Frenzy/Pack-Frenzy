@@ -11,4 +11,7 @@ public class PlayerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_player);
     }
+
+    // TODO:
+    // "Finalize Players" BUTTON  -> RoundActivity
 }
