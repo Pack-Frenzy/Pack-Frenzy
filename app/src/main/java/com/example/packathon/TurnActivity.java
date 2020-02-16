@@ -12,7 +12,6 @@ import android.widget.ImageView;
 
 import com.example.packathon.model.BoxItem;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 public class TurnActivity extends AppCompatActivity {

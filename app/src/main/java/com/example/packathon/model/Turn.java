@@ -31,11 +31,9 @@ public class Turn {
     public void populateboxItemList() {
         for (int i = 0; i < NUM_ITEMS_IN_LIST; i++) {
             Color color = new Color();
-            BoxItem boxItem = new BoxItem(100, 100, color.valueOf(0, 35, 102), 50);
             // randomize color
             // randomize weight
             // randomize size
-            boxItemList.add(boxItem);
         }
     }
 

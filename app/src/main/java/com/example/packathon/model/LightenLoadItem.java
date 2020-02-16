@@ -10,17 +10,8 @@ public class LightenLoadItem extends BoxItem {
                             // will range from .5 - .9
 
 
-    public LightenLoadItem (int x, int y, Color colour) {
-        super(x, y, colour);
-        Random random = new Random();
-        this.effectSize = (random.nextInt(50) + 51) / 100;
-    }
-
-    // NOTE: this constructor is to be used when effectSize is not to be
-    //       randomly generated
-
-    public LightenLoadItem (int x, int y, Color colour, int effectSize) {
-        super (x, y, colour);
+    public LightenLoadItem (int effectSize) {
+        super ();
         this.effectSize = effectSize;
     }
 
