@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ClipData;
 import android.graphics.Color;
-import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.DragEvent;
@@ -12,11 +11,10 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.example.packathon.model.Box;
 import com.example.packathon.model.BoxItem;
 
 import java.util.Random;
-
-import static android.view.View.GONE;
 
 public class TurnActivity extends AppCompatActivity {
     private ImageView img1;
@@ -24,6 +22,18 @@ public class TurnActivity extends AppCompatActivity {
     private ImageView img3;
     private ImageView img4;
     private ImageView boxImg;
+    private BoxItem itm1;
+    private BoxItem itm2;
+    private BoxItem itm3;
+    private BoxItem itm4;
+    private Box box;
+    int listOfColour[];
+    Random random;
+    Object imageTag1;
+    Object imageTag2;
+    Object imageTag3;
+    Object imageTag4;
+
 
 
     @Override
@@ -33,12 +43,16 @@ public class TurnActivity extends AppCompatActivity {
 
         img1 = findViewById(R.id.imageView);
         img1.setTag("GameItemImg1");
+        imageTag1 = img1.getTag();
         img2 = findViewById(R.id.imageView2);
         img2.setTag("GameItemImg2");
+        imageTag2 = img2.getTag();
         img3 = findViewById(R.id.imageView3);
         img3.setTag("GameItemImg3");
+        imageTag3 = img3.getTag();
         img4 = findViewById(R.id.imageView4);
         img4.setTag("GameItemImg4");
+        imageTag4 = img4.getTag();
         initialize();
 
         boxImg = findViewById(R.id.boxImage);
@@ -64,6 +78,35 @@ public class TurnActivity extends AppCompatActivity {
 
     }
 
+    private void initialize() {
+        listOfColour = new int[11];
+        listOfColour[0] = (Color.BLACK);
+        listOfColour[1] = (Color.DKGRAY);
+        listOfColour[2] = (Color.GRAY);
+        listOfColour[3] = (Color.LTGRAY);
+        listOfColour[4] = (Color.WHITE);
+        listOfColour[5] = (Color.RED);
+        listOfColour[6] = (Color.GREEN);
+        listOfColour[7] = (Color.BLUE);
+        listOfColour[8] = (Color.YELLOW);
+        listOfColour[9] = (Color.CYAN);
+        listOfColour[10] = (Color.MAGENTA);
+
+        random = new Random();
+
+        itm1 = new BoxItem();
+        itm2 = new BoxItem();
+        itm3 = new BoxItem();
+        itm4 = new BoxItem();
+        // TODO: put in variable for # of players
+        box = new Box(4);
+
+        img1.setBackgroundColor(listOfColour[random.nextInt(10)]);
+        img2.setBackgroundColor(listOfColour[random.nextInt(10)]);
+        img3.setBackgroundColor(listOfColour[random.nextInt(10)]);
+        img4.setBackgroundColor(listOfColour[random.nextInt(10)]);
+    }
+
     private void setItOnClickListener(ImageView img) {
         img.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -78,48 +121,9 @@ public class TurnActivity extends AppCompatActivity {
         });
             }
 
-//    private void setItOnLongClickListener(ImageView img) {
-//        img.setOnLongClickListener(new View.OnLongClickListener() {
-//            @Override
-//            public boolean onLongClick(View view) {
-//
-//                ClipData data = ClipData.newPlainText("", "");
-//                View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
-//                view.startDrag(data, shadowBuilder, view, 0);
-//                view.setVisibility(View.VISIBLE);
-//                return true;
-//            }
-//        });
-//    }
 
-    private void initialize() {
-        int listOfColour[] = new int[11];
-        listOfColour[0] = (Color.BLACK);
-        listOfColour[1] = (Color.DKGRAY);
-        listOfColour[2] = (Color.GRAY);
-        listOfColour[3] = (Color.LTGRAY);
-        listOfColour[4] = (Color.WHITE);
-        listOfColour[5] = (Color.RED);
-        listOfColour[6] = (Color.GREEN);
-        listOfColour[7] = (Color.BLUE);
-        listOfColour[8] = (Color.YELLOW);
-        listOfColour[9] = (Color.CYAN);
-        listOfColour[10] = (Color.MAGENTA);
 
-        Random random = new Random();
-
-        BoxItem itm1 = new BoxItem();
-        BoxItem itm2 = new BoxItem();
-        BoxItem itm3 = new BoxItem();
-        BoxItem itm4 = new BoxItem();
-
-        img1.setBackgroundColor(listOfColour[random.nextInt(10)]);
-        img2.setBackgroundColor(listOfColour[random.nextInt(10)]);
-        img3.setBackgroundColor(listOfColour[random.nextInt(10)]);
-        img4.setBackgroundColor(listOfColour[random.nextInt(10)]);
-    }
-
-    private static class BoxDragListener implements View.OnDragListener {
+    private class BoxDragListener implements View.OnDragListener {
         private static final String TAG = "BoxDragListener";
 
         private int enterShape;
@@ -132,7 +136,7 @@ public class TurnActivity extends AppCompatActivity {
         }
 
         @Override
-        public boolean onDrag(View v, DragEvent event) {
+        public boolean onDrag(final View v, DragEvent event) {
             final ImageView containerView = (ImageView) v;
             final ImageView draggedView = (ImageView) event.getLocalState();
             switch (event.getAction()) {
@@ -154,7 +158,25 @@ public class TurnActivity extends AppCompatActivity {
                     draggedView.post(new Runnable() {
                         @Override
                         public void run() {
-                            draggedView.setVisibility(View.GONE);
+                           // draggedView.setVisibility(View.GONE);
+                            if (imageTag1 == draggedView.getTag()) {
+                                box.addBoxItemToBox(itm1);
+                                itm1 = new BoxItem();
+                                img1.setBackgroundColor(listOfColour[random.nextInt(10)]);
+                            } else if (imageTag2 == draggedView.getTag()) {
+                                box.addBoxItemToBox(itm2);
+                                itm2 = new BoxItem();
+                                img2.setBackgroundColor(listOfColour[random.nextInt(10)]);
+                            } else if (imageTag3 == draggedView.getTag()) {
+                                box.addBoxItemToBox(itm3);
+                                itm3 = new BoxItem();
+                                img3.setBackgroundColor(listOfColour[random.nextInt(10)]);
+                            } else if (imageTag4 == draggedView.getTag()) {
+                                box.addBoxItemToBox(itm4);
+                                itm4 = new BoxItem();
+                                img4.setBackgroundColor(listOfColour[random.nextInt(10)]);
+
+                            }
                         }
                     });
                     return true;
