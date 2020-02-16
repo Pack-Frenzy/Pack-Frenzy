@@ -2,14 +2,11 @@ package com.example.packathon;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 
 import com.example.packathon.model.Player;
 import java.util.ArrayList;
-import java.util.Map;
 
 public class RoundActivity extends AppCompatActivity {
 
@@ -66,8 +63,9 @@ public class RoundActivity extends AppCompatActivity {
         }
 
         // TODO: must refactor based on what is being fed into this class
+        // TODO: change how empty names show
         for (int i = 0; i < players.size(); i++) {
-            if (players.get(i) == null) {
+            if (players.get(i).getName() == "") {
                 playerTextViews.get(i).setText("");
             } else {
                 playerTextViews.get(i).setText(String.valueOf(i + 1) + ". " + players.get(i).getName());
