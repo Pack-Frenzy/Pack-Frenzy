@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 public class GameOverActivity extends AppCompatActivity {
+    // Scott, we coded this as though it is an in between stage
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

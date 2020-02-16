@@ -3,6 +3,7 @@ package com.example.packathon;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ClipData;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.DragEvent;
@@ -187,6 +188,17 @@ public class TurnActivity extends AppCompatActivity {
 
         });
     }
+    public void openGameOverActivity(String name) {
+        Intent intent = new Intent (this, GameOverActivity.class);
+        int counter = 0;
+        for (String n: listOfPlayer) {
+            if (!name.equals(n)) {
+                intent.putExtra(n, counter);
+                counter++;
+            }
+        }
+        startActivity(intent);
+    }
 
 
     private class BoxDragListener implements View.OnDragListener {
@@ -220,8 +232,15 @@ public class TurnActivity extends AppCompatActivity {
             }
             else {
                 gaugeImg.setImageResource(listOfGauges[5]);
+                if (playerIndex == 0) {
+                    openGameOverActivity(listOfPlayer.get(listOfPlayer.size()-1));
+                } else {
+                    openGameOverActivity(listOfPlayer.get(playerIndex - 1));
+                }
             }
         }
+
+
 
         @Override
         public boolean onDrag(final View v, DragEvent event) {
