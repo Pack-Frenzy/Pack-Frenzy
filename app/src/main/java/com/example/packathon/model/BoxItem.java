@@ -10,14 +10,19 @@ public class BoxItem {
     public static final int SIZE_Y = 100;
 
     protected Color colour;
-    protected int x;
-    protected int y;
     protected int weight;
 
-    public BoxItem(int x, int y, Color colour) {
+    public BoxItem() {
+        Color color = new Color();
         Random random = new Random();
-        this.x = x;
-        this.y = y;
+        this.colour = color.valueOf((random.nextInt(255 + 1)),
+                (random.nextInt(255 + 1)),
+                (random.nextInt(255 + 1)));
+        this.weight = random.nextInt(20) + 1;
+    }
+
+    public BoxItem(Color colour) {
+        Random random = new Random();
         this.colour = colour;
         this.weight = random.nextInt(20) + 1;
     }
@@ -25,26 +30,11 @@ public class BoxItem {
     // NOTE: this constructor is to be used when weight is not to be
     //       randomly generated
 
-    public BoxItem(int x, int y, Color colour, int weight) {
-        this.x = x;
-        this.y = y;
+    public BoxItem(Color colour, int weight) {
         this.colour = colour;
         this.weight = weight;
     }
 
-    // MODIFIES: this
-    // EFFECTS: changes this.x to given int
-
-    public void changeX(int newX) {
-        this.x = newX;
-    }
-
-    // MODIFIES: this
-    // EFFECTS: changes this.y to given int
-
-    public void changeY(int newY) {
-        this.y = newY;
-    }
 
     // MODIFIES: this
     // EFFECTS: changes this.colour to given colour
@@ -60,23 +50,15 @@ public class BoxItem {
         this.weight = newWeight;
     }
 
+    public Color getColour() {
+        return this.colour;
+    }
+
     // EFFECTS: returns weight
 
     public int getWeight() {
         return weight;
 
-    }
-
-    // EFFECTS: returns x
-
-    public int getX() {
-        return x;
-    }
-
-    // EFFECTS: returns y
-
-    public int gety() {
-        return y;
     }
 
 

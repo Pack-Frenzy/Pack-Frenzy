@@ -3,19 +3,24 @@ package com.example.packathon;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ClipData;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.DragEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
+
+import com.example.packathon.model.BoxItem;
+
+import java.util.ArrayList;
+import java.util.Random;
 
 public class TurnActivity extends AppCompatActivity {
     private ImageView img1;
     private ImageView img2;
     private ImageView img3;
     private ImageView img4;
-    private ImageView boximg;
+    private ImageView boxImg;
 
 
     @Override
@@ -31,9 +36,10 @@ public class TurnActivity extends AppCompatActivity {
         img3.setTag("GameItemImg3");
         img4  = findViewById(R.id.imageView4);
         img4.setTag("GameItemImg4");
+        initialize();
 
-        boximg = findViewById(R.id.boxImage);
-        boximg.setTag("BoxImage");
+        boxImg = findViewById(R.id.boxImage);
+        boxImg.setTag("BoxImage");
         setImageOnDragListener(img1);
         setImageOnTouchListener(img1);
         setImageOnDragListener(img2);
@@ -43,7 +49,33 @@ public class TurnActivity extends AppCompatActivity {
         setImageOnDragListener(img4);
         setImageOnTouchListener(img4);
 
+    }
 
+    private void initialize() {
+        int listOfColour[] = new int [11];
+        listOfColour[0] = (Color.BLACK);
+        listOfColour[1] = (Color.DKGRAY);
+        listOfColour[2] = (Color.GRAY);
+        listOfColour[3] = (Color.LTGRAY);
+        listOfColour[4] = (Color.WHITE);
+        listOfColour[5] = (Color.RED);
+        listOfColour[6] = (Color.GREEN);
+        listOfColour[7] = (Color.BLUE);
+        listOfColour[8] = (Color.YELLOW);
+        listOfColour[9] = (Color.CYAN);
+        listOfColour[10] = (Color.MAGENTA);
+
+        Random random = new Random();
+
+        BoxItem itm1 = new BoxItem();
+        BoxItem itm2 = new BoxItem();
+        BoxItem itm3 = new BoxItem();
+        BoxItem itm4 = new BoxItem();
+
+        img1.setBackgroundColor(listOfColour[random.nextInt(10)]);
+        img2.setBackgroundColor(listOfColour[random.nextInt(10)]);
+        img3.setBackgroundColor(listOfColour[random.nextInt(10)]);
+        img4.setBackgroundColor(listOfColour[random.nextInt(10)]);
     }
 
 
