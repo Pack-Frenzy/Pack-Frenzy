@@ -323,9 +323,6 @@ public class TurnActivity extends AppCompatActivity {
                                 listOfDroppedItems.add(nextImage);
                                 Log.d(TAG2, listOfDroppedItems.toString());
 
-                                nextInt1 = random.nextInt(6);
-
-                                img1.setImageResource(listOfDrawable[nextInt1]);
                                 nameTag.setText(listOfPlayer.get(playerIndex), TextView.BufferType.EDITABLE);
 
 
@@ -348,9 +345,6 @@ public class TurnActivity extends AppCompatActivity {
 
                                 listOfDroppedItems.add(nextImage);
                                 Log.d(TAG2, listOfDroppedItems.toString());
-
-                                nextInt2 = random.nextInt(6);
-                                img2.setImageResource(listOfDrawable[nextInt2]);
                                 nameTag.setText(listOfPlayer.get(playerIndex), TextView.BufferType.EDITABLE);
 
 
@@ -374,9 +368,7 @@ public class TurnActivity extends AppCompatActivity {
                                 listOfDroppedItems.add(nextImage);
                                 Log.d(TAG2, listOfDroppedItems.toString());
 
-                                nextInt3 = random.nextInt(6);
 
-                                img3.setImageResource(listOfDrawable[nextInt3]);
                                 nameTag.setText(listOfPlayer.get(playerIndex), TextView.BufferType.EDITABLE);
 
 
@@ -399,8 +391,6 @@ public class TurnActivity extends AppCompatActivity {
                                 listOfDroppedItems.add(nextImage);
                                 Log.d(TAG2, listOfDroppedItems.toString());
 
-                                nextInt4 = random.nextInt(6);
-                                img4.setImageResource(listOfDrawable[nextInt4]);
                                 nameTag.setText(listOfPlayer.get(playerIndex), TextView.BufferType.EDITABLE);
 
                             }
@@ -427,14 +417,14 @@ public class TurnActivity extends AppCompatActivity {
 
     private int makeNextItem(int itemType, BoxItem item, double weight, ImageView imageView, TextView textView) {
         int itemRandomizer = random.nextInt(100);
-        if (0 <= itemRandomizer && itemRandomizer < 50) {
+        if (0 <= itemRandomizer && itemRandomizer < 15) {
             item = new BombItem();
             weight = item.getWeight();
             textView.setText(String.valueOf(weight), TextView.BufferType.EDITABLE);
             imageView.setImageResource(R.drawable.bomb);
             itemType = 1;
             return itemType;
-        } else if (50 <= itemRandomizer && itemRandomizer < 100) {
+        } else if (15 <= itemRandomizer && itemRandomizer < 30) {
             item = new LightenLoadItem();
             weight = item.getWeightDouble();
             textView.setText(String.valueOf(weight), TextView.BufferType.EDITABLE);
