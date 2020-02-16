@@ -14,21 +14,16 @@ public class InBetweenTurnsActivity extends AppCompatActivity {
     private TextView countdownText;
     private CountDownTimer timer;
     private long timeLeftInMilliseconds = 10000; // 10 seconds
-<<<<<<< HEAD
-=======
-    private boolean timeRunning;
+
     private ArrayList<String> playerNames;
->>>>>>> 21df2a05b99e5805be42da01c856568820a31d98
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_in_between_turns);
 
-<<<<<<< HEAD
         countdownText = findViewById(R.id.countdownText);
-=======
-        countdownText = findViewById(R.id.countdown_text);
+
 
         playerNames = new ArrayList<>();
         Bundle extras = getIntent().getExtras();
@@ -45,8 +40,6 @@ public class InBetweenTurnsActivity extends AppCompatActivity {
             playerName = extras.getString("3");
             playerNames.add(playerName);
         }
-
->>>>>>> 21df2a05b99e5805be42da01c856568820a31d98
         startTimer();
     }
 
