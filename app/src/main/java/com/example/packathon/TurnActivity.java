@@ -4,18 +4,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ClipData;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.DragEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
+
+import com.example.packathon.model.BoxItem;
 
 public class TurnActivity extends AppCompatActivity {
     private ImageView img1;
     private ImageView img2;
     private ImageView img3;
     private ImageView img4;
-    private ImageView boximg;
+    private ImageView boxImg;
 
 
     @Override
@@ -32,8 +33,8 @@ public class TurnActivity extends AppCompatActivity {
         img4  = findViewById(R.id.imageView4);
         img4.setTag("GameItemImg4");
 
-        boximg = findViewById(R.id.boxImage);
-        boximg.setTag("BoxImage");
+        boxImg = findViewById(R.id.boxImage);
+        boxImg.setTag("BoxImage");
         setImageOnDragListener(img1);
         setImageOnTouchListener(img1);
         setImageOnDragListener(img2);
@@ -43,7 +44,13 @@ public class TurnActivity extends AppCompatActivity {
         setImageOnDragListener(img4);
         setImageOnTouchListener(img4);
 
+    }
 
+    private void initialize() {
+        BoxItem itm1 = new BoxItem();
+        BoxItem itm2 = new BoxItem();
+        BoxItem itm3 = new BoxItem();
+        BoxItem itm4 = new BoxItem();
     }
 
 
