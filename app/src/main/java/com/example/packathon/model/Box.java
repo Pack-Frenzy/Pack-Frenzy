@@ -9,36 +9,23 @@ public class Box {
     private double totalWeightOfBox;
     private double weightCapacity;
     private String boxType;
-    private int width;
-    private int height;
-
 
     //EFFECTS: Constructs the empty Box with a default box type with specified parameters
-    public Box(String boxType, int width, int height, double weightCapacity) {
-        this.width = width;
-        this.height = height;
-        this.boxType = boxType;
+    public Box(int numOfPlayers) {
+        this.totalWeightOfBox = 0;
         boxItems = new ArrayList<>();
         gaugeForWeight = new Gauge();
-        totalWeightOfBox = 0;
-        this.weightCapacity = weightCapacity;
-    }
 
-    public void setWeightCapacity(double weightCapacity) {
-        this.weightCapacity = weightCapacity;
-    }
-
-
-    public double getTotalWeightOfBox() {
-        return  totalWeightOfBox;
-    }
-
-    public double getWeightCapacity() {
-        return weightCapacity;
-    }
-
-    public void setTotalWeightOfBox (double weight) {
-        totalWeightOfBox = weight;
+        if (numOfPlayers == 4) {
+            this.boxType = "party";
+            this.weightCapacity = 200;
+        } else if (numOfPlayers == 3) {
+            this.boxType = "special";
+            this.weightCapacity = 100;
+        } else if (numOfPlayers == 2) {
+            boxType = "hardcore";
+            this.weightCapacity = 50;
+        }
     }
 
     //EFFECTS: adds BoxItem to Box and then calculates the percent weight
@@ -54,22 +41,6 @@ public class Box {
         boxItems.remove(boxItem);
         totalWeightOfBox -= boxItem.getWeight();
         calculatePercentWeight();
-    }
-
-    public int getWidth() {
-        return width;
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
-    public String getBoxType() {
-        return boxType;
-    }
-
-    public ArrayList<BoxItem> getBoxItems() {
-        return  boxItems;
     }
 
     //EFFECTS: returns a boolean if the boxisFull; otherwise false
@@ -89,54 +60,39 @@ public class Box {
         return gaugeForWeight.getPercentFull();
     }
 
-    public void setWidth(int width) {
-        this.width = width;
+    public String getBoxType() {
+        return boxType;
     }
 
-    public void setHeight(int height) {
-        this.height = height;
+    public ArrayList<BoxItem> getBoxItems() {
+        return boxItems;
+    }
+
+    public void setWeightCapacity(double weightCapacity) {
+        this.weightCapacity = weightCapacity;
+    }
+
+    public void setTotalWeightOfBox (double weight) {
+        totalWeightOfBox = weight;
     }
 
     public void setBoxType(String boxType) {
-        this.boxType = boxType;
-    }
-
-    public void setBoxPropertiesBasedOnBoxType(String boxType) {
         if (boxType.equals("default")) {
-            setWidth(50);
-            setHeight(50);
             setWeightCapacity(100);
-            setTotalWeightOfBox(0);
         }
         if (boxType.equals("special")) {
-            setWidth(50);
-            setHeight(50);
             setWeightCapacity(200);
-            setTotalWeightOfBox(0);
         }
         if (boxType.equals("hardcore")) {
-            setWidth(50);
-            setHeight(50);
             setWeightCapacity(50);
-            setTotalWeightOfBox(0);
         }
         if (boxType.equals("party")) {
-            setWidth(100);
-            setHeight(100);
             setWeightCapacity(200);
-            setTotalWeightOfBox(0);
         }
         if (boxType.equals("tryhard")) {
-            setWidth(25);
-            setHeight(25);
             setWeightCapacity(45);
-            setTotalWeightOfBox(0);
         }
-
     }
-
-
-
 
 }
 
