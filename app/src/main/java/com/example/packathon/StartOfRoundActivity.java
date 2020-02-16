@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class InBetweenTurnsActivity extends AppCompatActivity {
+public class StartOfRoundActivity extends AppCompatActivity {
 
     private TextView countdownText;
     private TextView currentPlayerFromID;
@@ -20,7 +20,7 @@ public class InBetweenTurnsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_in_between_turns);
+        setContentView(R.layout.activity_start_of_round);
 
         countdownText = findViewById(R.id.countdownText);
 
