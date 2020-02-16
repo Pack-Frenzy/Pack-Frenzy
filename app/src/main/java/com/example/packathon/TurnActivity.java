@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ClipData;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.DragEvent;
@@ -204,7 +203,7 @@ public class TurnActivity extends AppCompatActivity {
     // TODO: @scott we need to redirect the user if this is going to be the last round. we need you
     //       to set up a new activity
     public void openGameOverActivity(String name) {
-        Intent intent = new Intent (this, RoundOverActivity.class);
+        Intent intent = new Intent (this, EndOfRoundActivity.class);
         int counter = 0;
         for (String n: listOfPlayer) {
             if (!name.equals(n)) {

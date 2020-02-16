@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class RoundOverActivity extends AppCompatActivity {
+public class EndOfRoundActivity extends AppCompatActivity {
     // Scott, we coded this as though it is an in between stage
     TextView nameOfLoser;
     ArrayList<String> listOfPlayer;
@@ -30,28 +30,24 @@ public class RoundOverActivity extends AppCompatActivity {
             for (int i = 0; i < extras.size(); i++) {
                 String playerName = extras.getString(String.valueOf(i));
                 listOfPlayer.add(playerName);
-                System.out.println(playerName);
             }
         }
 
         nameOfLoser.setText(listOfPlayer.get(listOfPlayer.size()-1));
-
-        recyclerView = (RecyclerView) findViewById(R.id.winners_losers);
-
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
-        recyclerView.setHasFixedSize(true);
-
-        // use a linear layout manager
-        layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-
-        // specify an adapter (see also next example)
-        mAdapter = new RecyclerViewAdapter(listOfPlayer);
-        recyclerView.setAdapter(mAdapter);
+//
+//        recyclerView = (RecyclerView) findViewById(R.id.winners_losers);
+//
+//        // use this setting to improve performance if you know that changes
+//        // in content do not change the layout size of the RecyclerView
+//        recyclerView.setHasFixedSize(true);
+//
+//        // use a linear layout manager
+//        layoutManager = new LinearLayoutManager(this);
+//        recyclerView.setLayoutManager(layoutManager);
+//
+//        // specify an adapter (see also next example)
+//        mAdapter = new RecyclerViewAdapter(listOfPlayer);
+//        recyclerView.setAdapter(mAdapter);
 
     }
-
-    // TODO:
-    // "Home" BUTTON  -> MainActivity
 }

@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.packathon.model.Player;
@@ -24,12 +26,7 @@ public class RoundActivity extends AppCompatActivity {
     private TextView player3;
     private TextView player4;
 
-    private TextView countDownText;
-    private CountDownTimer countDownTimer;
-
-    // TODO: change this back to 10000 ms, changed to 1000 for testing
-    private long timeLeftInMilliseconds = 1000; //10 seconds
-    private boolean timerRunning;
+    public Button startTurn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,34 +74,20 @@ public class RoundActivity extends AppCompatActivity {
             if (players.get(i).getName() == "") {
                 playerTextViews.get(i).setText("");
             } else {
-                playerTextViews.get(i).setText(String.valueOf(i + 1) + ". " + players.get(i).getName());
+                playerTextViews.get(i).setText(String.format("Player %s: %s",
+                        String.valueOf(i + 1), players.get(i).getName()));
             }
         }
-        startStop();
-    }
 
-    // TODO: Countdown from 10 -> TurnActivity
-    public void startStop() {
-        if (timerRunning) {
-            stopTimer();
-        } else {
-            startTimer();
-        }
-    }
+        startTurn = findViewById(R.id.start_turn);
 
-    public void startTimer() {
-        countDownTimer = new CountDownTimer(timeLeftInMilliseconds, 1000) {
+        startTurn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onTick(long millisUntilFinished) {
-                timeLeftInMilliseconds = millisUntilFinished;
-                updateTimer();
-            }
-
-            @Override
-            public void onFinish() {
+            public void onClick(View v) {
                 openTurnActivity();
             }
-        }.start();
+        });
+
     }
 
     public void openTurnActivity() {
@@ -115,16 +98,4 @@ public class RoundActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void stopTimer() {
-        countDownTimer.cancel();
-    }
-
-    public void updateTimer() {
-        int seconds = (int) timeLeftInMilliseconds/1000;
-
-        String timeLeftText;
-        timeLeftText = "" + seconds;
-        countDownText = findViewById(R.id.countDownText);
-        countDownText.setText(timeLeftText);
-    }
 }

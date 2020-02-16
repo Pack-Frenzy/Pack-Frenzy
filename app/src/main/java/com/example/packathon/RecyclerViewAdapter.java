@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
     private ArrayList<String> mDataset;
+    private TextView thisTextView;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and

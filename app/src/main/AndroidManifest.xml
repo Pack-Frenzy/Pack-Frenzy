@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".GameOverActivity"></activity>
         <activity android:name=".StartOfRoundActivity" />
-        <activity android:name=".RoundOverActivity" />
+        <activity android:name=".EndOfRoundActivity" />
         <activity android:name=".TurnActivity">
             <intent-filter>
                 <action android:name="android.intent.action.TURN" />
