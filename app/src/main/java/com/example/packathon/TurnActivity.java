@@ -80,8 +80,8 @@ public class TurnActivity extends AppCompatActivity {
         boxImg.setTag("BoxImage");
 
         boxImg.setOnDragListener(new BoxDragListener(
-                R.drawable.box1,
-                R.drawable.box2));
+                R.drawable.boxbrown,
+                R.drawable.boxbrown));
 
         boxImg.setOnClickListener(new View.OnClickListener() {
             @Override
