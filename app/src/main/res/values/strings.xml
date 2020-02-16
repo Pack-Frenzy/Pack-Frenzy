@@ -5,4 +5,6 @@
     <string name="enter_player_names">Enter Player Names</string>
     <string name="submit_players">Submit</string>
     <string name="home">Home</string>
+    <string name="pass_the_phone">Pass the phone to </string>
+    <string name="countdown">Next round starts in: </string>
 </resources>
