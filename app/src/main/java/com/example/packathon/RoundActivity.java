@@ -2,35 +2,44 @@ package com.example.packathon;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.packathon.model.Game;
 import com.example.packathon.model.Player;
-import com.example.packathon.model.Round;
-
 import java.util.ArrayList;
 
 public class RoundActivity extends AppCompatActivity {
 
     // TODO: must adjust round based on the round number
-    private View round = findViewById(R.id.textViewRound);
+    private TextView round;
 
     // TODO: must adjust based on how many players there are
-    private ArrayList<Player> players = new ArrayList<>();
-    private ArrayList<TextView> playerTextViews = new ArrayList<>();
-    private TextView player1 = findViewById(R.id.textViewPlayer1);
-    private TextView player2 = findViewById(R.id.textViewPlayer2);
-    private TextView player3 = findViewById(R.id.textViewPlayer3);
-    private TextView player4 = findViewById(R.id.textViewPlayer4);
+    private ArrayList<Player> players;
+    private ArrayList<TextView> playerTextViews;
+    private TextView player1;
+    private TextView player2;
+    private TextView player3;
+    private TextView player4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_round);
         // must bind player data to list
+
+        players = new ArrayList<>();
+        playerTextViews = new ArrayList<>();
+        round = findViewById(R.id.textViewRound);
+        player1 = findViewById(R.id.textViewPlayer1);
+        player2 = findViewById(R.id.textViewPlayer2);
+        player3 = findViewById(R.id.textViewPlayer3);
+        player4 = findViewById(R.id.textViewPlayer4);
+        playerTextViews.add(player1);
+        playerTextViews.add(player2);
+        playerTextViews.add(player3);
+        playerTextViews.add(player4);
+
 
 //        Bundle extras = getIntent().getExtras();
 //        if (extras != null) {
@@ -49,10 +58,12 @@ public class RoundActivity extends AppCompatActivity {
 
         // TODO: must refactor based on what is being fed into this class
         for (int i = 0; i < players.size(); i++) {
-            if (playerTextViews.get(i) == null) {
+            if (players.get(i) == null) {
                 playerTextViews.get(i).setText("");
+            } else {
+                playerTextViews.get(i).setText(String.valueOf(i + 1) + ". " + players.get(i).getName());
             }
-            playerTextViews.get(i).setText(String.valueOf(i) + players.get(i).getName());
+
         }
 
         // TODO: must refactor to generate the number of blanks for each player
