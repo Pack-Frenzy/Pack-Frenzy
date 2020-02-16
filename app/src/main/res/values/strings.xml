@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">Packathon</string>
+    <string name="app_name">Pack Frenzy</string>
+    <string name="start_packing">Start Packing!</string>
+    <string name="high_scores">High Scores</string>
+    <string name="enter_player_names">Enter Player Names</string>
+    <string name="submit_players">Submit</string>
 </resources>
