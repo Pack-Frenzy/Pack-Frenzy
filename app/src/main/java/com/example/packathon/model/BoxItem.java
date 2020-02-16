@@ -50,6 +50,10 @@ public class BoxItem {
         this.weight = newWeight;
     }
 
+    public Color getColour() {
+        return this.colour;
+    }
+
     // EFFECTS: returns weight
 
     public int getWeight() {
