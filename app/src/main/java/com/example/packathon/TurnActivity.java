@@ -3,7 +3,6 @@ package com.example.packathon;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ClipData;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.DragEvent;
@@ -31,7 +30,7 @@ public class TurnActivity extends AppCompatActivity {
     private BoxItem itm3;
     private BoxItem itm4;
     private Box box;
-    private int listOfColour[];
+    private int listOfDrawable[];
     private Random random;
     private Object imageTag1;
     private Object imageTag2;
@@ -100,18 +99,14 @@ public class TurnActivity extends AppCompatActivity {
     }
 
     private void initialize() {
-        listOfColour = new int[11];
-        listOfColour[0] = (Color.BLACK);
-        listOfColour[1] = (Color.DKGRAY);
-        listOfColour[2] = (Color.GRAY);
-        listOfColour[3] = (Color.LTGRAY);
-        listOfColour[4] = (Color.WHITE);
-        listOfColour[5] = (Color.RED);
-        listOfColour[6] = (Color.GREEN);
-        listOfColour[7] = (Color.BLUE);
-        listOfColour[8] = (Color.YELLOW);
-        listOfColour[9] = (Color.CYAN);
-        listOfColour[10] = (Color.MAGENTA);
+        listOfDrawable = new int[6];
+        listOfDrawable[0] = R.drawable.boxblue;
+        listOfDrawable[1] = R.drawable.boxbrown;
+        listOfDrawable[2] = R.drawable.boxgreen;
+        listOfDrawable[3] = R.drawable.boxorange;
+        listOfDrawable[4] = R.drawable.boxpurple;
+        listOfDrawable[5] = R.drawable.boxred;
+
 
         random = new Random();
 
@@ -119,13 +114,12 @@ public class TurnActivity extends AppCompatActivity {
         itm2 = new BoxItem();
         itm3 = new BoxItem();
         itm4 = new BoxItem();
-        // TODO: put in variable for # of players
         box = new Box(4);
 
-        img1.setBackgroundColor(listOfColour[random.nextInt(10)]);
-        img2.setBackgroundColor(listOfColour[random.nextInt(10)]);
-        img3.setBackgroundColor(listOfColour[random.nextInt(10)]);
-        img4.setBackgroundColor(listOfColour[random.nextInt(10)]);
+        img1.setImageResource(listOfDrawable[random.nextInt(6)]);
+        img2.setImageResource(listOfDrawable[random.nextInt(6)]);
+        img3.setImageResource(listOfDrawable[random.nextInt(6)]);
+        img4.setImageResource(listOfDrawable[random.nextInt(6)]);
     }
 
     private void setItOnClickListener(ImageView img) {
@@ -187,22 +181,22 @@ public class TurnActivity extends AppCompatActivity {
                             if (imageTag1 == draggedView.getTag()) {
                                 box.addBoxItemToBox(itm1);
                                 itm1 = new BoxItem();
-                                img1.setBackgroundColor(listOfColour[random.nextInt(10)]);
+                                img1.setImageResource(listOfDrawable[random.nextInt(6)]);
                                 nameTag.setText(listOfPlayer.get(playerIndex), TextView.BufferType.EDITABLE);
                             } else if (imageTag2 == draggedView.getTag()) {
                                 box.addBoxItemToBox(itm2);
                                 itm2 = new BoxItem();
-                                img2.setBackgroundColor(listOfColour[random.nextInt(10)]);
+                                img2.setImageResource(listOfDrawable[random.nextInt(6)]);
                                 nameTag.setText(listOfPlayer.get(playerIndex), TextView.BufferType.EDITABLE);
                             } else if (imageTag3 == draggedView.getTag()) {
                                 box.addBoxItemToBox(itm3);
                                 itm3 = new BoxItem();
-                                img3.setBackgroundColor(listOfColour[random.nextInt(10)]);
+                                img3.setImageResource(listOfDrawable[random.nextInt(6)]);
                                 nameTag.setText(listOfPlayer.get(playerIndex), TextView.BufferType.EDITABLE);
                             } else if (imageTag4 == draggedView.getTag()) {
                                 box.addBoxItemToBox(itm4);
                                 itm4 = new BoxItem();
-                                img4.setBackgroundColor(listOfColour[random.nextInt(10)]);
+                                img4.setImageResource(listOfDrawable[random.nextInt(10)]);
                                 nameTag.setText(listOfPlayer.get(playerIndex), TextView.BufferType.EDITABLE);
                             }
                         }
@@ -226,8 +220,4 @@ public class TurnActivity extends AppCompatActivity {
         }
     }
 
-
-    // TODO:
-    // If round is over, go to RoundActivity
-    // Else InBetweenTurnsActivity
 }
