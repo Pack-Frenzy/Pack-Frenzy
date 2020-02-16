@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.example.packathon.model.Box;
 import com.example.packathon.model.BoxItem;
+import com.example.packathon.model.Gauge;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -24,13 +25,16 @@ public class TurnActivity extends AppCompatActivity {
     private ImageView img2;
     private ImageView img3;
     private ImageView img4;
+    private ImageView gaugeImg;
     private ImageView boxImg;
     private BoxItem itm1;
     private BoxItem itm2;
     private BoxItem itm3;
     private BoxItem itm4;
     private Box box;
+    private Gauge gauge;
     private int listOfDrawable[];
+    private int listOfGauges[];
     private Random random;
     private Object imageTag1;
     private Object imageTag2;
@@ -76,13 +80,17 @@ public class TurnActivity extends AppCompatActivity {
         img4 = findViewById(R.id.imageView4);
         img4.setTag("GameItemImg4");
         imageTag4 = img4.getTag();
+        gaugeImg = findViewById(R.id.gaugeImage);
+        gaugeImg.setTag("gaugeImageTag");
 
         nameTag = findViewById(R.id.Player_Name);
 
+        //Linking to the weight text field
         w1 = findViewById(R.id.w1);
         w2 = findViewById(R.id.w2);
         w3 = findViewById(R.id.w3);
         w4 = findViewById(R.id.w4);
+
 
         int value = random.nextInt(20);
         String str = String.valueOf(value);
@@ -142,18 +150,28 @@ public class TurnActivity extends AppCompatActivity {
         listOfDrawable[4] = R.drawable.boxpurple;
         listOfDrawable[5] = R.drawable.boxred;
 
-
+        listOfGauges = new int[6];
+        listOfGauges[0] = R.drawable.gauge;
+        listOfGauges[1] = R.drawable.gauge1;
+        listOfGauges[2] = R.drawable.gauge2;
+        listOfGauges[3] = R.drawable.gauge3;
+        listOfGauges[4] = R.drawable.gauge4;
+        listOfGauges[5] = R.drawable.gauge5;
 
         itm1 = new BoxItem();
         itm2 = new BoxItem();
         itm3 = new BoxItem();
         itm4 = new BoxItem();
         box = new Box(4);
+        gauge = new Gauge();
+        gauge.setPercentFull(0);
 
         img1.setImageResource(listOfDrawable[random.nextInt(6)]);
         img2.setImageResource(listOfDrawable[random.nextInt(6)]);
         img3.setImageResource(listOfDrawable[random.nextInt(6)]);
         img4.setImageResource(listOfDrawable[random.nextInt(6)]);
+
+        gaugeImg.setImageResource(listOfGauges[0]);
     }
 
     private void setItOnClickListener(ImageView img) {
@@ -173,6 +191,7 @@ public class TurnActivity extends AppCompatActivity {
 
     private class BoxDragListener implements View.OnDragListener {
         private static final String TAG = "BoxDragListener";
+        private static final String TAG2 = "Box Weight";
 
         private int enterShape;
         private int normalShape;
@@ -181,6 +200,27 @@ public class TurnActivity extends AppCompatActivity {
         public BoxDragListener(int enterShape, int normalShape) {
             this.enterShape = enterShape;
             this.normalShape = normalShape;
+        }
+
+        public void changeGaugeImage(String status) {
+            if (status.equals("empty")) {
+                gaugeImg.setImageResource(listOfGauges[0]);
+            }
+            else if (status.equals("moderate")) {
+                gaugeImg.setImageResource(listOfGauges[1]);
+            }
+            else if (status.equals("partly_full")) {
+                gaugeImg.setImageResource(listOfGauges[2]);
+            }
+            else if (status.equals("moderately_full")) {
+                gaugeImg.setImageResource(listOfGauges[3]);
+            }
+            else if (status.equals(("insanely_full"))) {
+                gaugeImg.setImageResource(listOfGauges[4]);
+            }
+            else {
+                gaugeImg.setImageResource(listOfGauges[5]);
+            }
         }
 
         @Override
@@ -216,6 +256,14 @@ public class TurnActivity extends AppCompatActivity {
                                 box.addBoxItemToBox(itm1); //add to list of items in box
                                 box.addWeight(wn1);        //add weight to total weight of box
                                 itm1 = new BoxItem();
+
+                                gauge.setPercentFull(gauge.calculatePercentFull(box.getWeight(), box.getWeightCapacity()));
+                                changeGaugeImage(gauge.checkAndReturnStatus(gauge.getPercentFull()));
+
+                                Log.d(TAG2, gauge.checkAndReturnStatus(gauge.getPercentFull()));
+                                Log.d(TAG2, String.valueOf(box.getWeight()));
+                                Log.d(TAG2, String.valueOf(gauge.getPercentFull()));
+
                                 img1.setImageResource(listOfDrawable[random.nextInt(6)]);
                                 nameTag.setText(listOfPlayer.get(playerIndex), TextView.BufferType.EDITABLE);
 
@@ -227,6 +275,14 @@ public class TurnActivity extends AppCompatActivity {
                                 box.addBoxItemToBox(itm2);
                                 box.addWeight(wn2);
                                 itm2 = new BoxItem();
+
+                                gauge.setPercentFull(gauge.calculatePercentFull(box.getWeight(), box.getWeightCapacity()));
+                                changeGaugeImage(gauge.checkAndReturnStatus(gauge.getPercentFull()));
+
+                                Log.d(TAG2, gauge.checkAndReturnStatus(gauge.getPercentFull()));
+                                Log.d(TAG2, String.valueOf(box.getWeight()));
+                                Log.d(TAG2, String.valueOf(gauge.getPercentFull()));
+
                                 img2.setImageResource(listOfDrawable[random.nextInt(6)]);
                                 nameTag.setText(listOfPlayer.get(playerIndex), TextView.BufferType.EDITABLE);
 
@@ -238,6 +294,14 @@ public class TurnActivity extends AppCompatActivity {
                                 box.addBoxItemToBox(itm3);
                                 box.addWeight(wn3);
                                 itm3 = new BoxItem();
+
+                                gauge.setPercentFull(gauge.calculatePercentFull(box.getWeight(), box.getWeightCapacity()));
+                                changeGaugeImage(gauge.checkAndReturnStatus(gauge.getPercentFull()));
+
+                                Log.d(TAG2, gauge.checkAndReturnStatus(gauge.getPercentFull()));
+                                Log.d(TAG2, String.valueOf(box.getWeight()));
+                                Log.d(TAG2, String.valueOf(gauge.getPercentFull()));
+
                                 img3.setImageResource(listOfDrawable[random.nextInt(6)]);
                                 nameTag.setText(listOfPlayer.get(playerIndex), TextView.BufferType.EDITABLE);
 
@@ -249,7 +313,16 @@ public class TurnActivity extends AppCompatActivity {
                                 box.addBoxItemToBox(itm4);
                                 box.addWeight(wn4);
                                 itm4 = new BoxItem();
-                                img4.setImageResource(listOfDrawable[random.nextInt(10)]);
+
+                                gauge.setPercentFull(gauge.calculatePercentFull(box.getWeight(), box.getWeightCapacity()));
+
+                                changeGaugeImage(gauge.checkAndReturnStatus(gauge.getPercentFull()));
+
+                                Log.d(TAG2, gauge.checkAndReturnStatus(gauge.getPercentFull()));
+                                Log.d(TAG2, String.valueOf(box.getWeight()));
+                                Log.d(TAG2, String.valueOf(gauge.getPercentFull()));
+
+                                img4.setImageResource(listOfDrawable[random.nextInt(6)]);
                                 nameTag.setText(listOfPlayer.get(playerIndex), TextView.BufferType.EDITABLE);
 
                                 int value = random.nextInt(20);

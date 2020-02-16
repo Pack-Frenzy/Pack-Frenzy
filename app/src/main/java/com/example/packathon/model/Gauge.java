@@ -32,37 +32,37 @@ public class Gauge {
         this.status = status;
     }
 
+
     public void setPercentFull(double percentFull) {
         this.percentFull = percentFull;
     }
 
-    public void checkStatus(double percentFull) {
-        if (percentFull <= 20 && percentFull > 0) {
-            setStatus("almost_empty");
-        }
-        if (percentFull == 0) {
-            setStatus("empty");
+    public String checkAndReturnStatus(double percentFull) {
+        String setStatus = "";
+        if (percentFull <= 20 && percentFull >= 0) {
+            setStatus = "empty";
         }
         if (percentFull > 20 && percentFull <= 40 ) {
-            setStatus(("moderate"));
+            setStatus="moderate";
         }
         if (percentFull >40 && percentFull <= 60) {
-            setStatus("partly_full");
+            setStatus= "partly_full";
         }
         if (percentFull >60 && percentFull <=80) {
-            setStatus(("moderately_full"));
+            setStatus = "moderately_full";
         }
         if (percentFull >80 && percentFull <= 90) {
-            setStatus("insanely_full");
+            setStatus = "insanely_full";
         }
-        if (percentFull >90 && percentFull <= 100) {
-            setStatus("full");
+        if (percentFull >90) {
+            setStatus = "full";
             isFull = true;
         }
+        return setStatus;
     }
 
-    public void calculatePercentFull(double weightIn, double capacity) {
-        percentFull = (weightIn / capacity) * 100;
+    public double calculatePercentFull(double weightIn, double capacity) {
+        return (weightIn / capacity) * 100;
     }
 
 

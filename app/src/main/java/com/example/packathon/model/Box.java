@@ -18,10 +18,10 @@ public class Box {
 
         if (numOfPlayers == 4) {
             this.boxType = "party";
-            this.weightCapacity = 200;
+            this.weightCapacity = 50;
         } else if (numOfPlayers == 3) {
             this.boxType = "special";
-            this.weightCapacity = 100;
+            this.weightCapacity = 50;
         } else if (numOfPlayers == 2) {
             boxType = "hardcore";
             this.weightCapacity = 50;
@@ -83,20 +83,24 @@ public class Box {
 
     public void setBoxType(String boxType) {
         if (boxType.equals("default")) {
-            setWeightCapacity(100);
+            setWeightCapacity(5);
         }
         if (boxType.equals("special")) {
-            setWeightCapacity(200);
+            setWeightCapacity(5);
         }
         if (boxType.equals("hardcore")) {
-            setWeightCapacity(50);
+            setWeightCapacity(5);
         }
         if (boxType.equals("party")) {
-            setWeightCapacity(200);
+            setWeightCapacity(5);
         }
         if (boxType.equals("tryhard")) {
-            setWeightCapacity(45);
+            setWeightCapacity(5);
         }
+    }
+
+    public double getWeightCapacity() {
+        return weightCapacity;
     }
 
 }
