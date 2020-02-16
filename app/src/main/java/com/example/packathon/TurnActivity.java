@@ -56,6 +56,7 @@ public class TurnActivity extends AppCompatActivity {
     private int nextInt2;
     private int nextInt3;
     private int nextInt4;
+    private int numCurrentRound;
 
     private ArrayList<ImageView> listOfDroppedItems;
 
@@ -70,9 +71,11 @@ public class TurnActivity extends AppCompatActivity {
         listOfDroppedItems = new ArrayList<>();
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            for (int i = 0; i < extras.size(); i++) {
+            numCurrentRound = extras.getInt("currentRound");
+            for (int i = 0; i < extras.size() - 1; i++) {
                 String playerName = extras.getString(String.valueOf(i));
                 listOfPlayer.add(playerName);
+                System.out.println(playerName);
             }
         }
 
@@ -215,6 +218,7 @@ public class TurnActivity extends AppCompatActivity {
 
         String loserIndex = Integer.toString(listOfPlayer.size() - 1);
         intent.putExtra(loserIndex, name);
+        intent.putExtra("currentRound", numCurrentRound);
         startActivity(intent);
     }
 

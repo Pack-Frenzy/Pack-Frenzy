@@ -14,8 +14,11 @@ public class StartOfRoundActivity extends AppCompatActivity {
     private TextView countdownText;
     private TextView currentPlayerFromID;
     private CountDownTimer timer;
+
+    // TODO: change back to 10000 secs, 1000 just for testing
     private long timeLeftInMilliseconds = 1000; // 10 seconds
     private ArrayList<String> playerNames;
+    private int numCurrentRound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,8 @@ public class StartOfRoundActivity extends AppCompatActivity {
 
             playerName = extras.getString("3");
             playerNames.add(playerName);
+
+            numCurrentRound = extras.getInt("currentRound");
         }
 
         currentPlayerFromID = findViewById(R.id.currentPlayer);
@@ -77,6 +82,9 @@ public class StartOfRoundActivity extends AppCompatActivity {
         for (int i = 0; i < playerNames.size(); i++) {
             intent.putExtra(Integer.toString(i), playerNames.get(i));
         }
+
+        intent.putExtra("currentRound", numCurrentRound);
+
         startActivity(intent);
     }
 

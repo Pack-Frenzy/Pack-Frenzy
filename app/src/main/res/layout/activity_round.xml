@@ -17,7 +17,7 @@
         android:layout_marginEnd="120dp"
         android:alpha="0.8"
         android:background="#B28D6767"
-        android:text="Round 1"
+        tools:text="Round"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="17pt"

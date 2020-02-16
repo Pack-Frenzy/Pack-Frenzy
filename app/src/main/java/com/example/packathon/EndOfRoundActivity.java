@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -17,6 +20,8 @@ public class EndOfRoundActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
+    private Button endOfRound;
+    private int numCurrentRound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,14 +32,25 @@ public class EndOfRoundActivity extends AppCompatActivity {
         listOfPlayer = new ArrayList<>();
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            for (int i = 0; i < extras.size(); i++) {
+            numCurrentRound = extras.getInt("currentRound");
+            for (int i = 0; i < extras.size() - 1; i++) {
                 String playerName = extras.getString(String.valueOf(i));
                 listOfPlayer.add(playerName);
             }
         }
 
         nameOfLoser.setText(listOfPlayer.get(listOfPlayer.size()-1));
-//
+        endOfRound = findViewById(R.id.end_of_round);
+        listOfPlayer.set(listOfPlayer.size() - 1, "Eliminated");
+
+        endOfRound.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openRoundActivity();
+            }
+        });
+
+//        TODO: Figure out recyclerview for display list of remaining players
 //        recyclerView = (RecyclerView) findViewById(R.id.winners_losers);
 //
 //        // use this setting to improve performance if you know that changes
@@ -49,5 +65,15 @@ public class EndOfRoundActivity extends AppCompatActivity {
 //        mAdapter = new RecyclerViewAdapter(listOfPlayer);
 //        recyclerView.setAdapter(mAdapter);
 
+    }
+
+    public void openRoundActivity() {
+        Intent intent = new Intent(this, RoundActivity.class);
+        for (int i = 0; i < listOfPlayer.size(); i++) {
+            intent.putExtra(Integer.toString(i), listOfPlayer.get(i));
+        }
+        intent.putExtra("currentRound", numCurrentRound);
+
+        startActivity(intent);
     }
 }
