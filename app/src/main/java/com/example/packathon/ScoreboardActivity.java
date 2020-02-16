@@ -2,10 +2,8 @@ package com.example.packathon;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
@@ -21,14 +19,15 @@ public class ScoreboardActivity extends AppCompatActivity {
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openMainActivity();
+                openGameOverActivity();
             }
         });
     }
 
     // TODO: Change this back to home... inbetweenturns is just for testing
-    public void openMainActivity() {
-        Intent intent = new Intent(this, InBetweenTurnsActivity.class);
+    public void openGameOverActivity() {
+        Intent intent = new Intent(this, GameOverActivity.class);
+
         startActivity(intent);
     }
 }
