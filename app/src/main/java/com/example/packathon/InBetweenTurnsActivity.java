@@ -12,6 +12,7 @@ import java.util.ArrayList;
 public class InBetweenTurnsActivity extends AppCompatActivity {
 
     private TextView countdownText;
+    private TextView currentPlayerFromID;
     private CountDownTimer timer;
     private long timeLeftInMilliseconds = 1000; // 10 seconds
     private ArrayList<String> playerNames;
@@ -38,6 +39,12 @@ public class InBetweenTurnsActivity extends AppCompatActivity {
             playerName = extras.getString("3");
             playerNames.add(playerName);
         }
+
+        currentPlayerFromID = findViewById(R.id.currentPlayer);
+        String currentPlayer = playerNames.get(0);
+
+        currentPlayerFromID.setText(currentPlayer);
+
         startTimer();
     }
 
