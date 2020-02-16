@@ -14,7 +14,7 @@ public class InBetweenTurnsActivity extends AppCompatActivity {
     private TextView countdownText;
     private TextView currentPlayerFromID;
     private CountDownTimer timer;
-    private long timeLeftInMilliseconds = 1000; // 10 seconds
+    private long timeLeftInMilliseconds = 0; // 10 seconds
     private ArrayList<String> playerNames;
 
     @Override
