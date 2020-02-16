@@ -4,4 +4,5 @@
     <string name="high_scores">High Scores</string>
     <string name="enter_player_names">Enter Player Names</string>
     <string name="submit_players">Submit</string>
+    <string name="home">Home</string>
 </resources>
