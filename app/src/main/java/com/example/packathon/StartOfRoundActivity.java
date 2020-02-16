@@ -16,7 +16,7 @@ public class StartOfRoundActivity extends AppCompatActivity {
     private CountDownTimer timer;
 
     // TODO: change back to 10000 secs, 1000 just for testing
-    private long timeLeftInMilliseconds = 1000; // 10 seconds
+    private long timeLeftInMilliseconds = 10000; // 10 seconds
     private ArrayList<String> playerNames;
     private int numCurrentRound;
 

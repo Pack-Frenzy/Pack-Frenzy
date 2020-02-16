@@ -15,4 +15,6 @@
     <string name="player_3">Player 3</string>
     <string name="player_4">Player 4</string>
     <string name="play">Play!</string>
+    <string name="remaining_players">Players advancing to the next round</string>
+    <string name="loser">The loser is:</string>
 </resources>

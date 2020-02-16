@@ -57,7 +57,4 @@ public class PlayerActivity extends AppCompatActivity {
 
         startActivity(intent);
     }
-
-    // TODO:
-    // "Finalize Players" BUTTON  -> RoundActivity
 }

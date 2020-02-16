@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/backround17"
+    android:background="@drawable/backround17_1"
     tools:context=".EndOfRoundActivity">
 
     <TextView
@@ -30,10 +30,10 @@
         android:layout_marginStart="142dp"
         android:layout_marginTop="18dp"
         android:layout_marginEnd="142dp"
-        android:layout_marginBottom="25dp"
+        android:layout_marginBottom="24dp"
         android:textColor="#FFFFFF"
         android:textSize="20pt"
-        app:layout_constraintBottom_toTopOf="@+id/winners_losers"
+        app:layout_constraintBottom_toTopOf="@+id/remaining_players"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3"
@@ -47,7 +47,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="121dp"
         android:layout_marginBottom="15dp"
-        android:text="The loser is:"
+        android:text="@string/loser"
         android:textColor="#FFFFFF"
         android:textSize="12pt"
         app:layout_constraintBottom_toTopOf="@+id/loser"
@@ -55,32 +55,82 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/winners_losers"
-        android:layout_width="325dp"
-        android:layout_height="283dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="35dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/end_of_round"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loser"
-        tools:listitem="text" />
-
     <Button
         android:id="@+id/end_of_round"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="150dp"
-        android:layout_marginTop="34dp"
+        android:layout_marginTop="36dp"
         android:layout_marginEnd="150dp"
         android:layout_marginBottom="60dp"
         android:text="@string/next_round"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/winners_losers" />
+        app:layout_constraintTop_toBottomOf="@+id/player_left_3" />
+
+    <TextView
+        android:id="@+id/remaining_players"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="@string/remaining_players"
+        android:textColor="#FFFFFF"
+        android:textSize="10pt"
+        app:layout_constraintBottom_toTopOf="@+id/player_left_1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loser" />
+
+    <TextView
+        android:id="@+id/player_left_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="150dp"
+        android:layout_marginBottom="20dp"
+        tools:text=""
+        android:textSize="10pt"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/player_left_2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/remaining_players" />
+
+    <TextView
+        android:id="@+id/player_left_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="150dp"
+        android:layout_marginBottom="20dp"
+        tools:text=""
+        android:textSize="10pt"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/player_left_3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/player_left_1" />
+
+    <TextView
+        android:id="@+id/player_left_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="150dp"
+        android:layout_marginBottom="36dp"
+        tools:text=""
+        android:textSize="10pt"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/end_of_round"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/player_left_2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

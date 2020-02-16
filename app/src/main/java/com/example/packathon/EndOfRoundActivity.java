@@ -22,6 +22,9 @@ public class EndOfRoundActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
     private Button endOfRound;
     private int numCurrentRound;
+    private TextView playerLeft1;
+    private TextView playerLeft2;
+    private TextView playerLeft3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,28 +45,12 @@ public class EndOfRoundActivity extends AppCompatActivity {
         nameOfLoser.setText(listOfPlayer.get(listOfPlayer.size()-1));
         endOfRound = findViewById(R.id.end_of_round);
         listOfPlayer.set(listOfPlayer.size() - 1, "Eliminated");
-
         endOfRound.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openRoundActivity();
             }
         });
-
-//        TODO: Figure out recyclerview for display list of remaining players
-//        recyclerView = (RecyclerView) findViewById(R.id.winners_losers);
-//
-//        // use this setting to improve performance if you know that changes
-//        // in content do not change the layout size of the RecyclerView
-//        recyclerView.setHasFixedSize(true);
-//
-//        // use a linear layout manager
-//        layoutManager = new LinearLayoutManager(this);
-//        recyclerView.setLayoutManager(layoutManager);
-//
-//        // specify an adapter (see also next example)
-//        mAdapter = new RecyclerViewAdapter(listOfPlayer);
-//        recyclerView.setAdapter(mAdapter);
 
     }
 
