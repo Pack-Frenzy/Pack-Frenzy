@@ -7,8 +7,8 @@ import java.util.Random;
 public class BombItem extends BoxItem {
     private int radiusOfEffect;
 
-    public BombItem(int x, int y, Color colour) {
-        super(x, y, colour);
+    public BombItem() {
+        super();
         Random random = new Random();
         this.radiusOfEffect = random.nextInt(3) + 1;
     }
@@ -16,8 +16,8 @@ public class BombItem extends BoxItem {
     // NOTE: this constructor is to be used when radius is not to be
     //       randomly generated
 
-    public BombItem (int x, int y, Color colour, int radius) {
-        super(x, y, colour);
+    public BombItem (int radius) {
+        super();
         this.radiusOfEffect = radius;
     }
 
