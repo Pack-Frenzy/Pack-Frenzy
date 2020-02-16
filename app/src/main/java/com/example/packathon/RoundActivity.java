@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -13,9 +12,6 @@ import com.example.packathon.model.Player;
 import java.util.ArrayList;
 
 public class RoundActivity extends AppCompatActivity {
-
-    // TODO: must adjust round based on the round number
-    private TextView round;
 
     // TODO: must adjust based on how many players there are
     private ArrayList<Player> players;
@@ -38,7 +34,7 @@ public class RoundActivity extends AppCompatActivity {
         players = new ArrayList<>();
         playerNames = new ArrayList<>();
         playerTextViews = new ArrayList<>();
-        round = findViewById(R.id.textViewRound);
+        TextView currentRound = findViewById(R.id.textViewRound);
         player1 = findViewById(R.id.textViewPlayer1);
         player2 = findViewById(R.id.textViewPlayer2);
         player3 = findViewById(R.id.textViewPlayer3);
@@ -66,28 +62,27 @@ public class RoundActivity extends AppCompatActivity {
             playerName = extras.getString("3");
             playerNames.add(playerName);
 
-            // current round number
+            // current currentRound number
             numCurrentRound = extras.getInt("currentRound") + 1;
         }
 
-        // TODO: must pull list of players from round
+        // TODO: must pull list of players from currentRound
 
         for (String playerName : playerNames) {
             players.add(new Player(playerName));
         }
 
         // TODO: must refactor based on what is being fed into this class
-        // TODO: change how empty names show
         for (int i = 0; i < players.size(); i++) {
-            if (players.get(i).getName().equals("")) {
-                playerTextViews.get(i).setText("");
+            if (players.get(i).getName().equals("") || players.get(i).getName().equals("Eliminated")) {
+                playerTextViews.get(i).setText(null);
             } else {
                 playerTextViews.get(i).setText(String.format("Player %s: %s",
                         String.valueOf(i + 1), players.get(i).getName()));
             }
         }
 
-        round.setText(String.format("Round %s", numCurrentRound));
+        currentRound.setText(String.format("Round %s", numCurrentRound));
 
         startTurn = findViewById(R.id.start_turn);
 
@@ -105,7 +100,6 @@ public class RoundActivity extends AppCompatActivity {
         for (int i = 0; i < playerNames.size(); i++) {
             intent.putExtra(Integer.toString(i), playerNames.get(i));
         }
-
         intent.putExtra("currentRound", numCurrentRound);
         startActivity(intent);
     }
