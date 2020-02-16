@@ -9,11 +9,14 @@ import android.util.Log;
 import android.view.DragEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.packathon.model.Box;
 import com.example.packathon.model.BoxItem;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class TurnActivity extends AppCompatActivity {
@@ -27,12 +30,15 @@ public class TurnActivity extends AppCompatActivity {
     private BoxItem itm3;
     private BoxItem itm4;
     private Box box;
-    int listOfColour[];
-    Random random;
-    Object imageTag1;
-    Object imageTag2;
-    Object imageTag3;
-    Object imageTag4;
+    private int listOfColour[];
+    private Random random;
+    private Object imageTag1;
+    private Object imageTag2;
+    private Object imageTag3;
+    private Object imageTag4;
+    private ArrayList<String> listOfPlayers;
+    private EditText nameTag;
+    private int playerIndex;
 
 
 
@@ -53,6 +59,8 @@ public class TurnActivity extends AppCompatActivity {
         img4 = findViewById(R.id.imageView4);
         img4.setTag("GameItemImg4");
         imageTag4 = img4.getTag();
+        nameTag = findViewById(R.id.Player_Name);
+
         initialize();
 
         boxImg = findViewById(R.id.boxImage);
@@ -158,24 +166,32 @@ public class TurnActivity extends AppCompatActivity {
                     draggedView.post(new Runnable() {
                         @Override
                         public void run() {
-                           // draggedView.setVisibility(View.GONE);
+                            if (playerIndex ++ >= listOfPlayers.size()) {
+                                playerIndex = 0;
+                            } else {
+                                playerIndex++;
+                            }
+
                             if (imageTag1 == draggedView.getTag()) {
                                 box.addBoxItemToBox(itm1);
                                 itm1 = new BoxItem();
                                 img1.setBackgroundColor(listOfColour[random.nextInt(10)]);
+                                nameTag.setText(listOfPlayers.get(playerIndex), TextView.BufferType.EDITABLE);
                             } else if (imageTag2 == draggedView.getTag()) {
                                 box.addBoxItemToBox(itm2);
                                 itm2 = new BoxItem();
                                 img2.setBackgroundColor(listOfColour[random.nextInt(10)]);
+                                nameTag.setText(listOfPlayers.get(playerIndex), TextView.BufferType.EDITABLE);
                             } else if (imageTag3 == draggedView.getTag()) {
                                 box.addBoxItemToBox(itm3);
                                 itm3 = new BoxItem();
                                 img3.setBackgroundColor(listOfColour[random.nextInt(10)]);
+                                nameTag.setText(listOfPlayers.get(playerIndex), TextView.BufferType.EDITABLE);
                             } else if (imageTag4 == draggedView.getTag()) {
                                 box.addBoxItemToBox(itm4);
                                 itm4 = new BoxItem();
                                 img4.setBackgroundColor(listOfColour[random.nextInt(10)]);
-
+                                nameTag.setText(listOfPlayers.get(playerIndex), TextView.BufferType.EDITABLE);
                             }
                         }
                     });
