@@ -92,17 +92,17 @@ public class TurnActivity extends AppCompatActivity {
         value = random.nextInt(20);
         str = String.valueOf(value);
         w2.setText(str, TextView.BufferType.EDITABLE);
-        wn1 = value;
+        wn2 = value;
 
         value = random.nextInt(20);
         str = String.valueOf(value);
         w3.setText(str, TextView.BufferType.EDITABLE);
-        wn1 = value;
+        wn2 = value;
 
         value = random.nextInt(20);
         str = String.valueOf(value);
         w4.setText(str, TextView.BufferType.EDITABLE);
-        wn1 = value;
+        wn2 = value;
 
 
         playerIndex = 0;
@@ -222,6 +222,7 @@ public class TurnActivity extends AppCompatActivity {
                                 int value = random.nextInt(20);
                                 String str = String.valueOf(value);
                                 w1.setText(str, TextView.BufferType.EDITABLE);
+                                wn1 = value;
                             } else if (imageTag2 == draggedView.getTag()) {
                                 box.addBoxItemToBox(itm2);
                                 box.addWeight(wn2);
@@ -232,6 +233,7 @@ public class TurnActivity extends AppCompatActivity {
                                 int value = random.nextInt(20);
                                 String str = String.valueOf(value);
                                 w2.setText(str, TextView.BufferType.EDITABLE);
+                                wn2 = value;
                             } else if (imageTag3 == draggedView.getTag()) {
                                 box.addBoxItemToBox(itm3);
                                 box.addWeight(wn3);
@@ -242,6 +244,7 @@ public class TurnActivity extends AppCompatActivity {
                                 int value = random.nextInt(20);
                                 String str = String.valueOf(value);
                                 w3.setText(str, TextView.BufferType.EDITABLE);
+                                wn3 = value;
                             } else if (imageTag4 == draggedView.getTag()) {
                                 box.addBoxItemToBox(itm4);
                                 box.addWeight(wn4);
@@ -252,6 +255,7 @@ public class TurnActivity extends AppCompatActivity {
                                 int value = random.nextInt(20);
                                 String str = String.valueOf(value);
                                 w4.setText(str, TextView.BufferType.EDITABLE);
+                                wn4 = value;
                             }
                         }
                     });
