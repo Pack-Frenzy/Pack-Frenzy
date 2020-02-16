@@ -49,10 +49,11 @@ public class PlayerActivity extends AppCompatActivity {
         player3 = playerThree.getText().toString();
         player4 = playerFour.getText().toString();
 
-        intent.putExtra("playerOne", player1);
-        intent.putExtra("playerTwo", player2);
-        intent.putExtra("playerThree", player3);
-        intent.putExtra("playerFour", player4);
+        intent.putExtra("0", player1);
+        intent.putExtra("1", player2);
+        intent.putExtra("2", player3);
+        intent.putExtra("3", player4);
+        intent.putExtra("currentRound", 0);
 
         startActivity(intent);
     }

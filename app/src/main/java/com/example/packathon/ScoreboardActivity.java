@@ -26,7 +26,7 @@ public class ScoreboardActivity extends AppCompatActivity {
 
     // TODO: Change this back to home... inbetweenturns is just for testing
     public void openGameOverActivity() {
-        Intent intent = new Intent(this, GameOverActivity.class);
+        Intent intent = new Intent(this, EndOfRoundActivity.class);
 
         startActivity(intent);
     }

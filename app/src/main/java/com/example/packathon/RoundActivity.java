@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.packathon.model.Player;
@@ -23,11 +25,9 @@ public class RoundActivity extends AppCompatActivity {
     private TextView player2;
     private TextView player3;
     private TextView player4;
+    private int numCurrentRound;
 
-    private TextView countDownText;
-    private CountDownTimer countDownTimer;
-    private long timeLeftInMilliseconds = 10000; //10 seconds
-    private boolean timerRunning;
+    public Button startTurn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,17 +50,24 @@ public class RoundActivity extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            String playerName = extras.getString("playerOne");
+            // player 1
+            String playerName = extras.getString("0");
             playerNames.add(playerName);
 
-            playerName = extras.getString("playerTwo");
+            // player 2
+            playerName = extras.getString("1");
             playerNames.add(playerName);
 
-            playerName = extras.getString("playerThree");
+            // player 3
+            playerName = extras.getString("2");
             playerNames.add(playerName);
 
-            playerName = extras.getString("playerFour");
+            // player 4
+            playerName = extras.getString("3");
             playerNames.add(playerName);
+
+            // current round number
+            numCurrentRound = extras.getInt("currentRound") + 1;
         }
 
         // TODO: must pull list of players from round
@@ -72,57 +79,35 @@ public class RoundActivity extends AppCompatActivity {
         // TODO: must refactor based on what is being fed into this class
         // TODO: change how empty names show
         for (int i = 0; i < players.size(); i++) {
-            if (players.get(i).getName() == "") {
+            if (players.get(i).getName().equals("")) {
                 playerTextViews.get(i).setText("");
             } else {
-                playerTextViews.get(i).setText(String.valueOf(i + 1) + ". " + players.get(i).getName());
+                playerTextViews.get(i).setText(String.format("Player %s: %s",
+                        String.valueOf(i + 1), players.get(i).getName()));
             }
         }
-        startStop();
-    }
 
-    // TODO: Countdown from 10 -> TurnActivity
-    public void startStop() {
-        if (timerRunning) {
-            stopTimer();
-        } else {
-            startTimer();
-        }
-    }
+        round.setText(String.format("Round %s", numCurrentRound));
 
-    public void startTimer() {
-        countDownTimer = new CountDownTimer(timeLeftInMilliseconds, 1000) {
+        startTurn = findViewById(R.id.start_turn);
+
+        startTurn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onTick(long millisUntilFinished) {
-                timeLeftInMilliseconds = millisUntilFinished;
-                updateTimer();
-            }
-
-            @Override
-            public void onFinish() {
+            public void onClick(View v) {
                 openTurnActivity();
             }
-        }.start();
+        });
+
     }
 
     public void openTurnActivity() {
-        Intent intent = new Intent(this, InBetweenTurnsActivity.class);
+        Intent intent = new Intent(this, StartOfRoundActivity.class);
         for (int i = 0; i < playerNames.size(); i++) {
             intent.putExtra(Integer.toString(i), playerNames.get(i));
         }
+
+        intent.putExtra("currentRound", numCurrentRound);
         startActivity(intent);
     }
 
-    public void stopTimer() {
-        countDownTimer.cancel();
-    }
-
-    public void updateTimer() {
-        int seconds = (int) timeLeftInMilliseconds/1000;
-
-        String timeLeftText;
-        timeLeftText = "" + seconds;
-        countDownText = findViewById(R.id.countDownText);
-        countDownText.setText(timeLeftText);
-    }
 }

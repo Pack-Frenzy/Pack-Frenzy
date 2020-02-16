@@ -58,6 +58,13 @@ public class TurnActivity extends AppCompatActivity {
     private int itemType2;
     private int itemType3;
     private int itemType4;
+    private int nextInt1;
+    private int nextInt2;
+    private int nextInt3;
+    private int nextInt4;
+    private int numCurrentRound;
+
+    private ArrayList<ImageView> listOfDroppedItems;
 
 
     @Override
@@ -71,11 +78,14 @@ public class TurnActivity extends AppCompatActivity {
         itemType4 = 3;
 
         listOfPlayer = new ArrayList<>();
+        listOfDroppedItems = new ArrayList<>();
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            for (int i = 0; i < extras.size(); i++) {
+            numCurrentRound = extras.getInt("currentRound");
+            for (int i = 0; i < extras.size() - 1; i++) {
                 String playerName = extras.getString(String.valueOf(i));
                 listOfPlayer.add(playerName);
+                System.out.println(playerName);
             }
         }
 
@@ -177,10 +187,14 @@ public class TurnActivity extends AppCompatActivity {
         gauge = new Gauge();
         gauge.setPercentFull(0);
 
-        img1.setImageResource(listOfDrawable[random.nextInt(6)]);
-        img2.setImageResource(listOfDrawable[random.nextInt(6)]);
-        img3.setImageResource(listOfDrawable[random.nextInt(6)]);
-        img4.setImageResource(listOfDrawable[random.nextInt(6)]);
+        nextInt1 = random.nextInt(6);
+        nextInt2 = random.nextInt(6);
+        nextInt3 = random.nextInt(6);
+        nextInt4 = random.nextInt(6);
+        img1.setImageResource(listOfDrawable[nextInt1]);
+        img2.setImageResource(listOfDrawable[nextInt2]);
+        img3.setImageResource(listOfDrawable[nextInt3]);
+        img4.setImageResource(listOfDrawable[nextInt4]);
 
         gaugeImg.setImageResource(listOfGauges[0]);
     }
@@ -202,15 +216,19 @@ public class TurnActivity extends AppCompatActivity {
     // TODO: @scott we need to redirect the user if this is going to be the last round. we need you
     //       to set up a new activity
     public void openGameOverActivity(String name) {
-        Intent intent = new Intent (this, GameOverActivity.class);
+        Intent intent = new Intent (this, EndOfRoundActivity.class);
         int counter = 0;
         for (String n: listOfPlayer) {
             if (!name.equals(n)) {
-                intent.putExtra(n, counter);
+                String count = Integer.toString(counter);
+                intent.putExtra(count, n);
                 counter++;
             }
         }
-        intent.putExtra(name, listOfPlayer.size()-1);
+
+        String loserIndex = Integer.toString(listOfPlayer.size() - 1);
+        intent.putExtra(loserIndex, name);
+        intent.putExtra("currentRound", numCurrentRound);
         startActivity(intent);
     }
 
@@ -299,6 +317,15 @@ public class TurnActivity extends AppCompatActivity {
                                 Log.d(TAG2, String.valueOf(box.getWeight()));
                                 Log.d(TAG2, String.valueOf(gauge.getPercentFull()));
 
+                                ImageView nextImage = new ImageView(getApplicationContext());
+                                nextImage.setImageResource(listOfDrawable[nextInt1]);
+
+                                listOfDroppedItems.add(nextImage);
+                                Log.d(TAG2, listOfDroppedItems.toString());
+
+                                nextInt1 = random.nextInt(6);
+
+                                img1.setImageResource(listOfDrawable[nextInt1]);
                                 nameTag.setText(listOfPlayer.get(playerIndex), TextView.BufferType.EDITABLE);
 
 
@@ -316,6 +343,14 @@ public class TurnActivity extends AppCompatActivity {
                                 Log.d(TAG2, String.valueOf(box.getWeight()));
                                 Log.d(TAG2, String.valueOf(gauge.getPercentFull()));
 
+                                ImageView nextImage = new ImageView(getApplicationContext());
+                                nextImage.setImageResource(listOfDrawable[nextInt2]);
+
+                                listOfDroppedItems.add(nextImage);
+                                Log.d(TAG2, listOfDroppedItems.toString());
+
+                                nextInt2 = random.nextInt(6);
+                                img2.setImageResource(listOfDrawable[nextInt2]);
                                 nameTag.setText(listOfPlayer.get(playerIndex), TextView.BufferType.EDITABLE);
 
 
@@ -333,6 +368,15 @@ public class TurnActivity extends AppCompatActivity {
                                 Log.d(TAG2, String.valueOf(gauge.getPercentFull()));
 
 
+                                ImageView nextImage = new ImageView(getApplicationContext());
+                                nextImage.setImageResource(listOfDrawable[nextInt3]);
+
+                                listOfDroppedItems.add(nextImage);
+                                Log.d(TAG2, listOfDroppedItems.toString());
+
+                                nextInt3 = random.nextInt(6);
+
+                                img3.setImageResource(listOfDrawable[nextInt3]);
                                 nameTag.setText(listOfPlayer.get(playerIndex), TextView.BufferType.EDITABLE);
 
 
@@ -349,6 +393,14 @@ public class TurnActivity extends AppCompatActivity {
                                 Log.d(TAG2, String.valueOf(box.getWeight()));
                                 Log.d(TAG2, String.valueOf(gauge.getPercentFull()));
 
+                                ImageView nextImage = new ImageView(getApplicationContext());
+                                nextImage.setImageResource(listOfDrawable[nextInt4]);
+
+                                listOfDroppedItems.add(nextImage);
+                                Log.d(TAG2, listOfDroppedItems.toString());
+
+                                nextInt4 = random.nextInt(6);
+                                img4.setImageResource(listOfDrawable[nextInt4]);
                                 nameTag.setText(listOfPlayer.get(playerIndex), TextView.BufferType.EDITABLE);
 
                             }
