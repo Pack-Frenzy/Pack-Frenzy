@@ -2,11 +2,13 @@ package com.example.packathon;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.packathon.model.Game;
 import com.example.packathon.model.Player;
-import com.example.packathon.model.PlayerList;
+import com.example.packathon.model.Round;
 
 import java.util.ArrayList;
 
@@ -16,7 +18,6 @@ public class RoundActivity extends AppCompatActivity {
     private View round = findViewById(R.id.textViewRound);
 
     // TODO: must adjust based on how many players there are
-    private int numOfPlayers = 4;
     private ArrayList<Player> players = new ArrayList<>();
     private ArrayList<String> playerNames = new ArrayList<>();
 
@@ -24,16 +25,30 @@ public class RoundActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_round);
-
         // must bind player data to list
 
-        // Create list of players
+//        Bundle extras = getIntent().getExtras();
+//        if (extras != null) {
+//            String player1 = extras.getString("playerOne");
+//        }
+
+        // TODO: must pull list of players from round
+        Player eric = new Player("Eric");
+        Player scott = new Player("Scott");
+        Player ben = new Player("Ben");
+        Player anthony = new Player("Anthony");
+        players.add(eric);
+        players.add(scott);
+        players.add(ben);
+        players.add(anthony);
 
         // TODO: must refactor based on what is being fed into this class
-        PlayerList listOfPlayers = new PlayerList(4);
-        for (Player player : listOfPlayers.getListOfPlayers()) {
-            players.add(player);
+        for (Player player : players) {
+            playerNames.add(player.getName());
         }
+
+        // TODO: must refactor to generate the number of blanks for each player
+
 
         // Bind each player to name
 
