@@ -6,6 +6,7 @@ import android.content.ClipData;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.DragEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -42,15 +43,39 @@ public class TurnActivity extends AppCompatActivity {
 
         boxImg = findViewById(R.id.boxImage);
         boxImg.setTag("BoxImage");
-        setImageOnDragListener(img1);
-        setImageOnTouchListener(img1);
-        setImageOnDragListener(img2);
-        setImageOnTouchListener(img2);
-        setImageOnDragListener(img3);
-        setImageOnTouchListener(img3);
-        setImageOnDragListener(img4);
-        setImageOnTouchListener(img4);
 
+        boxImg.setOnDragListener(new BoxDragListener(
+                R.drawable.box1,
+                R.drawable.box2));
+
+        boxImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                img1.setVisibility(View.VISIBLE);
+                img2.setVisibility(View.VISIBLE);
+                img3.setVisibility(View.VISIBLE);
+                img4.setVisibility(View.VISIBLE);
+            }
+        });
+        setItOnLongClickListener(img1);
+        setItOnLongClickListener(img2);
+        setItOnLongClickListener(img3);
+        setItOnLongClickListener(img4);
+
+    }
+
+    private void setItOnLongClickListener(ImageView img) {
+        img.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+
+                ClipData data = ClipData.newPlainText("", "");
+                View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
+                view.startDrag(data, shadowBuilder, view, 0);
+                view.setVisibility(View.VISIBLE);
+                return true;
+            }
+        });
     }
 
     private void initialize() {
@@ -80,55 +105,64 @@ public class TurnActivity extends AppCompatActivity {
         img4.setBackgroundColor(listOfColour[random.nextInt(10)]);
     }
 
+    private static class BoxDragListener implements View.OnDragListener {
+        private static final String TAG = "BoxDragListener";
 
-    protected void setImageOnDragListener(ImageView img) {
-        img.setOnDragListener(new View.OnDragListener() {
-            @Override
-            public boolean onDrag(View v, DragEvent event) {
-                switch (event.getAction()) {
-                    case DragEvent.ACTION_DRAG_STARTED:
-                        break;
-                    case DragEvent.ACTION_DRAG_ENTERED:
-                        break;
-                    case DragEvent.ACTION_DRAG_EXITED:
-                        break;
-                    case DragEvent.ACTION_DROP:
+        private int enterShape;
+        private int normalShape;
+        private boolean hit;
 
-                        double xcoord = event.getX();
-                        double ycoord = event.getY();
+        public BoxDragListener(int enterShape, int normalShape) {
+            this.enterShape = enterShape;
+            this.normalShape = normalShape;
+        }
 
-                        Rect viewRect = new Rect();
-                        v.getHitRect(viewRect);
-                        Rect boxRect = new Rect();
-                        boxImg.getHitRect(viewRect);
-                        if (Rect.intersects(viewRect,boxRect)){
-                            boxImg.setBackgroundColor(Color.BLACK);
-                            return true;
-
+        @Override
+        public boolean onDrag(View v, DragEvent event) {
+            final ImageView containerView = (ImageView) v;
+            final ImageView draggedView = (ImageView) event.getLocalState();
+            switch (event.getAction()) {
+                case DragEvent.ACTION_DRAG_STARTED:
+                    Log.d(TAG, "onDrag: ACTION_DRAG_STARTED");
+                    hit = false;
+                    return true;
+                case DragEvent.ACTION_DRAG_ENTERED:
+                    Log.d(TAG, "onDrag: ACTION_DRAG_ENTERED");
+                    containerView.setImageResource(enterShape);
+                    return true;
+                case DragEvent.ACTION_DRAG_EXITED:
+                    Log.d(TAG, "onDrag: ACTION_DRAG_EXITED");
+                    containerView.setImageResource(normalShape);
+                    return true;
+                case DragEvent.ACTION_DROP:
+                    Log.d(TAG, "onDrag: ACTION_DROP");
+                    hit = true;
+                    draggedView.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            draggedView.setVisibility(View.GONE);
                         }
-                    case DragEvent.ACTION_DRAG_ENDED:
-                    default:
-                        break;
-                }
-                return true;
+                    });
+                    return true;
+                case DragEvent.ACTION_DRAG_ENDED:
+                    Log.d(TAG, "onDrag: ACTION_DRAG_ENDED");
+                    containerView.setImageResource(normalShape);
+                    v.setVisibility(View.VISIBLE);
+                    if (!hit) {
+                        draggedView.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                draggedView.setVisibility(View.VISIBLE);
+                            }
+                        });
+                    }
+                    return true;
+                default:
+                    return true;
             }
-
-        });
+        }
     }
 
-    protected void setImageOnTouchListener(final ImageView img)  {
-        img.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                ClipData data = ClipData.newPlainText("","");
-                View.DragShadowBuilder shadow = new View.DragShadowBuilder(img);
-                img.setVisibility(View.VISIBLE);
-                v.startDragAndDrop(data, shadow, null, 0);
-                return false;
-
-            }
-        });
-    }
 
 
 
