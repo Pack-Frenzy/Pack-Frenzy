@@ -126,12 +126,12 @@ public class TurnActivity extends AppCompatActivity {
         value = random.nextInt(20);
         str = String.valueOf(value);
         w3.setText(str, TextView.BufferType.EDITABLE);
-        wn2 = value;
+        wn3 = value;
 
         value = random.nextInt(20);
         str = String.valueOf(value);
         w4.setText(str, TextView.BufferType.EDITABLE);
-        wn2 = value;
+        wn4 = value;
 
 
         playerIndex = 0;
@@ -417,14 +417,14 @@ public class TurnActivity extends AppCompatActivity {
 
     private int makeNextItem(int itemType, BoxItem item, double weight, ImageView imageView, TextView textView) {
         int itemRandomizer = random.nextInt(100);
-        if (0 <= itemRandomizer && itemRandomizer < 15) {
+        if (0 <= itemRandomizer && itemRandomizer < 5) {
             item = new BombItem();
             weight = item.getWeight();
             textView.setText(String.valueOf(weight), TextView.BufferType.EDITABLE);
             imageView.setImageResource(R.drawable.bomb);
             itemType = 1;
             return itemType;
-        } else if (15 <= itemRandomizer && itemRandomizer < 30) {
+        } else if (5 <= itemRandomizer && itemRandomizer < 15) {
             item = new LightenLoadItem();
             weight = item.getWeightDouble();
             textView.setText(String.valueOf(weight), TextView.BufferType.EDITABLE);
