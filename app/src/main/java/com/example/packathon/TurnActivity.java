@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ClipData;
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.DragEvent;
 import android.view.MotionEvent;
@@ -13,6 +14,8 @@ import android.widget.ImageView;
 import com.example.packathon.model.BoxItem;
 
 import java.util.Random;
+
+import static android.view.View.GONE;
 
 public class TurnActivity extends AppCompatActivity {
     private ImageView img1;
@@ -90,8 +93,19 @@ public class TurnActivity extends AppCompatActivity {
                     case DragEvent.ACTION_DRAG_EXITED:
                         break;
                     case DragEvent.ACTION_DROP:
+
                         double xcoord = event.getX();
                         double ycoord = event.getY();
+
+                        Rect viewRect = new Rect();
+                        v.getHitRect(viewRect);
+                        Rect boxRect = new Rect();
+                        boxImg.getHitRect(viewRect);
+                        if (Rect.intersects(viewRect,boxRect)){
+                            boxImg.setBackgroundColor(Color.BLACK);
+                            return true;
+
+                        }
                     case DragEvent.ACTION_DRAG_ENDED:
                     default:
                         break;
