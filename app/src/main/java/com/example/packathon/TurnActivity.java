@@ -56,7 +56,6 @@ public class TurnActivity extends AppCompatActivity {
             }
         }
 
-
         img1 = findViewById(R.id.imageView);
         img1.setTag("GameItemImg1");
         imageTag1 = img1.getTag();
