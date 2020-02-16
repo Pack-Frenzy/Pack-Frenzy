@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.packathon.model.Game;
 import com.example.packathon.model.Player;
@@ -19,7 +20,11 @@ public class RoundActivity extends AppCompatActivity {
 
     // TODO: must adjust based on how many players there are
     private ArrayList<Player> players = new ArrayList<>();
-    private ArrayList<String> playerNames = new ArrayList<>();
+    private ArrayList<TextView> playerTextViews = new ArrayList<>();
+    private TextView player1 = findViewById(R.id.textViewPlayer1);
+    private TextView player2 = findViewById(R.id.textViewPlayer2);
+    private TextView player3 = findViewById(R.id.textViewPlayer3);
+    private TextView player4 = findViewById(R.id.textViewPlayer4);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +48,11 @@ public class RoundActivity extends AppCompatActivity {
         players.add(anthony);
 
         // TODO: must refactor based on what is being fed into this class
-        for (Player player : players) {
-            playerNames.add(player.getName());
+        for (int i = 0; i < players.size(); i++) {
+            if (playerTextViews.get(i) == null) {
+                playerTextViews.get(i).setText("");
+            }
+            playerTextViews.get(i).setText(String.valueOf(i) + players.get(i).getName());
         }
 
         // TODO: must refactor to generate the number of blanks for each player
