@@ -13,9 +13,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.packathon.model.BombItem;
 import com.example.packathon.model.Box;
 import com.example.packathon.model.BoxItem;
 import com.example.packathon.model.Gauge;
+import com.example.packathon.model.LightenLoadItem;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -48,10 +50,14 @@ public class TurnActivity extends AppCompatActivity {
     private TextView w2;
     private TextView w3;
     private TextView w4;
-    private int wn1;
-    private int wn2;
-    private int wn3;
-    private int wn4;
+    private double wn1;
+    private double wn2;
+    private double wn3;
+    private double wn4;
+    private int itemType1; // keep track of the item type; 1 = bomb, 2 = feather, 3 = classic
+    private int itemType2;
+    private int itemType3;
+    private int itemType4;
 
 
     @Override
@@ -59,6 +65,10 @@ public class TurnActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_turn);
         random = new Random();
+        itemType1 = 3;
+        itemType2 = 3;
+        itemType3 = 3;
+        itemType4 = 3;
 
         listOfPlayer = new ArrayList<>();
         Bundle extras = getIntent().getExtras();
@@ -276,9 +286,11 @@ public class TurnActivity extends AppCompatActivity {
                             }
 
                             if (imageTag1 == draggedView.getTag()) {
-                                box.addBoxItemToBox(itm1); //add to list of items in box
-                                box.addWeight(wn1);        //add weight to total weight of box
-                                itm1 = new BoxItem();
+
+                                checkItemType(itemType1, itm1, wn1);
+
+                                itemType1 = makeNextItem(itemType1, itm1, wn1, img1, w1);
+
 
                                 gauge.setPercentFull(gauge.calculatePercentFull(box.getWeight(), box.getWeightCapacity()));
                                 changeGaugeImage(gauge.checkAndReturnStatus(gauge.getPercentFull()));
@@ -287,17 +299,15 @@ public class TurnActivity extends AppCompatActivity {
                                 Log.d(TAG2, String.valueOf(box.getWeight()));
                                 Log.d(TAG2, String.valueOf(gauge.getPercentFull()));
 
-                                img1.setImageResource(listOfDrawable[random.nextInt(6)]);
                                 nameTag.setText(listOfPlayer.get(playerIndex), TextView.BufferType.EDITABLE);
 
-                                int value = random.nextInt(20);
-                                String str = String.valueOf(value);
-                                w1.setText(str, TextView.BufferType.EDITABLE);
-                                wn1 = value;
+
                             } else if (imageTag2 == draggedView.getTag()) {
-                                box.addBoxItemToBox(itm2);
-                                box.addWeight(wn2);
-                                itm2 = new BoxItem();
+
+                                checkItemType(itemType2, itm2, wn2);
+
+                                itemType2 = makeNextItem(itemType2, itm2, wn2, img2, w2);
+
 
                                 gauge.setPercentFull(gauge.calculatePercentFull(box.getWeight(), box.getWeightCapacity()));
                                 changeGaugeImage(gauge.checkAndReturnStatus(gauge.getPercentFull()));
@@ -306,17 +316,14 @@ public class TurnActivity extends AppCompatActivity {
                                 Log.d(TAG2, String.valueOf(box.getWeight()));
                                 Log.d(TAG2, String.valueOf(gauge.getPercentFull()));
 
-                                img2.setImageResource(listOfDrawable[random.nextInt(6)]);
                                 nameTag.setText(listOfPlayer.get(playerIndex), TextView.BufferType.EDITABLE);
 
-                                int value = random.nextInt(20);
-                                String str = String.valueOf(value);
-                                w2.setText(str, TextView.BufferType.EDITABLE);
-                                wn2 = value;
+
                             } else if (imageTag3 == draggedView.getTag()) {
-                                box.addBoxItemToBox(itm3);
-                                box.addWeight(wn3);
-                                itm3 = new BoxItem();
+
+                                checkItemType(itemType3, itm3, wn3);
+
+                                itemType3 = makeNextItem(itemType3, itm3, wn3, img3, w3);
 
                                 gauge.setPercentFull(gauge.calculatePercentFull(box.getWeight(), box.getWeightCapacity()));
                                 changeGaugeImage(gauge.checkAndReturnStatus(gauge.getPercentFull()));
@@ -325,17 +332,14 @@ public class TurnActivity extends AppCompatActivity {
                                 Log.d(TAG2, String.valueOf(box.getWeight()));
                                 Log.d(TAG2, String.valueOf(gauge.getPercentFull()));
 
-                                img3.setImageResource(listOfDrawable[random.nextInt(6)]);
+
                                 nameTag.setText(listOfPlayer.get(playerIndex), TextView.BufferType.EDITABLE);
 
-                                int value = random.nextInt(20);
-                                String str = String.valueOf(value);
-                                w3.setText(str, TextView.BufferType.EDITABLE);
-                                wn3 = value;
+
                             } else if (imageTag4 == draggedView.getTag()) {
-                                box.addBoxItemToBox(itm4);
-                                box.addWeight(wn4);
-                                itm4 = new BoxItem();
+                                checkItemType(itemType4, itm4, wn4);
+
+                                itemType4 = makeNextItem(itemType4, itm4, wn4, img4, w4);
 
                                 gauge.setPercentFull(gauge.calculatePercentFull(box.getWeight(), box.getWeightCapacity()));
 
@@ -345,13 +349,8 @@ public class TurnActivity extends AppCompatActivity {
                                 Log.d(TAG2, String.valueOf(box.getWeight()));
                                 Log.d(TAG2, String.valueOf(gauge.getPercentFull()));
 
-                                img4.setImageResource(listOfDrawable[random.nextInt(6)]);
                                 nameTag.setText(listOfPlayer.get(playerIndex), TextView.BufferType.EDITABLE);
 
-                                int value = random.nextInt(20);
-                                String str = String.valueOf(value);
-                                w4.setText(str, TextView.BufferType.EDITABLE);
-                                wn4 = value;
                             }
                         }
                     });
@@ -371,6 +370,48 @@ public class TurnActivity extends AppCompatActivity {
                 default:
                     return true;
             }
+        }
+    }
+
+    private int makeNextItem(int itemType, BoxItem item, double weight, ImageView imageView, TextView textView) {
+        int itemRandomizer = random.nextInt(100);
+        if (0 <= itemRandomizer && itemRandomizer < 50) {
+            item = new BombItem();
+            weight = item.getWeight();
+            textView.setText(String.valueOf(weight), TextView.BufferType.EDITABLE);
+            imageView.setImageResource(R.drawable.bomb);
+            itemType = 1;
+            return itemType;
+        } else if (50 <= itemRandomizer && itemRandomizer < 100) {
+            item = new LightenLoadItem();
+            weight = item.getWeightDouble();
+            textView.setText(String.valueOf(weight), TextView.BufferType.EDITABLE);
+            imageView.setImageResource(R.drawable.feather);
+            itemType = 2;
+            return itemType;
+
+        } else {
+            item = new BoxItem();
+            int value = random.nextInt(20);
+            String str = String.valueOf(value);
+            textView.setText(str, TextView.BufferType.EDITABLE);
+            weight = value;
+            imageView.setImageResource(listOfDrawable[random.nextInt(6)]);
+            itemType = 3;
+            return itemType;
+
+        }
+    }
+
+    private void checkItemType(int itemType, BoxItem item, double weight) {
+        if (itemType == 1) {
+            box.setWeight(box.getWeight()/item.getWeightDouble());
+            // TODO: loop to take half the items out of the list
+        } else if (itemType == 2) {
+            box.setWeight(box.getWeight() * (item.getWeightDouble()/100));
+        } else {
+            box.addBoxItemToBox(item);
+            box.addWeight(weight);
         }
     }
 

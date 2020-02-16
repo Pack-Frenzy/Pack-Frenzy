@@ -8,9 +8,8 @@ public class BombItem extends BoxItem {
     private int radiusOfEffect;
 
     public BombItem() {
-        super();
         Random random = new Random();
-        this.radiusOfEffect = random.nextInt(3) + 1;
+        this.weight = random.nextInt(3) + 2;
     }
 
     // NOTE: this constructor is to be used when radius is not to be
@@ -18,7 +17,7 @@ public class BombItem extends BoxItem {
 
     public BombItem (int radius) {
         super();
-        this.radiusOfEffect = radius;
+        this.weight = radius;
     }
 
     // MODIFIES: this

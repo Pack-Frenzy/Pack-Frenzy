@@ -9,7 +9,7 @@ public class BoxItem {
     public static final int SIZE_X = 100;
     public static final int SIZE_Y = 100;
 
-    protected int weight;
+    protected double weight;
 
 
     public BoxItem() {
@@ -36,9 +36,12 @@ public class BoxItem {
 
     // EFFECTS: returns weight
 
-    public int getWeight() {
+    public double getWeight() {
         return weight;
+    }
 
+    public double getWeightDouble() {
+        return weight;
     }
 
 

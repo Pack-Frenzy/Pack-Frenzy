@@ -41,6 +41,10 @@ public class Box {
         totalWeightOfBox += weight;
     }
 
+    public void addWeight(double weight) {
+        totalWeightOfBox += weight;
+    }
+
     //EFFECTS: removes BoxItem from Box and then calculates the percent weight
     public void removeBoxItemFromBox(BoxItem boxItem) {
         boxItems.remove(boxItem);
@@ -75,6 +79,10 @@ public class Box {
 
     public void setWeightCapacity(double weightCapacity) {
         this.weightCapacity = weightCapacity;
+    }
+
+    public void setWeight(double weight) {
+        this.totalWeightOfBox = weight;
     }
 
     public void setTotalWeightOfBox (double weight) {
