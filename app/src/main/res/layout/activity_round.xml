@@ -16,7 +16,7 @@
         android:layout_marginBottom="30dp"
         android:text="Round 1"
         android:textAlignment="center"
-        android:textSize="36sp"
+        android:textSize="17pt"
         app:layout_constraintBottom_toTopOf="@+id/textViewPlayer1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,11 +29,11 @@
         android:layout_marginTop="150dp"
         android:layout_marginBottom="54dp"
         android:text="TextView"
+        android:textSize="12.5pt"
         app:layout_constraintBottom_toTopOf="@+id/textViewPlayer2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewRound"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewRound" />
 
     <TextView
         android:id="@+id/textViewPlayer2"
@@ -42,6 +42,7 @@
         android:layout_marginTop="54dp"
         android:layout_marginBottom="54dp"
         android:text="TextView"
+        android:textSize="12.5pt"
         app:layout_constraintBottom_toTopOf="@+id/textViewPlayer3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,6 +55,7 @@
         android:layout_marginTop="54dp"
         android:layout_marginBottom="54dp"
         android:text="TextView"
+        android:textSize="12.5pt"
         app:layout_constraintBottom_toTopOf="@+id/textViewPlayer4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -66,6 +68,7 @@
         android:layout_marginTop="54dp"
         android:layout_marginBottom="200dp"
         android:text="TextView"
+        android:textSize="12.5pt"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
