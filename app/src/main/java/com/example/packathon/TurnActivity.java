@@ -39,12 +39,21 @@ public class TurnActivity extends AppCompatActivity {
     private EditText nameTag;
     private int playerIndex;
     private ArrayList<String> listOfPlayer;
+    private TextView w1;
+    private TextView w2;
+    private TextView w3;
+    private TextView w4;
+    private int wn1;
+    private int wn2;
+    private int wn3;
+    private int wn4;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_turn);
+        random = new Random();
 
         listOfPlayer = new ArrayList<>();
         Bundle extras = getIntent().getExtras();
@@ -68,7 +77,34 @@ public class TurnActivity extends AppCompatActivity {
         img4 = findViewById(R.id.imageView4);
         img4.setTag("GameItemImg4");
         imageTag4 = img4.getTag();
+
         nameTag = findViewById(R.id.Player_Name);
+
+        w1 = findViewById(R.id.w1);
+        w2 = findViewById(R.id.w2);
+        w3 = findViewById(R.id.w3);
+        w4 = findViewById(R.id.w4);
+
+        int value = random.nextInt(20);
+        String str = String.valueOf(value);
+        w1.setText(str, TextView.BufferType.EDITABLE);
+        wn1 = value;
+
+        value = random.nextInt(20);
+        str = String.valueOf(value);
+        w2.setText(str, TextView.BufferType.EDITABLE);
+        wn1 = value;
+
+        value = random.nextInt(20);
+        str = String.valueOf(value);
+        w3.setText(str, TextView.BufferType.EDITABLE);
+        wn1 = value;
+
+        value = random.nextInt(20);
+        str = String.valueOf(value);
+        w4.setText(str, TextView.BufferType.EDITABLE);
+        wn1 = value;
+
 
         playerIndex = 0;
         nameTag.setText(listOfPlayer.get(playerIndex), TextView.BufferType.EDITABLE);
@@ -108,7 +144,6 @@ public class TurnActivity extends AppCompatActivity {
         listOfDrawable[5] = R.drawable.boxred;
 
 
-        random = new Random();
 
         itm1 = new BoxItem();
         itm2 = new BoxItem();
@@ -179,25 +214,45 @@ public class TurnActivity extends AppCompatActivity {
                             }
 
                             if (imageTag1 == draggedView.getTag()) {
-                                box.addBoxItemToBox(itm1);
+                                box.addBoxItemToBox(itm1); //add to list of items in box
+                                box.addWeight(wn1);        //add weight to total weight of box
                                 itm1 = new BoxItem();
                                 img1.setImageResource(listOfDrawable[random.nextInt(6)]);
                                 nameTag.setText(listOfPlayer.get(playerIndex), TextView.BufferType.EDITABLE);
+
+                                int value = random.nextInt(20);
+                                String str = String.valueOf(value);
+                                w1.setText(str, TextView.BufferType.EDITABLE);
                             } else if (imageTag2 == draggedView.getTag()) {
                                 box.addBoxItemToBox(itm2);
+                                box.addWeight(wn2);
                                 itm2 = new BoxItem();
                                 img2.setImageResource(listOfDrawable[random.nextInt(6)]);
                                 nameTag.setText(listOfPlayer.get(playerIndex), TextView.BufferType.EDITABLE);
+
+                                int value = random.nextInt(20);
+                                String str = String.valueOf(value);
+                                w2.setText(str, TextView.BufferType.EDITABLE);
                             } else if (imageTag3 == draggedView.getTag()) {
                                 box.addBoxItemToBox(itm3);
+                                box.addWeight(wn3);
                                 itm3 = new BoxItem();
                                 img3.setImageResource(listOfDrawable[random.nextInt(6)]);
                                 nameTag.setText(listOfPlayer.get(playerIndex), TextView.BufferType.EDITABLE);
+
+                                int value = random.nextInt(20);
+                                String str = String.valueOf(value);
+                                w3.setText(str, TextView.BufferType.EDITABLE);
                             } else if (imageTag4 == draggedView.getTag()) {
                                 box.addBoxItemToBox(itm4);
+                                box.addWeight(wn4);
                                 itm4 = new BoxItem();
                                 img4.setImageResource(listOfDrawable[random.nextInt(10)]);
                                 nameTag.setText(listOfPlayer.get(playerIndex), TextView.BufferType.EDITABLE);
+
+                                int value = random.nextInt(20);
+                                String str = String.valueOf(value);
+                                w4.setText(str, TextView.BufferType.EDITABLE);
                             }
                         }
                     });

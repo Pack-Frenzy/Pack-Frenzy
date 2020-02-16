@@ -30,10 +30,15 @@ public class Box {
 
     //EFFECTS: adds BoxItem to Box and then calculates the percent weight
     public void addBoxItemToBox(BoxItem boxItem) {
-        checkIsBoxFull();
         boxItems.add(boxItem);
-        totalWeightOfBox += boxItem.getWeight();
-        calculatePercentWeight();
+    }
+
+    public double getWeight() {
+        return totalWeightOfBox;
+    }
+
+    public void addWeight(int weight) {
+        totalWeightOfBox += weight;
     }
 
     //EFFECTS: removes BoxItem from Box and then calculates the percent weight
