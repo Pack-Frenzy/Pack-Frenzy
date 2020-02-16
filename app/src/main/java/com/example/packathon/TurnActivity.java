@@ -33,11 +33,11 @@ public class TurnActivity extends AppCompatActivity {
 
         img1 = findViewById(R.id.imageView);
         img1.setTag("GameItemImg1");
-        img2  = findViewById(R.id.imageView2);
+        img2 = findViewById(R.id.imageView2);
         img2.setTag("GameItemImg2");
-        img3  = findViewById(R.id.imageView3);
+        img3 = findViewById(R.id.imageView3);
         img3.setTag("GameItemImg3");
-        img4  = findViewById(R.id.imageView4);
+        img4 = findViewById(R.id.imageView4);
         img4.setTag("GameItemImg4");
         initialize();
 
@@ -57,29 +57,43 @@ public class TurnActivity extends AppCompatActivity {
                 img4.setVisibility(View.VISIBLE);
             }
         });
-        setItOnLongClickListener(img1);
-        setItOnLongClickListener(img2);
-        setItOnLongClickListener(img3);
-        setItOnLongClickListener(img4);
+        setItOnClickListener(img1);
+        setItOnClickListener(img2);
+        setItOnClickListener(img3);
+        setItOnClickListener(img4);
 
     }
 
-    private void setItOnLongClickListener(ImageView img) {
-        img.setOnLongClickListener(new View.OnLongClickListener() {
+    private void setItOnClickListener(ImageView img) {
+        img.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public boolean onLongClick(View view) {
-
+            public boolean onTouch(View view, MotionEvent event) {
                 ClipData data = ClipData.newPlainText("", "");
                 View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
                 view.startDrag(data, shadowBuilder, view, 0);
                 view.setVisibility(View.VISIBLE);
-                return true;
+                return false;
             }
+
         });
-    }
+            }
+
+//    private void setItOnLongClickListener(ImageView img) {
+//        img.setOnLongClickListener(new View.OnLongClickListener() {
+//            @Override
+//            public boolean onLongClick(View view) {
+//
+//                ClipData data = ClipData.newPlainText("", "");
+//                View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
+//                view.startDrag(data, shadowBuilder, view, 0);
+//                view.setVisibility(View.VISIBLE);
+//                return true;
+//            }
+//        });
+//    }
 
     private void initialize() {
-        int listOfColour[] = new int [11];
+        int listOfColour[] = new int[11];
         listOfColour[0] = (Color.BLACK);
         listOfColour[1] = (Color.DKGRAY);
         listOfColour[2] = (Color.GRAY);
@@ -162,13 +176,6 @@ public class TurnActivity extends AppCompatActivity {
             }
         }
     }
-
-
-
-
-
-
-
 
 
     // TODO:
