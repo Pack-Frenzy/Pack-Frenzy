@@ -74,6 +74,9 @@ public class InBetweenTurnsActivity extends AppCompatActivity {
 
     public void openTurnActivity() {
         Intent intent = new Intent(this, TurnActivity.class);
+        for (int i = 0; i < playerNames.size(); i++) {
+            intent.putExtra(Integer.toString(i), playerNames.get(i));
+        }
         startActivity(intent);
     }
 
