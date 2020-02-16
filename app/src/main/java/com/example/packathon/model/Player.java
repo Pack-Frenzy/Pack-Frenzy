@@ -4,19 +4,15 @@ public class Player {
     private String name;
     private int score;
 
-
     public Player() {
-        // have a field for image (face)
-        name = null;
+        // TODO: have a field for image (face)
+        name = "";
         score = 0;
     }
 
-    public void setName(String name) {
+    public Player(String name) {
         this.name = name;
-    }
-
-    public void setScore(int score) {
-        this.score = score;
+        score = 0;
     }
 
     public void addScore(int score) {
@@ -33,5 +29,13 @@ public class Player {
 
     public int getScore() {
         return score;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
     }
 }
