@@ -84,8 +84,9 @@ public class TurnActivity extends AppCompatActivity {
             numCurrentRound = extras.getInt("currentRound");
             for (int i = 0; i < extras.size() - 1; i++) {
                 String playerName = extras.getString(String.valueOf(i));
-                listOfPlayer.add(playerName);
-                System.out.println(playerName);
+                if (playerName != null) {
+                    listOfPlayer.add(playerName);
+                }
             }
         }
 

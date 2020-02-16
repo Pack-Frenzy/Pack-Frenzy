@@ -46,24 +46,14 @@ public class RoundActivity extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            // player 1
-            String playerName = extras.getString("0");
-            playerNames.add(playerName);
 
-            // player 2
-            playerName = extras.getString("1");
-            playerNames.add(playerName);
-
-            // player 3
-            playerName = extras.getString("2");
-            playerNames.add(playerName);
-
-            // player 4
-            playerName = extras.getString("3");
-            playerNames.add(playerName);
-
-            // current currentRound number
+            // get current round number
             numCurrentRound = extras.getInt("currentRound") + 1;
+
+            for (int i = 0; i < extras.size() - 1; i++) {
+                String playerName = extras.getString(Integer.toString(i));
+                playerNames.add(playerName);
+            }
         }
 
         // TODO: must pull list of players from currentRound
@@ -98,7 +88,9 @@ public class RoundActivity extends AppCompatActivity {
     public void openTurnActivity() {
         Intent intent = new Intent(this, StartOfRoundActivity.class);
         for (int i = 0; i < playerNames.size(); i++) {
-            intent.putExtra(Integer.toString(i), playerNames.get(i));
+            if (!players.get(i).getName().equals("") && !players.get(i).getName().equals("Eliminated")) {
+                intent.putExtra(Integer.toString(i), playerNames.get(i));
+            }
         }
         intent.putExtra("currentRound", numCurrentRound);
         startActivity(intent);
