@@ -26,11 +26,9 @@ public class ScoreboardActivity extends AppCompatActivity {
         });
     }
 
+    // TODO: Change this back to home... inbetweenturns is just for testing
     public void openMainActivity() {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, InBetweenTurnsActivity.class);
         startActivity(intent);
     }
-
-    // TODO:
-    // "Home" BUTTON  -> MainActivity
 }
