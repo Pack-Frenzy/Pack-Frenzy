@@ -37,11 +37,9 @@ public class TurnActivity extends AppCompatActivity {
     private Object imageTag2;
     private Object imageTag3;
     private Object imageTag4;
-    private ArrayList<String> listOfPlayers;
     private EditText nameTag;
     private int playerIndex;
-    private ArrayList<String> playerNames;
-
+    private ArrayList<String> listOfPlayer;
 
 
     @Override
@@ -49,21 +47,15 @@ public class TurnActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_turn);
 
-        playerNames = new ArrayList<>();
+        listOfPlayer = new ArrayList<>();
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            String playerName = extras.getString("0");
-            playerNames.add(playerName);
-
-            playerName = extras.getString("1");
-            playerNames.add(playerName);
-
-            playerName = extras.getString("2");
-            playerNames.add(playerName);
-
-            playerName = extras.getString("3");
-            playerNames.add(playerName);
+            for (int i = 0; i < extras.size(); i++) {
+                String playerName = extras.getString(String.valueOf(i));
+                listOfPlayer.add(playerName);
+            }
         }
+
 
         img1 = findViewById(R.id.imageView);
         img1.setTag("GameItemImg1");
@@ -78,6 +70,9 @@ public class TurnActivity extends AppCompatActivity {
         img4.setTag("GameItemImg4");
         imageTag4 = img4.getTag();
         nameTag = findViewById(R.id.Player_Name);
+
+        playerIndex = 0;
+        nameTag.setText(listOfPlayer.get(playerIndex), TextView.BufferType.EDITABLE);
 
         initialize();
 
@@ -145,8 +140,7 @@ public class TurnActivity extends AppCompatActivity {
             }
 
         });
-            }
-
+    }
 
 
     private class BoxDragListener implements View.OnDragListener {
@@ -184,7 +178,7 @@ public class TurnActivity extends AppCompatActivity {
                     draggedView.post(new Runnable() {
                         @Override
                         public void run() {
-                            if (playerIndex ++ >= listOfPlayers.size()) {
+                            if ((playerIndex + 1) >= listOfPlayer.size()) {
                                 playerIndex = 0;
                             } else {
                                 playerIndex++;
@@ -194,26 +188,25 @@ public class TurnActivity extends AppCompatActivity {
                                 box.addBoxItemToBox(itm1);
                                 itm1 = new BoxItem();
                                 img1.setBackgroundColor(listOfColour[random.nextInt(10)]);
-                                nameTag.setText(listOfPlayers.get(playerIndex), TextView.BufferType.EDITABLE);
+                                nameTag.setText(listOfPlayer.get(playerIndex), TextView.BufferType.EDITABLE);
                             } else if (imageTag2 == draggedView.getTag()) {
                                 box.addBoxItemToBox(itm2);
                                 itm2 = new BoxItem();
                                 img2.setBackgroundColor(listOfColour[random.nextInt(10)]);
-                                nameTag.setText(listOfPlayers.get(playerIndex), TextView.BufferType.EDITABLE);
+                                nameTag.setText(listOfPlayer.get(playerIndex), TextView.BufferType.EDITABLE);
                             } else if (imageTag3 == draggedView.getTag()) {
                                 box.addBoxItemToBox(itm3);
                                 itm3 = new BoxItem();
                                 img3.setBackgroundColor(listOfColour[random.nextInt(10)]);
-                                nameTag.setText(listOfPlayers.get(playerIndex), TextView.BufferType.EDITABLE);
+                                nameTag.setText(listOfPlayer.get(playerIndex), TextView.BufferType.EDITABLE);
                             } else if (imageTag4 == draggedView.getTag()) {
                                 box.addBoxItemToBox(itm4);
                                 itm4 = new BoxItem();
                                 img4.setBackgroundColor(listOfColour[random.nextInt(10)]);
-                                nameTag.setText(listOfPlayers.get(playerIndex), TextView.BufferType.EDITABLE);
+                                nameTag.setText(listOfPlayer.get(playerIndex), TextView.BufferType.EDITABLE);
                             }
                         }
                     });
-                    return true;
                 case DragEvent.ACTION_DRAG_ENDED:
                     Log.d(TAG, "onDrag: ACTION_DRAG_ENDED");
                     containerView.setImageResource(normalShape);
