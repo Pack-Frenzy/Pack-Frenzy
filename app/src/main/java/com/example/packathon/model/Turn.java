@@ -28,7 +28,6 @@ public class Turn {
         currentTurn++;
     }
 
-
     public void populateboxItemList() {
         for (int i = 0; i < NUM_ITEMS_IN_LIST; i++) {
             Color color = new Color();

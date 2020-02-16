@@ -1,36 +1,18 @@
 package com.example.packathon.model;
 
+import java.util.ArrayList;
+
 public class Round {
-    int currentRound;
-    Turn currentTurn;
-    Player currentPlayer;
-    PlayerList playerList;
+    private Box box;
+    private ArrayList<Turn> turns;
+    private int numOfPlayers;
 
-    public Round() {
-        currentRound = 0;
-        currentTurn = new Turn();
-        currentPlayer = new Player();
-        playerList = new PlayerList();
+    public Round(ArrayList<Player> players) {
+        numOfPlayers = players.size();
+        box = new Box(numOfPlayers);
     }
 
-    public void nextRound() {
-        currentRound++;
+    public int getNumberOfPlayers() {
+        return numOfPlayers;
     }
-
-    public Turn getCurrentTurn() {
-        return currentTurn;
-    }
-
-    public int getCurrentRound() {
-        return currentRound;
-    }
-
-    public Player getCurrentPlayer() {
-        return currentPlayer;
-    }
-
-    public PlayerList getPlayerList() {
-        return playerList;
-    }
-
 }
