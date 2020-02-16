@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ClipData;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.DragEvent;
@@ -52,6 +53,12 @@ public class TurnActivity extends AppCompatActivity {
     private int wn2;
     private int wn3;
     private int wn4;
+    private int nextInt1;
+    private int nextInt2;
+    private int nextInt3;
+    private int nextInt4;
+
+    private ArrayList<ImageView> listOfDroppedItems;
 
 
     @Override
@@ -61,6 +68,7 @@ public class TurnActivity extends AppCompatActivity {
         random = new Random();
 
         listOfPlayer = new ArrayList<>();
+        listOfDroppedItems = new ArrayList<>();
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             for (int i = 0; i < extras.size(); i++) {
@@ -167,10 +175,14 @@ public class TurnActivity extends AppCompatActivity {
         gauge = new Gauge();
         gauge.setPercentFull(0);
 
-        img1.setImageResource(listOfDrawable[random.nextInt(6)]);
-        img2.setImageResource(listOfDrawable[random.nextInt(6)]);
-        img3.setImageResource(listOfDrawable[random.nextInt(6)]);
-        img4.setImageResource(listOfDrawable[random.nextInt(6)]);
+        nextInt1 = random.nextInt(6);
+        nextInt2 = random.nextInt(6);
+        nextInt3 = random.nextInt(6);
+        nextInt4 = random.nextInt(6);
+        img1.setImageResource(listOfDrawable[nextInt1]);
+        img2.setImageResource(listOfDrawable[nextInt2]);
+        img3.setImageResource(listOfDrawable[nextInt3]);
+        img4.setImageResource(listOfDrawable[nextInt4]);
 
         gaugeImg.setImageResource(listOfGauges[0]);
     }
@@ -287,7 +299,15 @@ public class TurnActivity extends AppCompatActivity {
                                 Log.d(TAG2, String.valueOf(box.getWeight()));
                                 Log.d(TAG2, String.valueOf(gauge.getPercentFull()));
 
-                                img1.setImageResource(listOfDrawable[random.nextInt(6)]);
+                                ImageView nextImage = new ImageView(getApplicationContext());
+                                nextImage.setImageResource(listOfDrawable[nextInt1]);
+
+                                listOfDroppedItems.add(nextImage);
+                                Log.d(TAG2, listOfDroppedItems.toString());
+
+                                nextInt1 = random.nextInt(6);
+
+                                img1.setImageResource(listOfDrawable[nextInt1]);
                                 nameTag.setText(listOfPlayer.get(playerIndex), TextView.BufferType.EDITABLE);
 
                                 int value = random.nextInt(20);
@@ -306,7 +326,14 @@ public class TurnActivity extends AppCompatActivity {
                                 Log.d(TAG2, String.valueOf(box.getWeight()));
                                 Log.d(TAG2, String.valueOf(gauge.getPercentFull()));
 
-                                img2.setImageResource(listOfDrawable[random.nextInt(6)]);
+                                ImageView nextImage = new ImageView(getApplicationContext());
+                                nextImage.setImageResource(listOfDrawable[nextInt2]);
+
+                                listOfDroppedItems.add(nextImage);
+                                Log.d(TAG2, listOfDroppedItems.toString());
+
+                                nextInt2 = random.nextInt(6);
+                                img2.setImageResource(listOfDrawable[nextInt2]);
                                 nameTag.setText(listOfPlayer.get(playerIndex), TextView.BufferType.EDITABLE);
 
                                 int value = random.nextInt(20);
@@ -325,7 +352,15 @@ public class TurnActivity extends AppCompatActivity {
                                 Log.d(TAG2, String.valueOf(box.getWeight()));
                                 Log.d(TAG2, String.valueOf(gauge.getPercentFull()));
 
-                                img3.setImageResource(listOfDrawable[random.nextInt(6)]);
+                                ImageView nextImage = new ImageView(getApplicationContext());
+                                nextImage.setImageResource(listOfDrawable[nextInt3]);
+
+                                listOfDroppedItems.add(nextImage);
+                                Log.d(TAG2, listOfDroppedItems.toString());
+
+                                nextInt3 = random.nextInt(6);
+
+                                img3.setImageResource(listOfDrawable[nextInt3]);
                                 nameTag.setText(listOfPlayer.get(playerIndex), TextView.BufferType.EDITABLE);
 
                                 int value = random.nextInt(20);
@@ -345,7 +380,14 @@ public class TurnActivity extends AppCompatActivity {
                                 Log.d(TAG2, String.valueOf(box.getWeight()));
                                 Log.d(TAG2, String.valueOf(gauge.getPercentFull()));
 
-                                img4.setImageResource(listOfDrawable[random.nextInt(6)]);
+                                ImageView nextImage = new ImageView(getApplicationContext());
+                                nextImage.setImageResource(listOfDrawable[nextInt4]);
+
+                                listOfDroppedItems.add(nextImage);
+                                Log.d(TAG2, listOfDroppedItems.toString());
+
+                                nextInt4 = random.nextInt(6);
+                                img4.setImageResource(listOfDrawable[nextInt4]);
                                 nameTag.setText(listOfPlayer.get(playerIndex), TextView.BufferType.EDITABLE);
 
                                 int value = random.nextInt(20);
