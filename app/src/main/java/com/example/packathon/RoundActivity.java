@@ -2,7 +2,9 @@ package com.example.packathon;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.widget.TextView;
 
 import com.example.packathon.model.Player;
@@ -21,6 +23,11 @@ public class RoundActivity extends AppCompatActivity {
     private TextView player2;
     private TextView player3;
     private TextView player4;
+
+    private TextView countDownText;
+    private CountDownTimer countDownTimer;
+    private long timeLeftInMilliseconds = 10000; //10 seconds
+    private boolean timerRunning;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,22 +78,52 @@ public class RoundActivity extends AppCompatActivity {
                 playerTextViews.get(i).setText(String.valueOf(i + 1) + ". " + players.get(i).getName());
             }
         }
-
-        // TODO: must refactor to generate the number of blanks for each player
-
-
-        // Bind each player to name
-
     }
 
-    // Display what the current round is
+    @Override
+    public void onResume() {
+        super.onResume();
+        startStop();
+        Intent intent = new Intent(this, InBetweenTurnsActivity.class);
+        for (int i = 0; i < playerNames.size(); i++) {
+            intent.putExtra(Integer.toString(i), playerNames.get(i));
+        }
+    }
 
+    // TODO: Countdown from 10 -> TurnActivity
+    public void startStop() {
+        if (timerRunning) {
+            stopTimer();
+        } else {
+            startTimer();
+        }
+    }
 
-    // From model.Round
-    // Display the order of players
-    // From model.Round
-    // Only show up for maybe 10 seconds? -> TurnActivity
+    public void startTimer() {
+        countDownTimer = new CountDownTimer(timeLeftInMilliseconds, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                timeLeftInMilliseconds = millisUntilFinished;
+                updateTimer();
+            }
 
-    // TODO:
-    // Countdown from 10 -> TurnActivity
+            @Override
+            public void onFinish() {
+
+            }
+        }.start();
+    }
+
+    public void stopTimer() {
+        countDownTimer.cancel();
+    }
+
+    public void updateTimer() {
+        int seconds = (int) timeLeftInMilliseconds/1000;
+
+        String timeLeftText;
+        timeLeftText = "" + seconds;
+        countDownText = findViewById(R.id.countDownText);
+        countDownText.setText(timeLeftText);
+    }
 }
