@@ -26,7 +26,9 @@ public class RoundActivity extends AppCompatActivity {
 
     private TextView countDownText;
     private CountDownTimer countDownTimer;
-    private long timeLeftInMilliseconds = 10000; //10 seconds
+
+    // TODO: change this back to 10000 ms, changed to 1000 for testing
+    private long timeLeftInMilliseconds = 1000; //10 seconds
     private boolean timerRunning;
 
     @Override
@@ -106,7 +108,7 @@ public class RoundActivity extends AppCompatActivity {
     }
 
     public void openTurnActivity() {
-        Intent intent = new Intent(this, InBetweenTurnsActivity.class);
+        Intent intent = new Intent(this, StartOfRoundActivity.class);
         for (int i = 0; i < playerNames.size(); i++) {
             intent.putExtra(Integer.toString(i), playerNames.get(i));
         }

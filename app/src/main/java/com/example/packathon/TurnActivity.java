@@ -192,15 +192,18 @@ public class TurnActivity extends AppCompatActivity {
     // TODO: @scott we need to redirect the user if this is going to be the last round. we need you
     //       to set up a new activity
     public void openGameOverActivity(String name) {
-        Intent intent = new Intent (this, GameOverActivity.class);
+        Intent intent = new Intent (this, RoundOverActivity.class);
         int counter = 0;
         for (String n: listOfPlayer) {
             if (!name.equals(n)) {
-                intent.putExtra(n, counter);
+                String count = Integer.toString(counter);
+                intent.putExtra(count, n);
                 counter++;
             }
         }
-        intent.putExtra(name, listOfPlayer.size()-1);
+
+        String loserIndex = Integer.toString(listOfPlayer.size() - 1);
+        intent.putExtra(loserIndex, name);
         startActivity(intent);
     }
 
