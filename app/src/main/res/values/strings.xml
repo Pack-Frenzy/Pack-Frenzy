@@ -7,4 +7,6 @@
     <string name="home">Home</string>
     <string name="pass_the_phone">Pass the phone to </string>
     <string name="countdown">Next round starts in: </string>
+    <string name="game_over">GAME OVER</string>
+    <string name="winner">The winner is: </string>
 </resources>
