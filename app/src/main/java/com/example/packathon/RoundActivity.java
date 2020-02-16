@@ -78,16 +78,7 @@ public class RoundActivity extends AppCompatActivity {
                 playerTextViews.get(i).setText(String.valueOf(i + 1) + ". " + players.get(i).getName());
             }
         }
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
         startStop();
-        Intent intent = new Intent(this, InBetweenTurnsActivity.class);
-        for (int i = 0; i < playerNames.size(); i++) {
-            intent.putExtra(Integer.toString(i), playerNames.get(i));
-        }
     }
 
     // TODO: Countdown from 10 -> TurnActivity
@@ -109,9 +100,17 @@ public class RoundActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-
+                openTurnActivity();
             }
         }.start();
+    }
+
+    public void openTurnActivity() {
+        Intent intent = new Intent(this, InBetweenTurnsActivity.class);
+        for (int i = 0; i < playerNames.size(); i++) {
+            intent.putExtra(Integer.toString(i), playerNames.get(i));
+        }
+        startActivity(intent);
     }
 
     public void stopTimer() {
