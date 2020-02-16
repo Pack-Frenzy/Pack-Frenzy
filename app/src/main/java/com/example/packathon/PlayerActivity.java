@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.util.ArrayList;
+
 public class PlayerActivity extends AppCompatActivity {
     String player1;
     String player2;
