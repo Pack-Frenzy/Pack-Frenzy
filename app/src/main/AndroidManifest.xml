@@ -11,7 +11,13 @@
         android:theme="@style/AppTheme">
         <activity android:name=".InBetweenTurnsActivity"></activity>
         <activity android:name=".GameOverActivity" />
-        <activity android:name=".TurnActivity" />
+        <activity android:name=".TurnActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.TURN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".RoundActivity" />
         <activity android:name=".ScoreboardActivity" />
         <activity android:name=".PlayerActivity" />
