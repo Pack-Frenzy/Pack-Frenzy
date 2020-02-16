@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class TurnActivity extends AppCompatActivity {
+
     private ImageView img1;
     private ImageView img2;
     private ImageView img3;
@@ -39,6 +40,7 @@ public class TurnActivity extends AppCompatActivity {
     private ArrayList<String> listOfPlayers;
     private EditText nameTag;
     private int playerIndex;
+    private ArrayList<String> playerNames;
 
 
 
@@ -46,6 +48,22 @@ public class TurnActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_turn);
+
+        playerNames = new ArrayList<>();
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            String playerName = extras.getString("0");
+            playerNames.add(playerName);
+
+            playerName = extras.getString("1");
+            playerNames.add(playerName);
+
+            playerName = extras.getString("2");
+            playerNames.add(playerName);
+
+            playerName = extras.getString("3");
+            playerNames.add(playerName);
+        }
 
         img1 = findViewById(R.id.imageView);
         img1.setTag("GameItemImg1");
