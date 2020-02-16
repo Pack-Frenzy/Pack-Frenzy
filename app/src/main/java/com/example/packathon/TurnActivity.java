@@ -20,6 +20,7 @@ import com.example.packathon.model.Gauge;
 import com.example.packathon.model.LightenLoadItem;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class TurnActivity extends AppCompatActivity {
@@ -307,8 +308,34 @@ public class TurnActivity extends AppCompatActivity {
 
                                 checkItemType(itemType1, itm1, wn1);
 
-                                itemType1 = makeNextItem(itemType1, itm1, wn1, img1, w1);
+                                int itemRandomizer = random.nextInt(100);
 
+                                if (0 <= itemRandomizer && itemRandomizer < 50) {
+                                    itm1 = new BombItem();
+                                    wn1 = itm1.getWeight();
+                                    w1.setText(String.valueOf(wn1), TextView.BufferType.EDITABLE);
+                                    img1.setImageResource(R.drawable.bomb);
+                                    itemType1 = 1;
+
+                                } else if (50 <= itemRandomizer && itemRandomizer < 100) {
+                                    itm1 = new LightenLoadItem();
+                                    wn1 = itm1.getWeightDouble();
+                                    w1.setText(String.valueOf(wn1), TextView.BufferType.EDITABLE);
+                                    img1.setImageResource(R.drawable.feather);
+                                    itemType1 = 2;
+
+
+                                } else {
+                                    itm1 = new BoxItem();
+                                    int value = random.nextInt(20);
+                                    String str = String.valueOf(value);
+                                    w1.setText(str, TextView.BufferType.EDITABLE);
+                                    wn1 = value;
+                                    img1.setImageResource(listOfDrawable[random.nextInt(6)]);
+                                    itemType1 = 3;
+
+
+                                }
 
                                 gauge.setPercentFull(gauge.calculatePercentFull(box.getWeight(), box.getWeightCapacity()));
                                 changeGaugeImage(gauge.checkAndReturnStatus(gauge.getPercentFull()));
@@ -330,8 +357,34 @@ public class TurnActivity extends AppCompatActivity {
 
                                 checkItemType(itemType2, itm2, wn2);
 
-                                itemType2 = makeNextItem(itemType2, itm2, wn2, img2, w2);
+                                int itemRandomizer = random.nextInt(100);
 
+                                if (0 <= itemRandomizer && itemRandomizer < 50) {
+                                    itm2 = new BombItem();
+                                    wn2 = itm2.getWeight();
+                                    w2.setText(String.valueOf(wn2), TextView.BufferType.EDITABLE);
+                                    img2.setImageResource(R.drawable.bomb);
+                                    itemType2 = 1;
+
+                                } else if (50 <= itemRandomizer && itemRandomizer < 100) {
+                                    itm2 = new LightenLoadItem();
+                                    wn2 = itm2.getWeightDouble();
+                                    w2.setText(String.valueOf(wn2), TextView.BufferType.EDITABLE);
+                                    img2.setImageResource(R.drawable.feather);
+                                    itemType2 = 2;
+
+
+                                } else {
+                                    itm2 = new BoxItem();
+                                    int value = random.nextInt(20);
+                                    String str = String.valueOf(value);
+                                    w2.setText(str, TextView.BufferType.EDITABLE);
+                                    wn2 = value;
+                                    img2.setImageResource(listOfDrawable[random.nextInt(6)]);
+                                    itemType2 = 3;
+
+
+                                }
 
                                 gauge.setPercentFull(gauge.calculatePercentFull(box.getWeight(), box.getWeightCapacity()));
                                 changeGaugeImage(gauge.checkAndReturnStatus(gauge.getPercentFull()));
@@ -352,8 +405,34 @@ public class TurnActivity extends AppCompatActivity {
 
                                 checkItemType(itemType3, itm3, wn3);
 
-                                itemType3 = makeNextItem(itemType3, itm3, wn3, img3, w3);
+                                int itemRandomizer = random.nextInt(100);
 
+                                if (0 <= itemRandomizer && itemRandomizer < 50) {
+                                    itm3 = new BombItem();
+                                    wn3 = itm3.getWeight();
+                                    w3.setText(String.valueOf(wn3), TextView.BufferType.EDITABLE);
+                                    img3.setImageResource(R.drawable.bomb);
+                                    itemType3 = 1;
+
+                                } else if (50 <= itemRandomizer && itemRandomizer < 100) {
+                                    itm3 = new LightenLoadItem();
+                                    wn3 = itm3.getWeightDouble();
+                                    w3.setText(String.valueOf(wn3), TextView.BufferType.EDITABLE);
+                                    img3.setImageResource(R.drawable.feather);
+                                    itemType3 = 2;
+
+
+                                } else {
+                                    itm3 = new BoxItem();
+                                    int value = random.nextInt(20);
+                                    String str = String.valueOf(value);
+                                    w3.setText(str, TextView.BufferType.EDITABLE);
+                                    wn3 = value;
+                                    img3.setImageResource(listOfDrawable[random.nextInt(6)]);
+                                    itemType3 = 3;
+
+
+                                }
                                 gauge.setPercentFull(gauge.calculatePercentFull(box.getWeight(), box.getWeightCapacity()));
                                 changeGaugeImage(gauge.checkAndReturnStatus(gauge.getPercentFull()));
 
@@ -374,8 +453,35 @@ public class TurnActivity extends AppCompatActivity {
 
                             } else if (imageTag4 == draggedView.getTag()) {
                                 checkItemType(itemType4, itm4, wn4);
+                                int itemRandomizer = random.nextInt(100);
 
-                                itemType4 = makeNextItem(itemType4, itm4, wn4, img4, w4);
+                                if (0 <= itemRandomizer && itemRandomizer < 50) {
+                                    itm4 = new BombItem();
+                                    wn4 = itm4.getWeight();
+                                    w4.setText(String.valueOf(wn4), TextView.BufferType.EDITABLE);
+                                    img4.setImageResource(R.drawable.bomb);
+                                    itemType4 = 1;
+
+                                } else if (50 <= itemRandomizer && itemRandomizer < 100) {
+                                    itm4 = new LightenLoadItem();
+                                    wn4 = itm4.getWeightDouble();
+                                    w4.setText(String.valueOf(wn4), TextView.BufferType.EDITABLE);
+                                    img4.setImageResource(R.drawable.feather);
+                                    itemType4 = 2;
+
+
+                                } else {
+                                    itm4 = new BoxItem();
+                                    int value = random.nextInt(20);
+                                    String str = String.valueOf(value);
+                                    w4.setText(str, TextView.BufferType.EDITABLE);
+                                    wn4 = value;
+                                    img4.setImageResource(listOfDrawable[random.nextInt(6)]);
+                                    itemType4 = 3;
+
+
+                                }
+
 
                                 gauge.setPercentFull(gauge.calculatePercentFull(box.getWeight(), box.getWeightCapacity()));
 
@@ -415,22 +521,22 @@ public class TurnActivity extends AppCompatActivity {
         }
     }
 
-    private int makeNextItem(int itemType, BoxItem item, double weight, ImageView imageView, TextView textView) {
+    private void makeNextItem(int itemType, BoxItem item, double weight, ImageView imageView, TextView textView) {
         int itemRandomizer = random.nextInt(100);
-        if (0 <= itemRandomizer && itemRandomizer < 5) {
+        if (0 <= itemRandomizer && itemRandomizer < 50) {
             item = new BombItem();
             weight = item.getWeight();
             textView.setText(String.valueOf(weight), TextView.BufferType.EDITABLE);
             imageView.setImageResource(R.drawable.bomb);
             itemType = 1;
-            return itemType;
-        } else if (5 <= itemRandomizer && itemRandomizer < 15) {
+
+        } else if (50 <= itemRandomizer && itemRandomizer < 100) {
             item = new LightenLoadItem();
             weight = item.getWeightDouble();
             textView.setText(String.valueOf(weight), TextView.BufferType.EDITABLE);
             imageView.setImageResource(R.drawable.feather);
             itemType = 2;
-            return itemType;
+
 
         } else {
             item = new BoxItem();
@@ -440,17 +546,17 @@ public class TurnActivity extends AppCompatActivity {
             weight = value;
             imageView.setImageResource(listOfDrawable[random.nextInt(6)]);
             itemType = 3;
-            return itemType;
+
 
         }
     }
 
     private void checkItemType(int itemType, BoxItem item, double weight) {
         if (itemType == 1) {
-            box.setWeight(box.getWeight()/item.getWeightDouble());
+            box.setWeight(box.getWeight()/weight);
             // TODO: loop to take half the items out of the list
         } else if (itemType == 2) {
-            box.setWeight(box.getWeight() * (item.getWeightDouble()/100));
+            box.setWeight(box.getWeight() * (weight/100));
         } else {
             box.addBoxItemToBox(item);
             box.addWeight(weight);
