@@ -124,4 +124,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
+    <ImageView
+        android:id="@+id/itemInBoxImage"
+        android:layout_width="155dp"
+        android:layout_height="144dp"
+        android:layout_marginStart="57dp"
+        android:layout_marginTop="29dp"
+        android:layout_marginEnd="177dp"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.97"
+        app:layout_constraintStart_toEndOf="@+id/boxImage"
+        app:layout_constraintTop_toBottomOf="@+id/boxImage"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@android:drawable/screen_background_light_transparent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

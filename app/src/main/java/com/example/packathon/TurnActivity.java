@@ -31,6 +31,7 @@ public class TurnActivity extends AppCompatActivity {
     private ImageView img4;
     private ImageView gaugeImg;
     private ImageView boxImg;
+    private ImageView itemInBox;
     private BoxItem itm1;
     private BoxItem itm2;
     private BoxItem itm3;
@@ -106,6 +107,9 @@ public class TurnActivity extends AppCompatActivity {
         gaugeImg = findViewById(R.id.gaugeImage);
         gaugeImg.setTag("gaugeImageTag");
 
+        itemInBox = findViewById(R.id.itemInBoxImage);
+        itemInBox.setTag("itemInBoxImage");
+
         nameTag = findViewById(R.id.Player_Name);
 
         //Linking to the weight text field
@@ -165,13 +169,15 @@ public class TurnActivity extends AppCompatActivity {
     }
 
     private void initialize() {
-        listOfDrawable = new int[6];
+        listOfDrawable = new int[8];
         listOfDrawable[0] = R.drawable.boxblue;
         listOfDrawable[1] = R.drawable.boxbrown;
         listOfDrawable[2] = R.drawable.boxgreen;
         listOfDrawable[3] = R.drawable.boxorange;
         listOfDrawable[4] = R.drawable.boxpurple;
         listOfDrawable[5] = R.drawable.boxred;
+        listOfDrawable[6] = R.drawable.bomb;
+        listOfDrawable[7] = R.drawable.feather;
 
         listOfGauges = new int[6];
         listOfGauges[0] = R.drawable.gauge;
@@ -197,6 +203,7 @@ public class TurnActivity extends AppCompatActivity {
         img2.setImageResource(listOfDrawable[nextInt2]);
         img3.setImageResource(listOfDrawable[nextInt3]);
         img4.setImageResource(listOfDrawable[nextInt4]);
+
 
         gaugeImg.setImageResource(listOfGauges[0]);
     }
@@ -306,7 +313,7 @@ public class TurnActivity extends AppCompatActivity {
                             }
 
                             if (imageTag1 == draggedView.getTag()) {
-
+                                itemInBox.setImageResource(listOfDrawable[nextInt1]);
                                 checkItemType(itemType1, itm1, wn1);
 
                                 int itemRandomizer = random.nextInt(100);
@@ -350,6 +357,7 @@ public class TurnActivity extends AppCompatActivity {
 
 
                             } else if (imageTag2 == draggedView.getTag()) {
+                                itemInBox.setImageResource(listOfDrawable[nextInt2]);
 
                                 checkItemType(itemType2, itm2, wn2);
 
@@ -393,6 +401,7 @@ public class TurnActivity extends AppCompatActivity {
 
 
                             } else if (imageTag3 == draggedView.getTag()) {
+                                itemInBox.setImageResource(listOfDrawable[nextInt3]);
 
                                 checkItemType(itemType3, itm3, wn3);
 
@@ -434,6 +443,7 @@ public class TurnActivity extends AppCompatActivity {
 
 
                             } else if (imageTag4 == draggedView.getTag()) {
+                                itemInBox.setImageResource(listOfDrawable[nextInt4]);
                                 checkItemType(itemType4, itm4, wn4);
                                 int itemRandomizer = random.nextInt(100);
 
