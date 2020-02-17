@@ -279,8 +279,7 @@ public class TurnActivity extends AppCompatActivity {
                 gaugeImg.setImageResource(listOfGauges[5]);
                 if (listOfPlayer.size() == 2) {
                     openGameOverActivity();
-                }
-                if (playerIndex == 0) {
+                } else if (playerIndex == 0) {
                     openEndOfRoundActivity(listOfPlayer.get(listOfPlayer.size()-1));
                 } else {
                     openEndOfRoundActivity(listOfPlayer.get(playerIndex - 1));
