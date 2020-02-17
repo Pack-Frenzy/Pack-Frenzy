@@ -13,7 +13,6 @@ public class StartOfRoundActivity extends AppCompatActivity {
 
     private TextView countdownText;
     private TextView currentPlayerFromID;
-    private CountDownTimer timer;
 
     // TODO: change back to 10000 secs, 1000 just for testing
     private long timeLeftInMilliseconds = 1000; // 10 seconds
@@ -54,7 +53,7 @@ public class StartOfRoundActivity extends AppCompatActivity {
     }
 
     public void startTimer() {
-        timer = new CountDownTimer(timeLeftInMilliseconds, 1000) {
+        CountDownTimer timer = new CountDownTimer(timeLeftInMilliseconds, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 timeLeftInMilliseconds = millisUntilFinished;
