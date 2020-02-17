@@ -20,7 +20,6 @@ import com.example.packathon.model.Gauge;
 import com.example.packathon.model.LightenLoadItem;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class TurnActivity extends AppCompatActivity {
@@ -224,7 +223,7 @@ public class TurnActivity extends AppCompatActivity {
 
     // TODO: @scott we need to redirect the user if this is going to be the last round. we need you
     //       to set up a new activity
-    public void openGameOverActivity(String name) {
+    public void openEndOfRoundActivity(String name) {
         Intent intent = new Intent (this, EndOfRoundActivity.class);
         int counter = 0;
         for (String n: listOfPlayer) {
@@ -238,6 +237,11 @@ public class TurnActivity extends AppCompatActivity {
         String loserIndex = Integer.toString(listOfPlayer.size() - 1);
         intent.putExtra(loserIndex, name);
         intent.putExtra("currentRound", numCurrentRound);
+        startActivity(intent);
+    }
+
+    public void openGameOverActivity() {
+        Intent intent = new Intent(this, GameOverActivity.class);
         startActivity(intent);
     }
 
@@ -273,10 +277,13 @@ public class TurnActivity extends AppCompatActivity {
             }
             else {
                 gaugeImg.setImageResource(listOfGauges[5]);
+                if (listOfPlayer.size() == 2) {
+                    openGameOverActivity();
+                }
                 if (playerIndex == 0) {
-                    openGameOverActivity(listOfPlayer.get(listOfPlayer.size()-1));
+                    openEndOfRoundActivity(listOfPlayer.get(listOfPlayer.size()-1));
                 } else {
-                    openGameOverActivity(listOfPlayer.get(playerIndex - 1));
+                    openEndOfRoundActivity(listOfPlayer.get(playerIndex - 1));
                 }
             }
         }
