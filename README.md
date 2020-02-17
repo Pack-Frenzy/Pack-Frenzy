@@ -6,6 +6,7 @@
 - Anthony Lopes
 - Scott King
 - Eric Kim
+- Special thanks to the artist who provided us with the artwork: Emily (Pixel Route)
 
 ## Summary
 A simple mobile packing game where the goal is to place as many items in the box without exceeding the box's capacity.
