@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class GameOverActivity extends AppCompatActivity {
 
@@ -15,6 +16,14 @@ public class GameOverActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game_over);
 
         Button goHome = findViewById(R.id.goHome);
+
+        TextView winner = findViewById(R.id.winner);
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            String winnerText = extras.get("winner").toString();
+            winner.setText(winnerText);
+        }
+
 
         goHome.setOnClickListener(new View.OnClickListener() {
             @Override
