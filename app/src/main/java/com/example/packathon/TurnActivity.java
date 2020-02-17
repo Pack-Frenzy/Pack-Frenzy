@@ -240,8 +240,9 @@ public class TurnActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void openGameOverActivity() {
+    public void openGameOverActivity(String name) {
         Intent intent = new Intent(this, GameOverActivity.class);
+        intent.putExtra("winner", name);
         startActivity(intent);
     }
 
@@ -278,7 +279,11 @@ public class TurnActivity extends AppCompatActivity {
             else {
                 gaugeImg.setImageResource(listOfGauges[5]);
                 if (listOfPlayer.size() == 2) {
-                    openGameOverActivity();
+                    if (playerIndex == 0) {
+                        openGameOverActivity(listOfPlayer.get(listOfPlayer.size()-1));
+                    } else {
+                        openGameOverActivity(listOfPlayer.get(playerIndex - 1));
+                    }
                 } else if (playerIndex == 0) {
                     openEndOfRoundActivity(listOfPlayer.get(listOfPlayer.size()-1));
                 } else {
