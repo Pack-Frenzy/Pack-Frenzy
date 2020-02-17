@@ -25,6 +25,7 @@ public class EndOfRoundActivity extends AppCompatActivity {
     private TextView playerLeft1;
     private TextView playerLeft2;
     private TextView playerLeft3;
+    private ArrayList<TextView> listOfViews = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,12 +40,29 @@ public class EndOfRoundActivity extends AppCompatActivity {
             for (int i = 0; i < extras.size() - 1; i++) {
                 String playerName = extras.getString(String.valueOf(i));
                 listOfPlayer.add(playerName);
+                System.out.println(playerName);
             }
         }
 
         nameOfLoser.setText(listOfPlayer.get(listOfPlayer.size()-1));
         endOfRound = findViewById(R.id.end_of_round);
         listOfPlayer.set(listOfPlayer.size() - 1, "Eliminated");
+
+        playerLeft1 = findViewById(R.id.player_left_1);
+        playerLeft2 = findViewById(R.id.player_left_2);
+        playerLeft3 = findViewById(R.id.player_left_3);
+        listOfViews.add(playerLeft1);
+        listOfViews.add(playerLeft2);
+        listOfViews.add(playerLeft3);
+
+        for (int i = 0; i < listOfPlayer.size() - 1; i++) {
+            if (!listOfPlayer.get(i).equals("Eliminated")) {
+                listOfViews.get(i).setText(listOfPlayer.get(i));
+            } else {
+                listOfViews.get(i).setText("");
+            }
+        }
+
         endOfRound.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
