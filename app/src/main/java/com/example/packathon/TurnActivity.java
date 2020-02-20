@@ -261,6 +261,7 @@ public class TurnActivity extends AppCompatActivity {
         }
 
 
+
         public void changeGaugeImage(String status) {
             if (status.equals("empty")) {
                 gaugeImg.setImageResource(listOfGauges[0]);
