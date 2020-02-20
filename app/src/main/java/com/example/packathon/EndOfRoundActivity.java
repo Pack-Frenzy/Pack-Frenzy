@@ -69,7 +69,6 @@ public class EndOfRoundActivity extends AppCompatActivity {
                 openRoundActivity();
             }
         });
-
     }
 
     public void openRoundActivity() {
