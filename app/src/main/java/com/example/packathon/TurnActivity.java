@@ -1,5 +1,6 @@
 package com.example.packathon;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ClipData;
@@ -164,6 +165,12 @@ public class TurnActivity extends AppCompatActivity {
         setItOnClickListener(img2);
         setItOnClickListener(img3);
         setItOnClickListener(img4);
+
+    }
+
+    // EFFECTS: turns off the function of the back button
+    @Override
+    public void onBackPressed() {
 
     }
 
