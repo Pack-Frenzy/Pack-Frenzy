@@ -9,7 +9,6 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".model.DickingAroundActivity"></activity>
         <activity android:name=".GameOverActivity" />
         <activity android:name=".StartOfRoundActivity" />
         <activity android:name=".EndOfRoundActivity" />
