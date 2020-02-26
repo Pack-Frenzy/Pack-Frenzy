@@ -69,7 +69,6 @@ public class EndOfRoundActivity extends AppCompatActivity {
                 openRoundActivity();
             }
         });
-
     }
 
     // EFFECTS: turns off the function of the back button
