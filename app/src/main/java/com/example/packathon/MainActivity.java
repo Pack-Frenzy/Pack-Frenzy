@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         introMusic.start();
 
         Button playerActivity = findViewById(R.id.startPacking);
-        //Button scoreboardActivity = findViewById(R.id.scoreBoard);
+        Button instructionsActivity = findViewById(R.id.instructionsButton);
 
         playerActivity.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,12 +34,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        scoreboardActivity.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                openScoreboardActivity();
-//            }
-//        });
+        instructionsActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               openInstructionsActivity();
+            }
+        });
 
     }
 
@@ -66,8 +66,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void openScoreboardActivity() {
-        Intent intent = new Intent(this, ScoreboardActivity.class);
+    public void openInstructionsActivity() {
+        Intent intent = new Intent(this, InstructionsActivity.class);
         startActivity(intent);
     }
 

@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".RoundActivity" />
-        <activity android:name=".ScoreboardActivity" />
+        <activity android:name=".InstructionsActivity" />
         <activity android:name=".PlayerActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
