@@ -9,7 +9,8 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".GameOverActivity"></activity>
+        <activity android:name=".PauseScreenActivity"></activity>
+        <activity android:name=".GameOverActivity" />
         <activity android:name=".StartOfRoundActivity" />
         <activity android:name=".EndOfRoundActivity" />
         <activity android:name=".TurnActivity">
