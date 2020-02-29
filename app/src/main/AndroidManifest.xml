@@ -10,6 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+
         <activity android:name=".PauseScreenActivity"></activity>
         <activity android:name=".GameOverActivity" android:screenOrientation="portrait"></activity>
         <activity android:name=".StartOfRoundActivity" android:screenOrientation="portrait"/>

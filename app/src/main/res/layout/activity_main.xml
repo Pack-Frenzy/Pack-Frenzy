@@ -7,15 +7,17 @@
     android:background="@drawable/backround5"
     tools:context=".MainActivity">
 
-<!--    <Button-->
-<!--        android:id="@+id/scoreBoard"-->
-<!--        android:layout_width="193dp"-->
-<!--        android:layout_height="47dp"-->
-<!--        android:layout_marginBottom="100dp"-->
-<!--        android:text="@string/high_scores"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent" />-->
+    <Button
+        android:id="@+id/instructionsButton"
+        android:layout_width="193dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="28dp"
+        android:text="How to Play"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/startPacking" />
 
     <Button
         android:id="@+id/startPacking"
