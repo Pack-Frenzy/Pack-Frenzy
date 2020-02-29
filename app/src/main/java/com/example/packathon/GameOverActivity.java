@@ -33,6 +33,12 @@ public class GameOverActivity extends AppCompatActivity {
         });
     }
 
+    // EFFECTS: turns off the function of the back button
+    @Override
+    public void onBackPressed() {
+
+    }
+
     public void openMainActivity() {
         Intent intent = new Intent(this, PlayerActivity.class);
         startActivity(intent);

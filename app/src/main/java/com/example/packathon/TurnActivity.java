@@ -171,6 +171,12 @@ public class TurnActivity extends AppCompatActivity {
 
     }
 
+    // EFFECTS: turns off the function of the back button
+    @Override
+    public void onBackPressed() {
+
+    }
+
     private void initialize() {
         listOfDrawable = new int[8];
         listOfDrawable[0] = R.drawable.boxblue;
@@ -278,6 +284,8 @@ public class TurnActivity extends AppCompatActivity {
             this.enterShape = enterShape;
             this.normalShape = normalShape;
         }
+
+
 
         public void changeGaugeImage(String status) {
             if (status.equals("empty")) {
