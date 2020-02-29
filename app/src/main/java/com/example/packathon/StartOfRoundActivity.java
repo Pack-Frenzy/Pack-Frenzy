@@ -60,6 +60,7 @@ public class StartOfRoundActivity extends AppCompatActivity {
                 updateTimer();
             }
 
+
             @Override
             public void onFinish() {
                 openTurnActivity();

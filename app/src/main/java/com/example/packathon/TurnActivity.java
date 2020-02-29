@@ -2,13 +2,17 @@ package com.example.packathon;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.ClipData;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.DragEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -227,8 +231,23 @@ public class TurnActivity extends AppCompatActivity {
         });
     }
 
-    // TODO: @scott we need to redirect the user if this is going to be the last round. we need you
-    //       to set up a new activity
+    public void showPauseScreen(View v) {
+        final Dialog myDialog = new Dialog(this);
+        TextView txtClose;
+        Button pauseButton;
+        myDialog.setContentView(R.layout.activity_pause_screen);
+        txtClose = (TextView) myDialog.findViewById(R.id.close_pause);
+        pauseButton = (Button) myDialog.findViewById(R.id.pause);
+        txtClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myDialog.dismiss();
+            }
+        });
+        myDialog.show();
+    }
+
+
     public void openEndOfRoundActivity(String name) {
         Intent intent = new Intent (this, EndOfRoundActivity.class);
         int counter = 0;
