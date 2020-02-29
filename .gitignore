@@ -12,3 +12,6 @@
 /captures
 .externalNativeBuild
 .cxx
+
+app/src/main/res/layout/activity_experiment.xml
+app/src/main/java/com/example/packathon/model/ExperimentActivity.java
