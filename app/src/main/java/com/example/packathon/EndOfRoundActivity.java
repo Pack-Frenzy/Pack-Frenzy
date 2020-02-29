@@ -15,7 +15,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class EndOfRoundActivity extends AppCompatActivity {
-    // Scott, we coded this as though it is an in between stage
+    // Scott, we coded this as though it is an in between stage/
     TextView nameOfLoser;
     ArrayList<String> listOfPlayer;
 
