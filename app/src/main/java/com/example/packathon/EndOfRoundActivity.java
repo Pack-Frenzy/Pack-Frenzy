@@ -83,6 +83,12 @@ public class EndOfRoundActivity extends AppCompatActivity {
         });
     }
 
+    // EFFECTS: turns off the function of the back button
+    @Override
+    public void onBackPressed() {
+
+    }
+
     public void openRoundActivity() {
         Intent intent = new Intent(this, RoundActivity.class);
         for (int i = 0; i < listOfPlayer.size(); i++) {
