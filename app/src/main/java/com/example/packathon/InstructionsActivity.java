@@ -10,22 +10,23 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class InstructionsActivity extends AppCompatActivity {
+    private Button home;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-        //Remove title bar
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-
-        //Remove notification bar
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        //set content view AFTER ABOVE sequence (to avoid crash)
         this.setContentView(R.layout.activity_instructions);
 
-        Button home = findViewById(R.id.homeButton);
+        home = findViewById(R.id.homeButton);
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
