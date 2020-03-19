@@ -2,32 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.packathon">
 
-    <application
-        android:allowBackup="true"
-        android:icon="@drawable/logo"
-        android:label="@string/app_name"
-        android:roundIcon="@drawable/logo"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-      
-        <activity android:name=".model.ExperimentActivity"></activity>
-        <activity android:name=".GameOverActivity" />
-        <activity android:name=".StartOfRoundActivity" />
-        <activity android:name=".EndOfRoundActivity" />
-        <activity android:name=".TurnActivity">
-
-        <activity android:name=".PauseScreenActivity"></activity>
-        <activity android:name=".GameOverActivity" android:screenOrientation="portrait"></activity>
+    <application android:theme="@style/AppTheme">
+        <activity android:name=".PauseScreenActivity"/>
+        <activity android:name=".GameOverActivity" android:screenOrientation="portrait"/>
         <activity android:name=".StartOfRoundActivity" android:screenOrientation="portrait"/>
         <activity android:name=".EndOfRoundActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".TurnActivity" android:screenOrientation="portrait">
-
-            <intent-filter>
-                <action android:name="android.intent.action.TURN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".TurnActivity" android:screenOrientation="portrait"/>
         <activity android:name=".RoundActivity" android:screenOrientation="portrait"/>
         <activity android:name=".ScoreboardActivity" android:screenOrientation="portrait"/>
         <activity android:name=".PlayerActivity" android:screenOrientation="portrait"/>

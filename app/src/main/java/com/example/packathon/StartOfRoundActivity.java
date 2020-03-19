@@ -16,7 +16,8 @@ public class StartOfRoundActivity extends AppCompatActivity {
     private TextView countdownText;
     private TextView currentPlayerFromID;
 
-    // TODO: change back to 10000 secs, 1000 just for testing
+    // TODO: create skip button
+    // TODO: add facial recognition here
     private long timeLeftInMilliseconds = 10000; // 10 seconds
     private ArrayList<String> playerNames;
     private int numCurrentRound;
