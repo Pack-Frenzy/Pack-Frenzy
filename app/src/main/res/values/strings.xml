@@ -17,4 +17,6 @@
     <string name="play">Play!</string>
     <string name="remaining_players">Players advancing to the next round</string>
     <string name="loser">The loser is:</string>
+
+    <string name="back">BACK</string>
 </resources>

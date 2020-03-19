@@ -10,7 +10,7 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class InstructionsActivity extends AppCompatActivity {
-    private Button home;
+    private Button back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,24 +21,17 @@ public class InstructionsActivity extends AppCompatActivity {
 
         this.setContentView(R.layout.activity_instructions);
 
-        home = findViewById(R.id.homeButton);
+        back = findViewById(R.id.backButton);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        home.setOnClickListener(new View.OnClickListener() {
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openHomePage();
+                finish();
             }
         });
-    }
-
-    // TODO: Change this back to home... inbetweenturns is just for testing
-    public void openHomePage() {
-        Intent intent = new Intent(this, MainActivity.class);
-
-        startActivity(intent);
     }
 }
