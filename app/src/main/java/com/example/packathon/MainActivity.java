@@ -33,14 +33,6 @@ public class MainActivity extends AppCompatActivity {
 
         introMusic = MediaPlayer.create(MainActivity.this, R.raw.intro);
 
-        if (introMusic != null) {
-            introMusic.start();
-            introMusic.seekTo(mediaLength);
-        } else {
-            introMusic.start();
-        }
-
-
         playerActivity = findViewById(R.id.startPacking);
         instructionsActivity = findViewById(R.id.instructionsButton);
     }
@@ -67,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
         if (introMusic != null) {
             introMusic.start();
             introMusic.seekTo(mediaLength);
+        } else {
+            introMusic.start();
         }
     }
 
@@ -79,8 +73,19 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
     public void openPlayerActivity() {
         Intent intent = new Intent(this, PlayerActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }
 
@@ -94,8 +99,4 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(myIntent, 0);
         return true;
     }
-
-    // TODO:
-    // "Start Packing" BUTTON  -> PlayerActivity
-    // "High Scores"   BUTTON  -> ScoreboardActivity
 }
