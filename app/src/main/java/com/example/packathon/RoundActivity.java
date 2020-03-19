@@ -17,6 +17,7 @@ import java.util.ArrayList;
 public class RoundActivity extends AppCompatActivity {
 
     // TODO: must adjust based on how many players there are
+    // TODO: add a back button to add more players
     private String[] players;
     private TextView[] playerTextViews;
     private TextView player1;
@@ -26,6 +27,7 @@ public class RoundActivity extends AppCompatActivity {
     private TextView currentRound;
     private int numCurrentRound;
     public Button startTurn;
+    public Button backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,7 @@ public class RoundActivity extends AppCompatActivity {
         };
         currentRound = findViewById(R.id.textViewRound);
         startTurn = findViewById(R.id.start_turn);
+        backButton = findViewById(R.id.backButton);
     }
 
     @Override
@@ -56,6 +59,13 @@ public class RoundActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 openTurnActivity();
+            }
+        });
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openPlayerActivity();
             }
         });
     }
@@ -91,6 +101,12 @@ public class RoundActivity extends AppCompatActivity {
             }
         }
         intent.putExtra("currentRound", numCurrentRound);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+    }
+
+    private void openPlayerActivity() {
+        Intent intent = new Intent(this, PlayerActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }

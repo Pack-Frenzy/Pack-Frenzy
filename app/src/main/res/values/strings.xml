@@ -19,4 +19,5 @@
     <string name="loser">The loser is:</string>
 
     <string name="back">BACK</string>
+    <string name="back_to_add_players">Back to Add Players</string>
 </resources>
