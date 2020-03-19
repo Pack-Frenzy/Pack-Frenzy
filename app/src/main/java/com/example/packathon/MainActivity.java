@@ -19,26 +19,36 @@ public class MainActivity extends AppCompatActivity {
     private MediaPlayer introMusic;
     private int mediaLength;
 
+    private Button playerActivity;
+    private Button instructionsActivity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-        //Remove title bar
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-
-        //Remove notification bar
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        //set content view AFTER ABOVE sequence (to avoid crash)
         this.setContentView(R.layout.activity_main);
 
-
         introMusic = MediaPlayer.create(MainActivity.this, R.raw.intro);
-        introMusic.start();
 
-        Button playerActivity = findViewById(R.id.startPacking);
-        Button instructionsActivity = findViewById(R.id.instructionsButton);
+        if (introMusic != null) {
+            introMusic.start();
+            introMusic.seekTo(mediaLength);
+        } else {
+            introMusic.start();
+        }
+
+
+        playerActivity = findViewById(R.id.startPacking);
+        instructionsActivity = findViewById(R.id.instructionsButton);
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
 
         playerActivity.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,16 +60,10 @@ public class MainActivity extends AppCompatActivity {
         instructionsActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               openInstructionsActivity();
+                openInstructionsActivity();
             }
         });
 
-    }
-
-
-    @Override
-    protected void onResume() {
-        super.onResume();
         if (introMusic != null) {
             introMusic.start();
             introMusic.seekTo(mediaLength);

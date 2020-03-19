@@ -78,8 +78,6 @@ public class TurnActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-
         //Remove title bar
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
@@ -123,8 +121,8 @@ public class TurnActivity extends AppCompatActivity {
         gaugeImg = findViewById(R.id.gaugeImage);
         gaugeImg.setTag("gaugeImageTag");
 
-        itemInBox = findViewById(R.id.itemInBoxImage);
-        itemInBox.setTag("itemInBoxImage");
+        itemInBox = findViewById(R.id.boxImage);
+        itemInBox.setTag("boxImage");
 
         nameTag = findViewById(R.id.Player_Name);
 

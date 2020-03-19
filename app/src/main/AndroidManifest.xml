@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.packathon">
 
-    <application>
+    <application android:theme="@style/AppTheme">
         <activity android:name=".PauseScreenActivity"/>
         <activity android:name=".GameOverActivity" android:screenOrientation="portrait"/>
         <activity android:name=".StartOfRoundActivity" android:screenOrientation="portrait"/>
