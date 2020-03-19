@@ -11,6 +11,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class PlayerActivity extends AppCompatActivity {
@@ -56,23 +57,32 @@ public class PlayerActivity extends AppCompatActivity {
 
     public void openRoundActivity() {
         Intent intent = new Intent(this, RoundActivity.class);
-
-        playerOne.setInputType(InputType.TYPE_CLASS_TEXT);
-        playerTwo.setInputType(InputType.TYPE_CLASS_TEXT);
-        playerThree.setInputType(InputType.TYPE_CLASS_TEXT);
-        playerFour.setInputType(InputType.TYPE_CLASS_TEXT);
-
-        player1 = playerOne.getText().toString();
-        player2 = playerTwo.getText().toString();
-        player3 = playerThree.getText().toString();
-        player4 = playerFour.getText().toString();
-
-        intent.putExtra("0", player1);
-        intent.putExtra("1", player2);
-        intent.putExtra("2", player3);
-        intent.putExtra("3", player4);
+        setPlayerNamesForGame(intent);
         intent.putExtra("currentRound", 0);
-
         startActivity(intent);
+    }
+
+    private void setPlayerNamesForGame(Intent intent) {
+        EditText[] editNames = new EditText[] {playerOne, playerTwo, playerThree, playerFour};
+        String[] names = new String[] {player1, player2, player3, player4};
+        ArrayList<String> activePlayers = new ArrayList<>();
+        for (EditText editName : editNames) {
+            editName.setInputType(InputType.TYPE_CLASS_TEXT);
+        }
+        for (int i = 0; i < names.length; i++) {
+            names[i] = editNames[i].getText().toString();
+            if(!names[i].equals("")) {
+                activePlayers.add(names[i]);
+            }
+        }
+
+        passPlayerNamesToNextActivity(intent, activePlayers);
+    }
+
+
+    private void passPlayerNamesToNextActivity(Intent intent, ArrayList<String> activePlayers) {
+        for (int i = 0; i < activePlayers.size(); i++) {
+            intent.putExtra(Integer.toString(i), activePlayers.get(i));
+        }
     }
 }
