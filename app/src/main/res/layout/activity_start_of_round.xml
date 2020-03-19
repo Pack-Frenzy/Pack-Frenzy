@@ -54,4 +54,14 @@
         app:layout_constraintStart_toEndOf="@+id/countdown"
         app:layout_constraintTop_toBottomOf="@+id/currentPlayer"
         tools:text="0:10" />
+
+    <Button
+        android:id="@+id/skipButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/skip_countdown"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/countdown" />
 </androidx.constraintlayout.widget.ConstraintLayout>
