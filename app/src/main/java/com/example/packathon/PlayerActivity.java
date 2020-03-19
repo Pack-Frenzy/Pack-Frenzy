@@ -14,26 +14,37 @@ import android.widget.EditText;
 import java.util.ArrayList;
 
 public class PlayerActivity extends AppCompatActivity {
+    Button roundActivity;
     String player1;
     String player2;
     String player3;
     String player4;
+    EditText playerOne;
+    EditText playerTwo;
+    EditText playerThree;
+    EditText playerFour;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-        //Remove title bar
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-
-        //Remove notification bar
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        //set content view AFTER ABOVE sequence (to avoid crash)
         this.setContentView(R.layout.activity_player);
 
-        Button roundActivity = findViewById(R.id.submitPlayers);
+        roundActivity = findViewById(R.id.submitPlayers);
+
+        playerOne = findViewById(R.id.playerOne);
+        playerTwo = findViewById(R.id.playerTwo);
+        playerThree = findViewById(R.id.playerThree);
+        playerFour = findViewById(R.id.playerFour);
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
 
         roundActivity.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,11 +56,6 @@ public class PlayerActivity extends AppCompatActivity {
 
     public void openRoundActivity() {
         Intent intent = new Intent(this, RoundActivity.class);
-
-        EditText playerOne = findViewById(R.id.playerOne);
-        EditText playerTwo = findViewById(R.id.playerTwo);
-        EditText playerThree = findViewById(R.id.playerThree);
-        EditText playerFour = findViewById(R.id.playerFour);
 
         playerOne.setInputType(InputType.TYPE_CLASS_TEXT);
         playerTwo.setInputType(InputType.TYPE_CLASS_TEXT);
