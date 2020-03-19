@@ -3,7 +3,7 @@
     package="com.example.packathon">
 
     <application android:theme="@style/AppTheme">
-        <activity android:name=".PauseScreenActivity"/>
+        <activity android:name=".PauseScreenActivity" android:screenOrientation="portrait"/>
         <activity android:name=".GameOverActivity" android:screenOrientation="portrait"/>
         <activity android:name=".StartOfRoundActivity" android:screenOrientation="portrait"/>
         <activity android:name=".EndOfRoundActivity" android:screenOrientation="portrait"/>

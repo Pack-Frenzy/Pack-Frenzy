@@ -22,6 +22,7 @@ public class StartOfRoundActivity extends AppCompatActivity {
     private long timeLeftInMilliseconds;
     private String[] players;
     private int numCurrentRound;
+    boolean skipped = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,21 +39,11 @@ public class StartOfRoundActivity extends AppCompatActivity {
 
     protected void onResume() {
         super.onResume();
-
         extractBundle();
-
         String currentPlayer = players[0];
-
         currentPlayerFromID.setText(currentPlayer);
-
-        skipButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openTurnActivity();
-            }
-        });
         timeLeftInMilliseconds = 10000;
-        startTimer();
+        toTurnActivity();
     }
 
     private void extractBundle() {
@@ -68,23 +59,39 @@ public class StartOfRoundActivity extends AppCompatActivity {
         }
     }
 
-    public void startTimer() {
+    private void toTurnActivity() {
+        skipButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                skipped = true;
+                openTurnActivity();
+            }
+        });
+        startTimer();
+    }
+
+    private void startTimer() {
         CountDownTimer timer = new CountDownTimer(timeLeftInMilliseconds, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                timeLeftInMilliseconds = millisUntilFinished;
-                updateTimer();
+                if(skipped) {
+                    onFinish();
+                } else {
+                    timeLeftInMilliseconds = millisUntilFinished;
+                    updateTimer();
+                }
+
             }
-
-
             @Override
             public void onFinish() {
-                openTurnActivity();
+                if (!skipped) {
+                    openTurnActivity();
+                }
             }
         }.start();
     }
 
-    public void updateTimer() {
+    private void updateTimer() {
         int seconds = (int) timeLeftInMilliseconds % 60000 / 1000;
         int minutes = 0;
 
@@ -93,7 +100,7 @@ public class StartOfRoundActivity extends AppCompatActivity {
         countdownText.setText(timeLeftText);
     }
 
-    public void openTurnActivity() {
+    private void openTurnActivity() {
         Intent intent = new Intent(this, TurnActivity.class);
         for (int i = 0; i < players.length; i++) {
             if (!players[i].equals("") && !players[i].equals("Eliminated")) {
