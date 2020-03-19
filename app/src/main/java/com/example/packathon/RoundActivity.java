@@ -23,6 +23,7 @@ public class RoundActivity extends AppCompatActivity {
     private TextView player2;
     private TextView player3;
     private TextView player4;
+    private TextView currentRound;
     private int numCurrentRound;
 
     public Button startTurn;
@@ -31,26 +32,26 @@ public class RoundActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //Remove title bar
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-
-        //Remove notification bar
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        //set content view AFTER ABOVE sequence (to avoid crash)
         this.setContentView(R.layout.activity_round);
 
-
-        // must bind player data to list
-
-        players = new ArrayList<>();
-        playerNames = new ArrayList<>();
-        playerTextViews = new ArrayList<>();
-        TextView currentRound = findViewById(R.id.textViewRound);
         player1 = findViewById(R.id.textViewPlayer1);
         player2 = findViewById(R.id.textViewPlayer2);
         player3 = findViewById(R.id.textViewPlayer3);
         player4 = findViewById(R.id.textViewPlayer4);
+        currentRound = findViewById(R.id.textViewRound);
+
+        players = new ArrayList<>();
+        playerNames = new ArrayList<>();
+        playerTextViews = new ArrayList<>();
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         playerTextViews.add(player1);
         playerTextViews.add(player2);
         playerTextViews.add(player3);
