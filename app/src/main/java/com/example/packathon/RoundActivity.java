@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class RoundActivity extends AppCompatActivity {
 
-    // TODO: must adjust based on how many players there are
+    // TODO: must adjust TextView based on how many players there are
     // TODO: add a back button to add more players
     private String[] players;
     private TextView[] playerTextViews;
@@ -26,8 +26,8 @@ public class RoundActivity extends AppCompatActivity {
     private TextView player4;
     private TextView currentRound;
     private int numCurrentRound;
-    public Button startTurn;
-    public Button backButton;
+    private Button startTurn;
+    private Button backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +61,11 @@ public class RoundActivity extends AppCompatActivity {
                 openTurnActivity();
             }
         });
+
+
+        if (numCurrentRound != 1) {
+            backButton.setVisibility(View.GONE);
+        }
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override

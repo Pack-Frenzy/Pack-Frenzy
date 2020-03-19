@@ -14,8 +14,8 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    // First page when app opens up
-
+    // TODO: add utility class for common methods
+    // TODO: add music to rest of activities
     private MediaPlayer introMusic;
     private int mediaLength;
 
