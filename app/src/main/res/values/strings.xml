@@ -20,4 +20,5 @@
 
     <string name="back">BACK</string>
     <string name="back_to_add_players">Back to Add Players</string>
+    <string name="skip_countdown">SKIP COUNTDOWN</string>
 </resources>
