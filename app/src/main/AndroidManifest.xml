@@ -3,16 +3,38 @@
     package="com.example.packathon">
 
     <application android:theme="@style/AppTheme">
-        <activity android:name=".PauseScreenActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".GameOverActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".StartOfRoundActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".EndOfRoundActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".TurnActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".RoundActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".ScoreboardActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".PlayerActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".InstructionsActivity" android:screenOrientation="portrait" />
-        <activity android:name=".MainActivity" android:screenOrientation="portrait">
+        <activity android:name=".popups.MinPlayersPopup"
+            android:theme="@style/AppTheme.MinPlayersPopup" />
+        <activity
+            android:name=".PauseScreenActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".GameOverActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".StartOfRoundActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".EndOfRoundActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".TurnActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".RoundActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ScoreboardActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PlayerActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".InstructionsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

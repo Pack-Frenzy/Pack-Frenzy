@@ -21,4 +21,6 @@
     <string name="back">BACK</string>
     <string name="back_to_add_players">Back to Add Players</string>
     <string name="skip_countdown">SKIP COUNTDOWN</string>
+    <string name="min_players_popup">Please submit at least two players</string>
+    <string name="title_activity_min_players_popup">MinPlayersPopup</string>
 </resources>
