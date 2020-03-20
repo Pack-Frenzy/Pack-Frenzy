@@ -15,6 +15,9 @@ public class GameOverActivity extends AppCompatActivity {
     private Button goHome;
     private TextView winner;
 
+
+    // TODO: add a Play Again button which takes to PlayerActivity
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

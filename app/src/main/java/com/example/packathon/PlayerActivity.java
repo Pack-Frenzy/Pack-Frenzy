@@ -11,6 +11,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.packathon.model.Player;
 import com.example.packathon.popups.MinPlayersPopup;
 
 import java.util.ArrayList;
@@ -49,13 +50,11 @@ public class PlayerActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
-        intent = new Intent(this, RoundActivity.class);
-        setPlayerNamesForGame(intent);
-
         roundActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                intent = new Intent(PlayerActivity.this, RoundActivity.class);
+                setPlayerNamesForGame(intent);
                 if (activePlayers.size() <= 1) {
                     startActivity(new Intent(PlayerActivity.this, MinPlayersPopup.class));
                 } else {
