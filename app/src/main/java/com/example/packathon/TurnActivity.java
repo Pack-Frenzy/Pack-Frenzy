@@ -266,7 +266,6 @@ public class TurnActivity extends AppCompatActivity {
                 counter++;
             }
         }
-
         String loserIndex = Integer.toString(players.length - 1);
         intent.putExtra(loserIndex, name);
         intent.putExtra("currentRound", numCurrentRound);
