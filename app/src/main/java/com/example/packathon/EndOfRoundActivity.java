@@ -78,7 +78,7 @@ public class EndOfRoundActivity extends AppCompatActivity {
         int bundleSize = extras.size();
         players = new String[bundleSize - 1];
         if (extras != null) {
-            numCurrentRound = extras.getInt("currentRound") + 1;
+            numCurrentRound = extras.getInt("currentRound");
             for (int i = 0; i < bundleSize - 1; i++) {
                 String playerName = extras.getString(Integer.toString(i));
                 players[i] = playerName;
