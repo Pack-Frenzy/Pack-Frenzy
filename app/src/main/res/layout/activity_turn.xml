@@ -89,13 +89,12 @@
         app:layout_constraintTop_toBottomOf="@+id/w4"
         app:srcCompat="@drawable/ic_launcher_foreground" />
 
-    <EditText
+    <TextView
         android:id="@+id/Player_Name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:alpha="0.8"
         android:background="#DFBDB6"
-        android:inputType="textPersonName"
         android:text="Name"
         android:textColor="@android:color/background_dark"
         android:textSize="30sp"
