@@ -10,10 +10,6 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
-
 public class RoundActivity extends AppCompatActivity {
 
     // TODO: must adjust TextView based on how many players there are
@@ -58,7 +54,7 @@ public class RoundActivity extends AppCompatActivity {
         startTurn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openTurnActivity();
+                openStartOfRoundActivity();
             }
         });
 
@@ -103,7 +99,7 @@ public class RoundActivity extends AppCompatActivity {
         }
     }
 
-    private void openTurnActivity() {
+    private void openStartOfRoundActivity() {
         Intent intent = new Intent(this, StartOfRoundActivity.class);
         for (int i = 0; i < players.length; i++) {
             if (!players[i].equals("") && !players[i].equals("Eliminated")) {
