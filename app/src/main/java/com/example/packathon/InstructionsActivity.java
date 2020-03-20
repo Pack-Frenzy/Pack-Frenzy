@@ -10,34 +10,28 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class InstructionsActivity extends AppCompatActivity {
+    private Button back;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-        //Remove title bar
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-
-        //Remove notification bar
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        //set content view AFTER ABOVE sequence (to avoid crash)
         this.setContentView(R.layout.activity_instructions);
 
-        Button home = findViewById(R.id.homeButton);
-
-        home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openHomePage();
-            }
-        });
+        back = findViewById(R.id.backButton);
     }
 
-    // TODO: Change this back to home... inbetweenturns is just for testing
-    public void openHomePage() {
-        Intent intent = new Intent(this, MainActivity.class);
-
-        startActivity(intent);
+    @Override
+    protected void onResume() {
+        super.onResume();
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 }

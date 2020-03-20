@@ -5,81 +5,93 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 public class StartOfRoundActivity extends AppCompatActivity {
+    // TODO: add facial recognition here
 
+    private Button skipButton;
     private TextView countdownText;
     private TextView currentPlayerFromID;
-
-    // TODO: change back to 10000 secs, 1000 just for testing
-    private long timeLeftInMilliseconds = 10000; // 10 seconds
-    private ArrayList<String> playerNames;
+    private long timeLeftInMilliseconds;
+    private String[] players;
     private int numCurrentRound;
+    boolean skipped = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-        //Remove title bar
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-
-        //Remove notification bar
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        //set content view AFTER ABOVE sequence (to avoid crash)
         this.setContentView(R.layout.activity_start_of_round);
-
         countdownText = findViewById(R.id.countdownText);
-
-        playerNames = new ArrayList<>();
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            String playerName = extras.getString("0");
-            playerNames.add(playerName);
-
-            playerName = extras.getString("1");
-            playerNames.add(playerName);
-
-            playerName = extras.getString("2");
-            playerNames.add(playerName);
-
-            playerName = extras.getString("3");
-            playerNames.add(playerName);
-
-            numCurrentRound = extras.getInt("currentRound");
-        }
-
         currentPlayerFromID = findViewById(R.id.currentPlayer);
-        String currentPlayer = playerNames.get(0);
+        skipButton = findViewById(R.id.skipButton);
+    }
 
+    protected void onResume() {
+        super.onResume();
+        extractBundle();
+        String currentPlayer = players[0];
         currentPlayerFromID.setText(currentPlayer);
+        timeLeftInMilliseconds = 10000;
+        toTurnActivity();
+    }
 
+    private void extractBundle() {
+        Bundle extras = getIntent().getExtras();
+        int bundleSize = extras.size();
+        players = new String[bundleSize - 1];
+        if (extras != null) {
+            numCurrentRound = extras.getInt("currentRound") + 1;
+            for (int i = 0; i < bundleSize - 1; i++) {
+                String playerName = extras.getString(Integer.toString(i));
+                players[i] = playerName;
+            }
+        }
+    }
+
+    private void toTurnActivity() {
+        skipButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                skipped = true;
+                openTurnActivity();
+            }
+        });
         startTimer();
     }
 
-    public void startTimer() {
+    private void startTimer() {
         CountDownTimer timer = new CountDownTimer(timeLeftInMilliseconds, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                timeLeftInMilliseconds = millisUntilFinished;
-                updateTimer();
+                if(skipped) {
+                    onFinish();
+                } else {
+                    timeLeftInMilliseconds = millisUntilFinished;
+                    updateTimer();
+                }
+
             }
-
-
             @Override
             public void onFinish() {
-                openTurnActivity();
+                if (!skipped) {
+                    openTurnActivity();
+                }
             }
         }.start();
     }
 
-    public void updateTimer() {
+    private void updateTimer() {
         int seconds = (int) timeLeftInMilliseconds % 60000 / 1000;
         int minutes = 0;
 
@@ -88,14 +100,15 @@ public class StartOfRoundActivity extends AppCompatActivity {
         countdownText.setText(timeLeftText);
     }
 
-    public void openTurnActivity() {
+    private void openTurnActivity() {
         Intent intent = new Intent(this, TurnActivity.class);
-        for (int i = 0; i < playerNames.size(); i++) {
-            intent.putExtra(Integer.toString(i), playerNames.get(i));
+        for (int i = 0; i < players.length; i++) {
+            if (!players[i].equals("") && !players[i].equals("Eliminated")) {
+                intent.putExtra(Integer.toString(i), players[i]);
+            }
         }
-
         intent.putExtra("currentRound", numCurrentRound);
-
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }
 
