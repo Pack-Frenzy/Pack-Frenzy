@@ -17,9 +17,13 @@
     <string name="play">Play!</string>
     <string name="remaining_players">Players advancing to the next round</string>
     <string name="loser">The loser is:</string>
+    <string name="text_view">TextView</string>
+    <string name="name">name</string>
+    <string name="icon_description">icon to drag</string>
+    <string name="box_desc">box to drag into</string>
+    <string name="gauge_desc">gauge to track progress</string>
 
     <string name="logo">logo</string>
-
     <string name="instructions">HOW TO PLAY</string>
 
     <string name="back">BACK</string>
