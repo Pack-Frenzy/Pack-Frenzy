@@ -30,7 +30,6 @@ public class EndOfRoundActivity extends AppCompatActivity {
         this.setContentView(R.layout.activity_end_of_round);
 
         nameOfLoser = findViewById(R.id.loser);
-        nameOfLoser.setText(players[players.length - 1]);
         endOfRound = findViewById(R.id.end_of_round);
 
         playerLeft1 = findViewById(R.id.player_left_1);
@@ -45,6 +44,7 @@ public class EndOfRoundActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         extractBundle();
+        nameOfLoser.setText(players[players.length - 1]);
         getEliminatedPlayer();
         endOfRound.setOnClickListener(new View.OnClickListener() {
             @Override
