@@ -52,7 +52,7 @@ public class TurnActivity extends AppCompatActivity {
     private Object imageTag4;
     private EditText nameTag;
     private int playerIndex;
-    private ArrayList<String> listOfPlayer;
+    private String[] players;
     private TextView w1;
     private TextView w2;
     private TextView w3;
@@ -71,41 +71,62 @@ public class TurnActivity extends AppCompatActivity {
     private int nextInt4;
     private int numCurrentRound;
 
-    private ArrayList<ImageView> listOfDroppedItems;
+//    private ArrayList<ImageView> listOfDroppedItems;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        //Remove title bar
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-
-        //Remove notification bar
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-        //set content view AFTER ABOVE sequence (to avoid crash)
         this.setContentView(R.layout.activity_turn);
 
         random = new Random();
+        setItemTypes();
+        setImgTags();
+        findLabels();
+        setRandomWeightsToItems();
+
+        nameTag = findViewById(R.id.Player_Name);
+        nameTag.setText(players[0], TextView.BufferType.EDITABLE);
+
+//        listOfDroppedItems = new ArrayList<>();
+
+        initialize();
+    }
+
+    protected void onResume() {
+        super.onResume();
+        extractBundle();
+
+        boxImg.setOnDragListener(new BoxDragListener(
+                R.drawable.boxbrown,
+                R.drawable.boxbrown));
+
+        boxImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                img1.setVisibility(View.VISIBLE);
+                img2.setVisibility(View.VISIBLE);
+                img3.setVisibility(View.VISIBLE);
+                img4.setVisibility(View.VISIBLE);
+            }
+        });
+
+        setItOnClickListener(img1);
+        setItOnClickListener(img2);
+        setItOnClickListener(img3);
+        setItOnClickListener(img4);
+    }
+
+    private void setItemTypes() {
         itemType1 = 3;
         itemType2 = 3;
         itemType3 = 3;
         itemType4 = 3;
+    }
 
-        listOfPlayer = new ArrayList<>();
-        listOfDroppedItems = new ArrayList<>();
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            numCurrentRound = extras.getInt("currentRound");
-            for (int i = 0; i < extras.size() - 1; i++) {
-                String playerName = extras.getString(String.valueOf(i));
-                if (playerName != null) {
-                    listOfPlayer.add(playerName);
-                }
-            }
-        }
-
+    private void setImgTags() {
         img1 = findViewById(R.id.imageView);
         img1.setTag("GameItemImg1");
         imageTag1 = img1.getTag();
@@ -120,19 +141,20 @@ public class TurnActivity extends AppCompatActivity {
         imageTag4 = img4.getTag();
         gaugeImg = findViewById(R.id.gaugeImage);
         gaugeImg.setTag("gaugeImageTag");
-
         itemInBox = findViewById(R.id.boxImage);
         itemInBox.setTag("boxImage");
+        boxImg = findViewById(R.id.boxImage);
+        boxImg.setTag("BoxImage");
+    }
 
-        nameTag = findViewById(R.id.Player_Name);
-
-        //Linking to the weight text field
+    private void findLabels() {
         w1 = findViewById(R.id.w1);
         w2 = findViewById(R.id.w2);
         w3 = findViewById(R.id.w3);
         w4 = findViewById(R.id.w4);
+    }
 
-
+    private void setRandomWeightsToItems() {
         int value = random.nextInt(20);
         String str = String.valueOf(value);
         w1.setText(str, TextView.BufferType.EDITABLE);
@@ -152,34 +174,19 @@ public class TurnActivity extends AppCompatActivity {
         str = String.valueOf(value);
         w4.setText(str, TextView.BufferType.EDITABLE);
         wn4 = value;
+    }
 
-
-        playerIndex = 0;
-        nameTag.setText(listOfPlayer.get(playerIndex), TextView.BufferType.EDITABLE);
-
-        initialize();
-
-        boxImg = findViewById(R.id.boxImage);
-        boxImg.setTag("BoxImage");
-
-        boxImg.setOnDragListener(new BoxDragListener(
-                R.drawable.boxbrown,
-                R.drawable.boxbrown));
-
-        boxImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                img1.setVisibility(View.VISIBLE);
-                img2.setVisibility(View.VISIBLE);
-                img3.setVisibility(View.VISIBLE);
-                img4.setVisibility(View.VISIBLE);
+    private void extractBundle() {
+        Bundle extras = getIntent().getExtras();
+        int bundleSize = extras.size();
+        players = new String[bundleSize - 1];
+        if (extras != null) {
+            numCurrentRound = extras.getInt("currentRound") + 1;
+            for (int i = 0; i < bundleSize - 1; i++) {
+                String playerName = extras.getString(Integer.toString(i));
+                players[i] = playerName;
             }
-        });
-        setItOnClickListener(img1);
-        setItOnClickListener(img2);
-        setItOnClickListener(img3);
-        setItOnClickListener(img4);
-
+        }
     }
 
     // EFFECTS: turns off the function of the back button
@@ -224,7 +231,6 @@ public class TurnActivity extends AppCompatActivity {
         img3.setImageResource(listOfDrawable[nextInt3]);
         img4.setImageResource(listOfDrawable[nextInt4]);
 
-
         gaugeImg.setImageResource(listOfGauges[0]);
     }
 
@@ -262,7 +268,7 @@ public class TurnActivity extends AppCompatActivity {
     public void openEndOfRoundActivity(String name) {
         Intent intent = new Intent (this, EndOfRoundActivity.class);
         int counter = 0;
-        for (String n: listOfPlayer) {
+        for (String n: players) {
             if (!name.equals(n)) {
                 String count = Integer.toString(counter);
                 intent.putExtra(count, n);
@@ -270,7 +276,7 @@ public class TurnActivity extends AppCompatActivity {
             }
         }
 
-        String loserIndex = Integer.toString(listOfPlayer.size() - 1);
+        String loserIndex = Integer.toString(players.length - 1);
         intent.putExtra(loserIndex, name);
         intent.putExtra("currentRound", numCurrentRound);
         startActivity(intent);
@@ -316,21 +322,19 @@ public class TurnActivity extends AppCompatActivity {
             }
             else {
                 gaugeImg.setImageResource(listOfGauges[5]);
-                if (listOfPlayer.size() == 2) {
+                if (players.length == 2) {
                     if (playerIndex == 0) {
-                        openGameOverActivity(listOfPlayer.get(listOfPlayer.size()-1));
+                        openGameOverActivity(players[players.length - 1]);
                     } else {
-                        openGameOverActivity(listOfPlayer.get(playerIndex - 1));
+                        openGameOverActivity(players[playerIndex - 1]);
                     }
                 } else if (playerIndex == 0) {
-                    openEndOfRoundActivity(listOfPlayer.get(listOfPlayer.size()-1));
+                    openEndOfRoundActivity(players[players.length - 1]);
                 } else {
-                    openEndOfRoundActivity(listOfPlayer.get(playerIndex - 1));
+                    openEndOfRoundActivity(players[playerIndex - 1]);
                 }
             }
         }
-
-
 
         @Override
         public boolean onDrag(final View v, DragEvent event) {
@@ -355,7 +359,7 @@ public class TurnActivity extends AppCompatActivity {
                     draggedView.post(new Runnable() {
                         @Override
                         public void run() {
-                            if ((playerIndex + 1) >= listOfPlayer.size()) {
+                            if ((playerIndex + 1) >= players.length) {
                                 playerIndex = 0;
                             } else {
                                 playerIndex++;
@@ -402,7 +406,7 @@ public class TurnActivity extends AppCompatActivity {
 
 
 
-                                nameTag.setText(listOfPlayer.get(playerIndex), TextView.BufferType.EDITABLE);
+                                nameTag.setText(players[playerIndex], TextView.BufferType.EDITABLE);
 
 
                             } else if (imageTag2 == draggedView.getTag()) {
@@ -446,7 +450,7 @@ public class TurnActivity extends AppCompatActivity {
                                 changeGaugeImage(gauge.checkAndReturnStatus(gauge.getPercentFull()));
 
 
-                                nameTag.setText(listOfPlayer.get(playerIndex), TextView.BufferType.EDITABLE);
+                                nameTag.setText(players[playerIndex], TextView.BufferType.EDITABLE);
 
 
                             } else if (imageTag3 == draggedView.getTag()) {
@@ -488,7 +492,7 @@ public class TurnActivity extends AppCompatActivity {
                                 gauge.setPercentFull(gauge.calculatePercentFull(box.getWeight(), box.getWeightCapacity()));
                                 changeGaugeImage(gauge.checkAndReturnStatus(gauge.getPercentFull()));
 
-                                nameTag.setText(listOfPlayer.get(playerIndex), TextView.BufferType.EDITABLE);
+                                nameTag.setText(players[playerIndex], TextView.BufferType.EDITABLE);
 
 
                             } else if (imageTag4 == draggedView.getTag()) {
@@ -531,7 +535,7 @@ public class TurnActivity extends AppCompatActivity {
 
                                 changeGaugeImage(gauge.checkAndReturnStatus(gauge.getPercentFull()));
 
-                                nameTag.setText(listOfPlayer.get(playerIndex), TextView.BufferType.EDITABLE);
+                                nameTag.setText(players[playerIndex], TextView.BufferType.EDITABLE);
 
                             }
                         }
