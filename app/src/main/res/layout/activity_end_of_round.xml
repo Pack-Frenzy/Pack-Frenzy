@@ -11,6 +11,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
         android:text="@string/game_over"
         android:textColor="#FFFFFF"
         android:textSize="20pt"
@@ -26,8 +27,8 @@
         android:textColor="#FFFFFF"
         android:textSize="20pt"
         app:layout_constraintBottom_toTopOf="@+id/remaining_players"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView3"
+        app:layout_constraintStart_toStartOf="@+id/textView3"
         app:layout_constraintTop_toBottomOf="@+id/textView3"
         tools:text="Player" />
 
@@ -39,18 +40,19 @@
         android:textColor="#FFFFFF"
         android:textSize="12pt"
         app:layout_constraintBottom_toTopOf="@+id/loser"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
         android:id="@+id/end_of_round"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="96dp"
         android:text="@string/next_round"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/player_left_3"
+        app:layout_constraintStart_toStartOf="@+id/player_left_3"
         app:layout_constraintTop_toBottomOf="@+id/player_left_3" />
 
     <TextView
@@ -61,8 +63,9 @@
         android:textColor="#FFFFFF"
         android:textSize="10pt"
         app:layout_constraintBottom_toTopOf="@+id/player_left_1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/loser"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/loser"
         app:layout_constraintTop_toBottomOf="@+id/loser" />
 
     <TextView
@@ -72,8 +75,8 @@
         android:textColor="#FFFFFF"
         android:textSize="10pt"
         app:layout_constraintBottom_toTopOf="@+id/player_left_2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/remaining_players"
+        app:layout_constraintStart_toStartOf="@+id/remaining_players"
         app:layout_constraintTop_toBottomOf="@+id/remaining_players"
         tools:text="" />
 
@@ -84,8 +87,8 @@
         android:textColor="#FFFFFF"
         android:textSize="10pt"
         app:layout_constraintBottom_toTopOf="@+id/player_left_3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/player_left_1"
+        app:layout_constraintStart_toStartOf="@+id/player_left_1"
         app:layout_constraintTop_toBottomOf="@+id/player_left_1"
         tools:text="" />
 
@@ -96,8 +99,8 @@
         android:textColor="#FFFFFF"
         android:textSize="10pt"
         app:layout_constraintBottom_toTopOf="@+id/end_of_round"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/player_left_2"
+        app:layout_constraintStart_toStartOf="@+id/player_left_2"
         app:layout_constraintTop_toBottomOf="@+id/player_left_2"
         tools:text="" />
 

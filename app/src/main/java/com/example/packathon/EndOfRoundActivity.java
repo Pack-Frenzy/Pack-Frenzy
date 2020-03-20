@@ -66,6 +66,11 @@ public class EndOfRoundActivity extends AppCompatActivity {
                 listOfViews.get(i).setText("");
             }
         }
+        for (TextView view : listOfViews) {
+            if (view.getText().equals(null) || view.getText().equals("")) {
+                view.setVisibility((View.GONE));
+            }
+        }
     }
 
     private void extractBundle() {
