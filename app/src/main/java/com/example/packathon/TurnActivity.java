@@ -81,9 +81,7 @@ public class TurnActivity extends AppCompatActivity {
         setImgTags();
         findLabels();
         setRandomWeightsToItems();
-
         nameTag = findViewById(R.id.Player_Name);
-        nameTag.setText(players[0], TextView.BufferType.EDITABLE);
 
 //        listOfDroppedItems = new ArrayList<>();
         initialize();
@@ -92,6 +90,7 @@ public class TurnActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         extractBundle();
+        nameTag.setText(players[0], TextView.BufferType.EDITABLE);
 
         boxImg.setOnDragListener(new BoxDragListener(
                 R.drawable.boxbrown,
