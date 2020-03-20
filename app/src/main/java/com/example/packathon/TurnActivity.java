@@ -46,7 +46,7 @@ public class TurnActivity extends AppCompatActivity {
     private Object imageTag2;
     private Object imageTag3;
     private Object imageTag4;
-    private EditText nameTag;
+    private TextView nameTag;
     private int playerIndex;
     private String[] players;
     private TextView w1;
@@ -266,7 +266,6 @@ public class TurnActivity extends AppCompatActivity {
                 counter++;
             }
         }
-
         String loserIndex = Integer.toString(players.length - 1);
         intent.putExtra(loserIndex, name);
         intent.putExtra("currentRound", numCurrentRound);

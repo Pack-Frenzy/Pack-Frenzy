@@ -11,6 +11,7 @@
         android:id="@+id/w2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="128dp"
         android:text="@string/pass_the_phone"
         android:textColor="#FFFFFF"
         android:textSize="10pt"
@@ -27,20 +28,21 @@
         android:textColor="#FFFFFF"
         android:textSize="20pt"
         app:layout_constraintBottom_toTopOf="@+id/countdown"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/w2"
+        app:layout_constraintStart_toStartOf="@+id/w2"
         app:layout_constraintTop_toBottomOf="@+id/w2" />
 
     <TextView
         android:id="@+id/countdown"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="271dp"
         android:text="@string/countdown"
         android:textColor="#FFFFFF"
         android:textSize="10pt"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/countdownText"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/countdownText"
+        app:layout_constraintEnd_toEndOf="@+id/currentPlayer"
+        app:layout_constraintStart_toStartOf="@+id/currentPlayer"
         app:layout_constraintTop_toBottomOf="@+id/currentPlayer" />
 
     <TextView
@@ -49,19 +51,19 @@
         android:layout_height="wrap_content"
         android:textColor="#FFFFFF"
         android:textSize="10pt"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/countdown"
-        app:layout_constraintTop_toBottomOf="@+id/currentPlayer"
+        app:layout_constraintEnd_toEndOf="@+id/countdown"
+        app:layout_constraintStart_toStartOf="@+id/countdown"
+        app:layout_constraintTop_toBottomOf="@+id/countdown"
         tools:text="0:10" />
 
     <Button
         android:id="@+id/skipButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="256dp"
         android:text="@string/skip_countdown"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/countdown" />
+        app:layout_constraintEnd_toEndOf="@+id/countdownText"
+        app:layout_constraintStart_toStartOf="@+id/countdownText"
+        app:layout_constraintTop_toBottomOf="@+id/countdownText" />
 </androidx.constraintlayout.widget.ConstraintLayout>

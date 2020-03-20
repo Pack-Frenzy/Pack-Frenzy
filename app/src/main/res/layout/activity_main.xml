@@ -11,16 +11,17 @@
         android:id="@+id/instructionsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="How to Play"
+        android:text="@string/instructions"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/startPacking"
+        app:layout_constraintStart_toStartOf="@+id/startPacking"
         app:layout_constraintTop_toBottomOf="@+id/startPacking" />
 
     <Button
         android:id="@+id/startPacking"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:text="@string/start_packing"
         app:layout_constraintBottom_toTopOf="@+id/instructionsButton"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,10 +33,14 @@
         android:id="@+id/imageView5"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
+        android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toTopOf="@+id/startPacking"
+        app:layout_constraintDimensionRatio="h,1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo" />
+        app:layout_constraintVertical_chainStyle="packed"
+        app:srcCompat="@drawable/logo"
+        android:contentDescription="@string/logo"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

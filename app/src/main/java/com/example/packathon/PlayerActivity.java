@@ -11,19 +11,24 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 
-import java.lang.reflect.Array;
+import com.example.packathon.model.Player;
+import com.example.packathon.popups.MinPlayersPopup;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class PlayerActivity extends AppCompatActivity {
-    Button roundActivity;
-    String player1;
-    String player2;
-    String player3;
-    String player4;
-    EditText playerOne;
-    EditText playerTwo;
-    EditText playerThree;
-    EditText playerFour;
+    private Button roundActivity;
+    private String player1;
+    private String player2;
+    private String player3;
+    private String player4;
+    private EditText playerOne;
+    private EditText playerTwo;
+    private EditText playerThree;
+    private EditText playerFour;
+    private Intent intent;
+    private List<String> activePlayers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,24 +45,26 @@ public class PlayerActivity extends AppCompatActivity {
         playerTwo = findViewById(R.id.playerTwo);
         playerThree = findViewById(R.id.playerThree);
         playerFour = findViewById(R.id.playerFour);
-
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-
         roundActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openRoundActivity();
+                intent = new Intent(PlayerActivity.this, RoundActivity.class);
+                setPlayerNamesForGame(intent);
+                if (activePlayers.size() <= 1) {
+                    startActivity(new Intent(PlayerActivity.this, MinPlayersPopup.class));
+                } else {
+                    openRoundActivity();
+                }
             }
         });
     }
 
     public void openRoundActivity() {
-        Intent intent = new Intent(this, RoundActivity.class);
-        setPlayerNamesForGame(intent);
         intent.putExtra("currentRound", 0);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
@@ -66,7 +73,7 @@ public class PlayerActivity extends AppCompatActivity {
     private void setPlayerNamesForGame(Intent intent) {
         EditText[] editNames = new EditText[] {playerOne, playerTwo, playerThree, playerFour};
         String[] names = new String[] {player1, player2, player3, player4};
-        ArrayList<String> activePlayers = new ArrayList<>();
+        activePlayers = new ArrayList<>();
         for (EditText editName : editNames) {
             editName.setInputType(InputType.TYPE_CLASS_TEXT);
         }
@@ -76,12 +83,10 @@ public class PlayerActivity extends AppCompatActivity {
                 activePlayers.add(names[i]);
             }
         }
-
         passPlayerNamesToNextActivity(intent, activePlayers);
     }
 
-
-    private void passPlayerNamesToNextActivity(Intent intent, ArrayList<String> activePlayers) {
+    private void passPlayerNamesToNextActivity(Intent intent, List<String> activePlayers) {
         for (int i = 0; i < activePlayers.size(); i++) {
             intent.putExtra(Integer.toString(i), activePlayers.get(i));
         }
