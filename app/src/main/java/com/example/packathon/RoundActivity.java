@@ -64,7 +64,7 @@ public class RoundActivity extends AppCompatActivity {
 
 
         if (numCurrentRound != 1) {
-            backButton.setVisibility(View.GONE);
+            backButton.setVisibility(View.INVISIBLE);
         }
 
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -91,9 +91,14 @@ public class RoundActivity extends AppCompatActivity {
     private void setTextView() {
         for (int i = 0; i < players.length; i++) {
             if (players[i].equals("Eliminated")) {
-                playerTextViews[i].setText(null);
+                playerTextViews[i].setVisibility(View.GONE);
             } else {
                 playerTextViews[i].setText(String.format("Player %s: %s", String.valueOf(i + 1), players[i]));
+            }
+        }
+        for (TextView playerTextView : playerTextViews) {
+            if (playerTextView.getText().equals(null) || playerTextView.getText().equals("")) {
+                playerTextView.setVisibility((View.GONE));
             }
         }
     }
