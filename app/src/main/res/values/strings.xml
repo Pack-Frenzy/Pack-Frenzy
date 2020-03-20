@@ -18,6 +18,10 @@
     <string name="remaining_players">Players advancing to the next round</string>
     <string name="loser">The loser is:</string>
 
+    <string name="logo">logo</string>
+
+    <string name="instructions">HOW TO PLAY</string>
+
     <string name="back">BACK</string>
     <string name="back_to_add_players">Back to Add Players</string>
     <string name="skip_countdown">SKIP COUNTDOWN</string>
