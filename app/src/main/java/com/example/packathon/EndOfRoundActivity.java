@@ -44,7 +44,7 @@ public class EndOfRoundActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         extractBundle();
-        nameOfLoser.setText(players[players.length - 1]);
+        nameOfLoser.setText(players[players.length - 1].substring(1));
         getEliminatedPlayer();
         endOfRound.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,7 +61,7 @@ public class EndOfRoundActivity extends AppCompatActivity {
         players[players.length - 1] = "Eliminated";
         for (int i = 0; i < players.length - 1; i++) {
             if (!players[i].equals("Eliminated")) {
-                listOfViews.get(i).setText(players[i]);
+                listOfViews.get(i).setText(players[i].substring(1));
             } else {
                 listOfViews.get(i).setText("");
             }

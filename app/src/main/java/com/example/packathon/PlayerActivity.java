@@ -10,8 +10,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-
-import com.example.packathon.model.Player;
 import com.example.packathon.popups.MinPlayersPopup;
 
 import java.util.ArrayList;
@@ -80,7 +78,7 @@ public class PlayerActivity extends AppCompatActivity {
         for (int i = 0; i < names.length; i++) {
             names[i] = editNames[i].getText().toString();
             if(!names[i].equals("")) {
-                activePlayers.add(names[i]);
+                activePlayers.add(i + names[i]);
             }
         }
         passPlayerNamesToNextActivity(intent, activePlayers);

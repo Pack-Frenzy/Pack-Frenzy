@@ -90,7 +90,7 @@ public class TurnActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         extractBundle();
-        nameTag.setText(players[0], TextView.BufferType.EDITABLE);
+        nameTag.setText(players[0].substring(1), TextView.BufferType.EDITABLE);
 
         boxImg.setOnDragListener(new BoxDragListener(
                 R.drawable.boxbrown,
@@ -381,7 +381,7 @@ public class TurnActivity extends AppCompatActivity {
                                 }
                                 gauge.setPercentFull(gauge.calculatePercentFull(box.getWeight(), box.getWeightCapacity()));
                                 changeGaugeImage(gauge.checkAndReturnStatus(gauge.getPercentFull()));
-                                nameTag.setText(players[playerIndex], TextView.BufferType.EDITABLE);
+                                nameTag.setText(players[playerIndex].substring(1), TextView.BufferType.EDITABLE);
                             } else if (imageTag2 == draggedView.getTag()) {
                                 itemInBox.setImageResource(listOfDrawable[nextInt2]);
                                 checkItemType(itemType2, itm2, wn2);
@@ -412,7 +412,7 @@ public class TurnActivity extends AppCompatActivity {
                                 }
                                 gauge.setPercentFull(gauge.calculatePercentFull(box.getWeight(), box.getWeightCapacity()));
                                 changeGaugeImage(gauge.checkAndReturnStatus(gauge.getPercentFull()));
-                                nameTag.setText(players[playerIndex], TextView.BufferType.EDITABLE);
+                                nameTag.setText(players[playerIndex].substring(1), TextView.BufferType.EDITABLE);
                             } else if (imageTag3 == draggedView.getTag()) {
                                 itemInBox.setImageResource(listOfDrawable[nextInt3]);
                                 checkItemType(itemType3, itm3, wn3);
@@ -443,7 +443,7 @@ public class TurnActivity extends AppCompatActivity {
                                 }
                                 gauge.setPercentFull(gauge.calculatePercentFull(box.getWeight(), box.getWeightCapacity()));
                                 changeGaugeImage(gauge.checkAndReturnStatus(gauge.getPercentFull()));
-                                nameTag.setText(players[playerIndex], TextView.BufferType.EDITABLE);
+                                nameTag.setText(players[playerIndex].substring(1), TextView.BufferType.EDITABLE);
                             } else if (imageTag4 == draggedView.getTag()) {
                                 itemInBox.setImageResource(listOfDrawable[nextInt4]);
                                 checkItemType(itemType4, itm4, wn4);
@@ -474,7 +474,7 @@ public class TurnActivity extends AppCompatActivity {
                                 }
                                 gauge.setPercentFull(gauge.calculatePercentFull(box.getWeight(), box.getWeightCapacity()));
                                 changeGaugeImage(gauge.checkAndReturnStatus(gauge.getPercentFull()));
-                                nameTag.setText(players[playerIndex], TextView.BufferType.EDITABLE);
+                                nameTag.setText(players[playerIndex].substring(1), TextView.BufferType.EDITABLE);
                             }
                         }
                     });

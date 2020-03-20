@@ -89,7 +89,7 @@ public class RoundActivity extends AppCompatActivity {
             if (players[i].equals("Eliminated")) {
                 playerTextViews[i].setVisibility(View.GONE);
             } else {
-                playerTextViews[i].setText(String.format("Player %s: %s", String.valueOf(i + 1), players[i]));
+                playerTextViews[i].setText(String.format("Player %s: %s", String.valueOf(i + 1), players[i].substring(1)));
             }
         }
         for (TextView playerTextView : playerTextViews) {

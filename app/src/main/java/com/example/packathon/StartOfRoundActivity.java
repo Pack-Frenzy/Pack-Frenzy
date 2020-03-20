@@ -41,7 +41,7 @@ public class StartOfRoundActivity extends AppCompatActivity {
         super.onResume();
         extractBundle();
         String currentPlayer = players[0];
-        currentPlayerFromID.setText(currentPlayer);
+        currentPlayerFromID.setText(currentPlayer.substring(1));
         timeLeftInMilliseconds = 10000;
         toTurnActivity();
     }
