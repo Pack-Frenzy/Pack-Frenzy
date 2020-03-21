@@ -76,7 +76,10 @@ public class RoundActivity extends AppCompatActivity {
         int bundleSize = extras.size();
         players = new String[bundleSize - 1];
         if (extras != null) {
-            numCurrentRound = extras.getInt("currentRound") + 1;
+            numCurrentRound = extras.getInt("currentRound");
+            if (numCurrentRound == 0) {
+                numCurrentRound++;
+            }
             for (int i = 0; i < bundleSize - 1; i++) {
                 String playerName = extras.getString(Integer.toString(i));
                 players[i] = playerName;
@@ -89,7 +92,7 @@ public class RoundActivity extends AppCompatActivity {
             if (players[i].equals("Eliminated")) {
                 playerTextViews[i].setVisibility(View.GONE);
             } else {
-                playerTextViews[i].setText(String.format("Player %s: %s", String.valueOf(i + 1), players[i]));
+                playerTextViews[i].setText(String.format("Player %s: %s", String.valueOf(i + 1), players[i].substring(1)));
             }
         }
         for (TextView playerTextView : playerTextViews) {

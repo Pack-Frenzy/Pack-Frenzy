@@ -41,7 +41,7 @@ public class StartOfRoundActivity extends AppCompatActivity {
         super.onResume();
         extractBundle();
         String currentPlayer = players[0];
-        currentPlayerFromID.setText(currentPlayer);
+        currentPlayerFromID.setText(currentPlayer.substring(1));
         timeLeftInMilliseconds = 10000;
         toTurnActivity();
     }
@@ -51,7 +51,7 @@ public class StartOfRoundActivity extends AppCompatActivity {
         int bundleSize = extras.size();
         players = new String[bundleSize - 1];
         if (extras != null) {
-            numCurrentRound = extras.getInt("currentRound") + 1;
+            numCurrentRound = extras.getInt("currentRound");
             for (int i = 0; i < bundleSize - 1; i++) {
                 String playerName = extras.getString(Integer.toString(i));
                 players[i] = playerName;

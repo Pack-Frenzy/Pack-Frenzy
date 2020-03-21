@@ -47,7 +47,7 @@ public class GameOverActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             String winnerText = extras.get("winner").toString();
-            winner.setText(winnerText);
+            winner.setText(winnerText.substring(1));
         }
     }
 
