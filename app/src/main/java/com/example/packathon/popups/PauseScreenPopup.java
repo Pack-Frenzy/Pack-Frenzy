@@ -1,11 +1,13 @@
-package com.example.packathon;
+package com.example.packathon.popups;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.os.Bundle;
 
-public class PauseScreenActivity extends Activity {
+import com.example.packathon.R;
+
+public class PauseScreenPopup extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

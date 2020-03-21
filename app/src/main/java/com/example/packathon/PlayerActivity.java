@@ -2,6 +2,7 @@ package com.example.packathon;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
@@ -10,6 +11,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+
 import com.example.packathon.popups.MinPlayersPopup;
 
 import java.util.ArrayList;
@@ -54,7 +57,7 @@ public class PlayerActivity extends AppCompatActivity {
                 intent = new Intent(PlayerActivity.this, RoundActivity.class);
                 setPlayerNamesForGame(intent);
                 if (activePlayers.size() <= 1) {
-                    startActivity(new Intent(PlayerActivity.this, MinPlayersPopup.class));
+                    showMinPlayersPopup();
                 } else {
                     openRoundActivity();
                 }
@@ -62,10 +65,16 @@ public class PlayerActivity extends AppCompatActivity {
         });
     }
 
-    public void openRoundActivity() {
+    private void openRoundActivity() {
         intent.putExtra("currentRound", 0);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
+    }
+
+    private void showMinPlayersPopup() {
+        final Dialog myDialog = new Dialog(this);
+        myDialog.setContentView(R.layout.activity_min_players_popup);
+        myDialog.show();
     }
 
     private void setPlayerNamesForGame(Intent intent) {
