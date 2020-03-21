@@ -331,19 +331,15 @@ public class TurnActivity extends AppCompatActivity {
             final ImageView draggedView = (ImageView) event.getLocalState();
             switch (event.getAction()) {
                 case DragEvent.ACTION_DRAG_STARTED:
-                    Log.d(TAG, "onDrag: ACTION_DRAG_STARTED");
                     hit = false;
                     return true;
                 case DragEvent.ACTION_DRAG_ENTERED:
-                    Log.d(TAG, "onDrag: ACTION_DRAG_ENTERED");
                     containerView.setImageResource(enterShape);
                     return true;
                 case DragEvent.ACTION_DRAG_EXITED:
-                    Log.d(TAG, "onDrag: ACTION_DRAG_EXITED");
                     containerView.setImageResource(normalShape);
                     return true;
                 case DragEvent.ACTION_DROP:
-                    Log.d(TAG, "onDrag: ACTION_DROP");
                     hit = true;
                     draggedView.post(new Runnable() {
                         @Override
@@ -481,7 +477,6 @@ public class TurnActivity extends AppCompatActivity {
                         }
                     });
                 case DragEvent.ACTION_DRAG_ENDED:
-                    Log.d(TAG, "onDrag: ACTION_DRAG_ENDED");
                     containerView.setImageResource(normalShape);
                     v.setVisibility(View.VISIBLE);
                     if (!hit) {
