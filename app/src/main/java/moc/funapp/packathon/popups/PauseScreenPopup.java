@@ -1,4 +1,4 @@
-package com.example.packathon.popups;
+package moc.funapp.packathon.popups;
 
 import androidx.appcompat.app.AppCompatActivity;
 
