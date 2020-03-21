@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:layout_marginBottom="32dp"
-        android:text="TextView"
+        android:text="@string/text_view"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="20pt"
