@@ -31,4 +31,10 @@
     <string name="skip_countdown">SKIP COUNTDOWN</string>
     <string name="min_players_popup">At least two players required</string>
     <string name="title_activity_min_players_popup">MinPlayersPopup</string>
+    <string name="restart">Restart</string>
+    <string name="round">Round</string>
+    <string name="toggle">Toggle</string>
+    <string name="sound">Sound</string>
+    <string name="pause_menu">Pause Menu</string>
+    <string name="resume_game">Resume Game</string>
 </resources>
