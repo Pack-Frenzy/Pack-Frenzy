@@ -244,7 +244,9 @@ public class TurnActivity extends AppCompatActivity {
         final Dialog myDialog = new Dialog(this);
         TextView txtClose;
         Button pauseButton;
-        myDialog.setContentView(R.layout.activity_pause_screen);
+        // TODO: Switch the below back when pause screen is finished:
+        // myDialog.setContentView(R.layout.activity_pause_screen);
+         myDialog.setContentView(R.layout.activity_pause_screen_old);
         txtClose = (TextView) myDialog.findViewById(R.id.close_pause);
         pauseButton = (Button) myDialog.findViewById(R.id.pause);
         txtClose.setOnClickListener(new View.OnClickListener() {

@@ -3,7 +3,8 @@
     package="com.example.packathon">
 
     <application android:theme="@style/AppTheme">
-        <activity android:name=".popups.MinPlayersPopup"
+        <activity
+            android:name=".popups.MinPlayersPopup"
             android:theme="@style/AppTheme.MinPlayersPopup" />
         <activity
             android:name=".popups.PauseScreenPopup"
