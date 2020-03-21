@@ -1,11 +1,11 @@
-package com.example.packathon.popups;
+package moc.funapp.packathon.popups;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 
-import com.example.packathon.R;
+import moc.funapp.packathon.R;
 
 public class MinPlayersPopup extends AppCompatActivity {
 

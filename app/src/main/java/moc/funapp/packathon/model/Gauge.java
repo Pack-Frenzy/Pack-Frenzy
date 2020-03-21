@@ -1,4 +1,4 @@
-package com.example.packathon.model;
+package moc.funapp.packathon.model;
 
 // A class that represents a Gauge object with the status of the gauge, and  indicates what
 // level of capacity the box is current at in terms of percentage and the specific stage/status

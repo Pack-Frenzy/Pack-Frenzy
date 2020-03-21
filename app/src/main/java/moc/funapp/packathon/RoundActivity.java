@@ -1,4 +1,4 @@
-package com.example.packathon;
+package moc.funapp.packathon;
 
 import androidx.appcompat.app.AppCompatActivity;
 

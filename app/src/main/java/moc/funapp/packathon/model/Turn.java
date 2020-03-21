@@ -1,4 +1,4 @@
-package com.example.packathon.model;
+package moc.funapp.packathon.model;
 
 import android.graphics.Color;
 

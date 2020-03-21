@@ -1,4 +1,4 @@
-package com.example.packathon.model;
+package moc.funapp.packathon.model;
 
 import java.util.ArrayList;
 import java.util.HashMap;

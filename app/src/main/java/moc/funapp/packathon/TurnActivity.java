@@ -1,4 +1,4 @@
-package com.example.packathon;
+package moc.funapp.packathon;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,11 +17,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.packathon.model.BombItem;
-import com.example.packathon.model.Box;
-import com.example.packathon.model.BoxItem;
-import com.example.packathon.model.Gauge;
-import com.example.packathon.model.LightenLoadItem;
+import moc.funapp.packathon.model.BombItem;
+import moc.funapp.packathon.model.Box;
+import moc.funapp.packathon.model.BoxItem;
+import moc.funapp.packathon.model.Gauge;
+import moc.funapp.packathon.model.LightenLoadItem;
 
 import java.util.Random;
 
