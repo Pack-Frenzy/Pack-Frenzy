@@ -11,6 +11,7 @@
         android:id="@+id/playerNames"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
         android:fontFamily="sans-serif-light"
         android:text="@string/enter_player_names"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
@@ -32,8 +33,8 @@
         android:hint="@string/player_1"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/playerTwo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/playerNames"
+        app:layout_constraintStart_toStartOf="@+id/playerNames"
         app:layout_constraintTop_toBottomOf="@+id/playerNames" />
 
     <EditText
@@ -46,8 +47,8 @@
         android:hint="@string/player_2"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/playerThree"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/playerOne"
+        app:layout_constraintStart_toStartOf="@+id/playerOne"
         app:layout_constraintTop_toBottomOf="@+id/playerOne" />
 
     <EditText
@@ -60,8 +61,8 @@
         android:hint="@string/player_3"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/playerFour"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/playerTwo"
+        app:layout_constraintStart_toStartOf="@+id/playerTwo"
         app:layout_constraintTop_toBottomOf="@+id/playerTwo" />
 
     <EditText
@@ -74,17 +75,19 @@
         android:hint="@string/player_4"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/submitPlayers"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/playerThree"
+        app:layout_constraintStart_toStartOf="@+id/playerThree"
         app:layout_constraintTop_toBottomOf="@+id/playerThree" />
 
     <Button
         android:id="@+id/submitPlayers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="128dp"
         android:text="@string/submit_players"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/playerFour"
+        app:layout_constraintStart_toStartOf="@+id/playerFour"
         app:layout_constraintTop_toBottomOf="@+id/playerFour" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

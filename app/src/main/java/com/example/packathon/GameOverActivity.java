@@ -12,31 +12,26 @@ import android.widget.TextView;
 
 public class GameOverActivity extends AppCompatActivity {
 
+    private Button goHome;
+    private TextView winner;
+
+
+    // TODO: add a Play Again button which takes to PlayerActivity
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-
-        //Remove title bar
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-
-        //Remove notification bar
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-        //set content view AFTER ABOVE sequence (to avoid crash)
         this.setContentView(R.layout.activity_game_over);
+        goHome = findViewById(R.id.goHome);
+        winner = findViewById(R.id.winner);
+    }
 
-        Button goHome = findViewById(R.id.goHome);
-
-        TextView winner = findViewById(R.id.winner);
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            String winnerText = extras.get("winner").toString();
-            winner.setText(winnerText);
-        }
-
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        extractBundle();
         goHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,14 +40,20 @@ public class GameOverActivity extends AppCompatActivity {
         });
     }
 
-    // EFFECTS: turns off the function of the back button
     @Override
-    public void onBackPressed() {
+    public void onBackPressed() {}
 
+    private void extractBundle() {
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            String winnerText = extras.get("winner").toString();
+            winner.setText(winnerText.substring(1));
+        }
     }
 
     public void openMainActivity() {
-        Intent intent = new Intent(this, PlayerActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }
 }
