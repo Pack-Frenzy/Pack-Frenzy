@@ -14,31 +14,33 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    // First page when app opens up
-
+    // TODO: add utility class for common methods
+    // TODO: add music to rest of activities
     private MediaPlayer introMusic;
     private int mediaLength;
+
+    private Button playerActivity;
+    private Button instructionsActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-        //Remove title bar
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-
-        //Remove notification bar
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        //set content view AFTER ABOVE sequence (to avoid crash)
         this.setContentView(R.layout.activity_main);
 
-
         introMusic = MediaPlayer.create(MainActivity.this, R.raw.intro);
-        introMusic.start();
 
-        Button playerActivity = findViewById(R.id.startPacking);
-        Button instructionsActivity = findViewById(R.id.instructionsButton);
+        playerActivity = findViewById(R.id.startPacking);
+        instructionsActivity = findViewById(R.id.instructionsButton);
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
 
         playerActivity.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,19 +52,15 @@ public class MainActivity extends AppCompatActivity {
         instructionsActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               openInstructionsActivity();
+                openInstructionsActivity();
             }
         });
 
-    }
-
-
-    @Override
-    protected void onResume() {
-        super.onResume();
         if (introMusic != null) {
             introMusic.start();
             introMusic.seekTo(mediaLength);
+        } else {
+            introMusic.start();
         }
     }
 
@@ -75,8 +73,19 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
     public void openPlayerActivity() {
         Intent intent = new Intent(this, PlayerActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }
 
@@ -90,8 +99,4 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(myIntent, 0);
         return true;
     }
-
-    // TODO:
-    // "Start Packing" BUTTON  -> PlayerActivity
-    // "High Scores"   BUTTON  -> ScoreboardActivity
 }

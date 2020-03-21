@@ -10,101 +10,113 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.packathon.model.Player;
-import java.util.ArrayList;
-
 public class RoundActivity extends AppCompatActivity {
 
-    // TODO: must adjust based on how many players there are
-    private ArrayList<Player> players;
-    private ArrayList<String> playerNames;
-    private ArrayList<TextView> playerTextViews;
+    // TODO: must adjust TextView based on how many players there are
+    // TODO: add a back button to add more players
+    private String[] players;
+    private TextView[] playerTextViews;
     private TextView player1;
     private TextView player2;
     private TextView player3;
     private TextView player4;
+    private TextView currentRound;
     private int numCurrentRound;
-
-    public Button startTurn;
+    private Button startTurn;
+    private Button backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //Remove title bar
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-
-        //Remove notification bar
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        //set content view AFTER ABOVE sequence (to avoid crash)
         this.setContentView(R.layout.activity_round);
-
-
-        // must bind player data to list
-
-        players = new ArrayList<>();
-        playerNames = new ArrayList<>();
-        playerTextViews = new ArrayList<>();
-        TextView currentRound = findViewById(R.id.textViewRound);
-        player1 = findViewById(R.id.textViewPlayer1);
-        player2 = findViewById(R.id.textViewPlayer2);
-        player3 = findViewById(R.id.textViewPlayer3);
-        player4 = findViewById(R.id.textViewPlayer4);
-        playerTextViews.add(player1);
-        playerTextViews.add(player2);
-        playerTextViews.add(player3);
-        playerTextViews.add(player4);
-
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-
-            // get current round number
-            numCurrentRound = extras.getInt("currentRound") + 1;
-
-            for (int i = 0; i < extras.size() - 1; i++) {
-                String playerName = extras.getString(Integer.toString(i));
-                playerNames.add(playerName);
-            }
-        }
-
-        // TODO: must pull list of players from currentRound
-
-        for (String playerName : playerNames) {
-            players.add(new Player(playerName));
-        }
-
-        // TODO: must refactor based on what is being fed into this class
-        for (int i = 0; i < players.size(); i++) {
-            if (players.get(i).getName().equals("") || players.get(i).getName().equals("Eliminated")) {
-                playerTextViews.get(i).setText(null);
-            } else {
-                playerTextViews.get(i).setText(String.format("Player %s: %s",
-                        String.valueOf(i + 1), players.get(i).getName()));
-            }
-        }
-
-        currentRound.setText(String.format("Round %s", numCurrentRound));
-
+        playerTextViews = new TextView[] {
+            player1 = findViewById(R.id.textViewPlayer1),
+            player2 = findViewById(R.id.textViewPlayer2),
+            player3 = findViewById(R.id.textViewPlayer3),
+            player4 = findViewById(R.id.textViewPlayer4)
+        };
+        currentRound = findViewById(R.id.textViewRound);
         startTurn = findViewById(R.id.start_turn);
+        backButton = findViewById(R.id.backButton);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        extractBundle();
+        setTextView();
+        currentRound.setText(String.format("Round %s", numCurrentRound));
 
         startTurn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openTurnActivity();
+                openStartOfRoundActivity();
             }
         });
 
+
+        if (numCurrentRound != 1) {
+            backButton.setVisibility(View.INVISIBLE);
+        }
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openPlayerActivity();
+            }
+        });
     }
 
-    public void openTurnActivity() {
+    private void extractBundle() {
+        Bundle extras = getIntent().getExtras();
+        int bundleSize = extras.size();
+        players = new String[bundleSize - 1];
+        if (extras != null) {
+            numCurrentRound = extras.getInt("currentRound");
+            if (numCurrentRound == 0) {
+                numCurrentRound++;
+            }
+            for (int i = 0; i < bundleSize - 1; i++) {
+                String playerName = extras.getString(Integer.toString(i));
+                players[i] = playerName;
+            }
+        }
+    }
+
+    private void setTextView() {
+        for (int i = 0; i < players.length; i++) {
+            if (players[i].equals("Eliminated")) {
+                playerTextViews[i].setVisibility(View.GONE);
+            } else {
+                playerTextViews[i].setText(String.format("Player %s: %s", String.valueOf(i + 1), players[i].substring(1)));
+            }
+        }
+        for (TextView playerTextView : playerTextViews) {
+            if (playerTextView.getText().equals(null) || playerTextView.getText().equals("")) {
+                playerTextView.setVisibility((View.GONE));
+            }
+        }
+    }
+
+    private void openStartOfRoundActivity() {
         Intent intent = new Intent(this, StartOfRoundActivity.class);
-        for (int i = 0; i < playerNames.size(); i++) {
-            if (!players.get(i).getName().equals("") && !players.get(i).getName().equals("Eliminated")) {
-                intent.putExtra(Integer.toString(i), playerNames.get(i));
+        for (int i = 0; i < players.length; i++) {
+            if (!players[i].equals("") && !players[i].equals("Eliminated")) {
+                intent.putExtra(Integer.toString(i), players[i]);
             }
         }
         intent.putExtra("currentRound", numCurrentRound);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+    }
+
+    private void openPlayerActivity() {
+        Intent intent = new Intent(this, PlayerActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }
 

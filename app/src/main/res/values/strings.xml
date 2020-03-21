@@ -6,7 +6,7 @@
     <string name="submit_players">Submit</string>
     <string name="home">Home</string>
     <string name="pass_the_phone">Pass the phone to </string>
-    <string name="countdown">Next round starts in: </string>
+    <string name="countdown">Next round starts in:</string>
     <string name="game_over">End of Round</string>
     <string name="next_round">Next round</string>
     <string name="winner">The winner is: </string>
@@ -17,4 +17,24 @@
     <string name="play">Play!</string>
     <string name="remaining_players">Players advancing to the next round</string>
     <string name="loser">The loser is:</string>
+    <string name="text_view">TextView</string>
+    <string name="name">name</string>
+    <string name="icon_description">icon to drag</string>
+    <string name="box_desc">box to drag into</string>
+    <string name="gauge_desc">gauge to track progress</string>
+
+    <string name="logo">logo</string>
+    <string name="instructions">HOW TO PLAY</string>
+
+    <string name="back">BACK</string>
+    <string name="back_to_add_players">Back to Add Players</string>
+    <string name="skip_countdown">SKIP COUNTDOWN</string>
+    <string name="min_players_popup">At least two players required</string>
+    <string name="title_activity_min_players_popup">MinPlayersPopup</string>
+    <string name="restart">Restart</string>
+    <string name="round">Round</string>
+    <string name="toggle">Toggle</string>
+    <string name="sound">Sound</string>
+    <string name="pause_menu">Pause Menu</string>
+    <string name="resume_game">Resume Game</string>
 </resources>

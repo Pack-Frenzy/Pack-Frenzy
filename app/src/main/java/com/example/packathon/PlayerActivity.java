@@ -2,6 +2,7 @@ package com.example.packathon;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
@@ -10,63 +11,91 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+
+import com.example.packathon.popups.MinPlayersPopup;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PlayerActivity extends AppCompatActivity {
-    String player1;
-    String player2;
-    String player3;
-    String player4;
+    private Button roundActivity;
+    private String player1;
+    private String player2;
+    private String player3;
+    private String player4;
+    private EditText playerOne;
+    private EditText playerTwo;
+    private EditText playerThree;
+    private EditText playerFour;
+    private Intent intent;
+    private List<String> activePlayers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-        //Remove title bar
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-
-        //Remove notification bar
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        //set content view AFTER ABOVE sequence (to avoid crash)
         this.setContentView(R.layout.activity_player);
 
-        Button roundActivity = findViewById(R.id.submitPlayers);
+        roundActivity = findViewById(R.id.submitPlayers);
 
+        playerOne = findViewById(R.id.playerOne);
+        playerTwo = findViewById(R.id.playerTwo);
+        playerThree = findViewById(R.id.playerThree);
+        playerFour = findViewById(R.id.playerFour);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         roundActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openRoundActivity();
+                intent = new Intent(PlayerActivity.this, RoundActivity.class);
+                setPlayerNamesForGame(intent);
+                if (activePlayers.size() <= 1) {
+                    showMinPlayersPopup();
+                } else {
+                    openRoundActivity();
+                }
             }
         });
     }
 
-    public void openRoundActivity() {
-        Intent intent = new Intent(this, RoundActivity.class);
-
-        EditText playerOne = findViewById(R.id.playerOne);
-        EditText playerTwo = findViewById(R.id.playerTwo);
-        EditText playerThree = findViewById(R.id.playerThree);
-        EditText playerFour = findViewById(R.id.playerFour);
-
-        playerOne.setInputType(InputType.TYPE_CLASS_TEXT);
-        playerTwo.setInputType(InputType.TYPE_CLASS_TEXT);
-        playerThree.setInputType(InputType.TYPE_CLASS_TEXT);
-        playerFour.setInputType(InputType.TYPE_CLASS_TEXT);
-
-        player1 = playerOne.getText().toString();
-        player2 = playerTwo.getText().toString();
-        player3 = playerThree.getText().toString();
-        player4 = playerFour.getText().toString();
-
-        intent.putExtra("0", player1);
-        intent.putExtra("1", player2);
-        intent.putExtra("2", player3);
-        intent.putExtra("3", player4);
+    private void openRoundActivity() {
         intent.putExtra("currentRound", 0);
-
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
+    }
+
+    private void showMinPlayersPopup() {
+        final Dialog myDialog = new Dialog(this);
+        myDialog.setContentView(R.layout.activity_min_players_popup);
+        myDialog.show();
+    }
+
+    private void setPlayerNamesForGame(Intent intent) {
+        EditText[] editNames = new EditText[] {playerOne, playerTwo, playerThree, playerFour};
+        String[] names = new String[] {player1, player2, player3, player4};
+        activePlayers = new ArrayList<>();
+        for (EditText editName : editNames) {
+            editName.setInputType(InputType.TYPE_CLASS_TEXT);
+        }
+        for (int i = 0; i < names.length; i++) {
+            names[i] = editNames[i].getText().toString();
+            if(!names[i].equals("")) {
+                activePlayers.add(i + names[i]);
+            }
+        }
+        passPlayerNamesToNextActivity(intent, activePlayers);
+    }
+
+    private void passPlayerNamesToNextActivity(Intent intent, List<String> activePlayers) {
+        for (int i = 0; i < activePlayers.size(); i++) {
+            intent.putExtra(Integer.toString(i), activePlayers.get(i));
+        }
     }
 }
