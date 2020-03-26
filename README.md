@@ -17,6 +17,7 @@ Potential gamemodes includes the following:
 - Multiplayer Vs Mode: Play against others in live time.
 
 **Game Preview:** https://youtu.be/8Ken2pxnZ18 
+**Download from Google Play Store: ** https://play.google.com/store/apps/details?id=moc.funapp.packathon
 
 ## Potential Additions
 - Single player Mode: Play alone to pass time. This game mode features a timed single player with either AI opponent or a series of generated levels in ascending difficulty. 
